@@ -1,0 +1,63 @@
+import {
+    Dispatch,
+    ReactNode,
+    SetStateAction,
+    useEffect,
+    useState,
+} from "react";
+
+export interface ModalProps {
+    show: boolean;
+    setShow: Dispatch<SetStateAction<boolean>>;
+    title?: string;
+    children?: ReactNode;
+    className?: string;
+}
+
+const Modal: React.FC<ModalProps> = ({
+    show,
+    setShow,
+    title,
+    children,
+    className,
+}) => {
+    const [showClass, setShowClass] = useState(false);
+
+    useEffect(() => {
+        setShowClass(show);
+    }, [show]);
+
+    return (
+        <div
+            className={`
+                modal fade
+                ${show ? "d-block" : "d-none"}
+                ${showClass ? "show bg-dark bg-opacity-25" : ""}
+                ${className ?? ""}
+            `}
+            tabIndex={-1}
+            style={{
+                zIndex: 9999,
+            }}
+            // aria-labelledby="exampleModalLabel"
+            aria-hidden={!show}
+        >
+            <div className="modal-dialog">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        {title && <h1 className="modal-title fs-5">{title}</h1>}
+                        <button
+                            type="button"
+                            className="btn-close"
+                            onClick={() => setShow(false)}
+                            aria-label="Close"
+                        />
+                    </div>
+                    <div className="modal-body">{children}</div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Modal;

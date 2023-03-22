@@ -1,0 +1,108 @@
+// Variable overrides first
+// $primary: #900;
+$enable-shadows: true;
+$prefix: "mo-";
+
+$white: #ffffff;
+
+// https://coolors.co/231123-82204a-558c8c-e3c563-eff7ff
+$dark-purple: #231123ff;
+$murrey: #82204aff;
+$dark-cyan: #558c8cff;
+$flax: #e8db7dff;
+$arylide-yellow: #e3c563ff;
+$alice-blue: #eff7ffff;
+
+$theme-colors: (
+    "light": $alice-blue,
+    "dark": $dark-purple,
+    "primary": $murrey,
+    "secondary": $dark-cyan,
+    "info": $arylide-yellow,
+    "success": #539800,
+    "warning": #ffbb51,
+    "danger": #ec0062,
+);
+
+// Then import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+$utilities: map-merge(
+    $utilities,
+    (
+        "fill": (
+            property: fill,
+            class: fill,
+            values: $theme-colors,
+        ),
+        "stroke": (
+            property: stroke,
+            class: stroke,
+            values: $theme-colors,
+        ),
+        "bg-opacity": (
+            css-var: true,
+            class: bg-opacity,
+            state: hover,
+            values: (
+                0: 0,
+                25: 0.25,
+                50: 0.5,
+                75: 0.75,
+                100: 1,
+            ),
+        ),
+        "opacity": (
+            property: opacity,
+            class: opacity,
+            state: hover,
+            values: (
+                0: 0,
+                25: 0.25,
+                50: 0.5,
+                75: 0.75,
+                100: 1,
+            ),
+        ),
+        "shadow": (
+            property: box-shadow,
+            class: shadow,
+            state: hover,
+            values: (
+                null: $box-shadow,
+                sm: $box-shadow-sm,
+                lg: $box-shadow-lg,
+                none: none,
+            ),
+        ),
+        "color":
+            map-merge(
+                map-get($utilities, "color"),
+                (
+                    state: hover,
+                )
+            ),
+    )
+);
+
+// Regenerate utilities with modified maps
+@import "bootstrap/scss/utilities/api";
+
+:root {
+    --mo-link-color: #82204aff;
+    --mo-link-hover-color: #558c8cff;
+}
+
+.transition-all {
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.transition-all-500-ms-linear {
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
