@@ -1,7 +1,7 @@
 import FullHeightSection from "@/components/ui/FullHeightSection";
-import { Experience } from "@/helpers/database/ExperienceCtor";
+import { Highlight } from "@/helpers/database/HighlightsCtor";
 
-const HighlightsSection: React.FC<{ highlights: Experience[] }> = ({
+const HighlightsSection: React.FC<{ highlights: Highlight[] }> = ({
     highlights,
 }) => {
     return (
