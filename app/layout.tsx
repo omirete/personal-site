@@ -39,8 +39,8 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                                     Contact
                                 </NavbarAnchor>
                                 {/* <NavbarLink href="/chat">
-                Chat with "me" now! (AI)
-            </NavbarLink> */}
+                                    Chat with "me" now! (AI)
+                                </NavbarLink> */}
                                 {/* <NavbarLink href="/playground">Playground</NavbarLink> */}
                                 {session && (
                                     <NavbarLink href="/admin/files">Admin</NavbarLink>
