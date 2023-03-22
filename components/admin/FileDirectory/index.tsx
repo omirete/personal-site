@@ -15,11 +15,18 @@ const FileDirectory: React.FC<FileDirectoryProps> = ({
 }) => {
     const { files, loading } = useFileDirectory();
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <div
+                className={`bg-dark bg-opacity-25 rounded ${className}`}
+                style={{
+                    height: "300px",
+                }}
+            />
+        );
     } else {
         return (
             <table {...props} className={`table caption-top ${className}`}>
-                 <caption>Uploaded files</caption>
+                <caption>Uploaded files</caption>
                 <tbody>
                     <tr>
                         <th scope="col">#</th>
@@ -28,10 +35,12 @@ const FileDirectory: React.FC<FileDirectoryProps> = ({
                         <th scope="col">Size</th>
                         <th scope="col">Type</th>
                         {/* <th scope="col">Mime</th> */}
-                        <th scope="col" className="text-center">Action</th>
+                        <th scope="col" className="text-center">
+                            Action
+                        </th>
                     </tr>
                     {files.map((file, i) => (
-                        <tr>
+                        <tr key={i}>
                             <td scope="row">{i + 1}</td>
                             <td>{file.filename}</td>
                             <td>
@@ -51,9 +60,15 @@ const FileDirectory: React.FC<FileDirectoryProps> = ({
                             <td>{file.type}</td>
                             {/* <td>{file.mime}</td> */}
                             <td className="text-center">
-                                <button className="btn m-0 p-0 border-0 shadow-none">
+                                <a
+                                    className="btn m-0 p-0 border-0 shadow-none"
+                                    href={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}${file.filename}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    download
+                                >
                                     <FaDownload className="text-primary opacity-75" />
-                                </button>{" "}
+                                </a>{" "}
                                 <button className="btn m-0 p-0 border-0 shadow-none">
                                     <FaPen className="text-info opacity-75" />
                                 </button>{" "}
