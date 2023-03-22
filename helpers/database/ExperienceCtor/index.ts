@@ -6,9 +6,9 @@ export interface Experience {
     company: string;
     companyUrl?: string;
     position: string;
-    dateFrom: Date;
-    dateTo: Date;
-    description: string;
+    dateFrom: string;
+    dateTo?: string;
+    description?: string;
     tags: string[];
 }
 

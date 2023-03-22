@@ -8,6 +8,8 @@ const AdminNav: React.FC = () => {
     const links: Omit<LinkInfo, "id">[] = [
         { url: "/admin/files", text: "Files" },
         { url: "/admin/personal-info", text: "Personal info" },
+        { url: "/admin/highlights", text: "Highlights" },
+        { url: "/admin/experience", text: "Experience" },
         { url: "/admin/links", text: "Links" },
     ];
     const pathname = usePathname();

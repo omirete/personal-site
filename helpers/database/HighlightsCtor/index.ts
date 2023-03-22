@@ -4,8 +4,7 @@ import GenericDataObjectCtor from "../GenericCtors";
 export interface Highlight {
     id: string;
     title: string;
-    description: string;
-    tags: string[];
+    description?: string;
 }
 
 export default class HighlightsCtor extends GenericDataObjectCtor<Highlight> {
