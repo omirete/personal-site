@@ -12,6 +12,9 @@ import { NextPage } from "next";
 // Error" here: https://beta.nextjs.org/docs/data-fetching/fetching
 const Home: NextPage = async () => {
     const personalInfo = await DB.data.personalInfo.ALL.get();
+    const highlights = await DB.data.highlights.getAll();
+    const experience = await DB.data.experience.getAll();
+    const projects = await DB.data.projects.getAll();
     if (personalInfo)
         return (
             <main>
@@ -22,9 +25,9 @@ const Home: NextPage = async () => {
                     }}
                 >
                     <LandingSection personalInfo={personalInfo} />
-                    <HighlightsSection highlights={[]} />
-                    <ExperienceSection experience={[]} />
-                    <ProjectsSection projects={[]} />
+                    <HighlightsSection highlights={highlights} />
+                    <ExperienceSection experience={experience} />
+                    <ProjectsSection projects={projects} />
                 </div>
                 <ContactMeSection personalInfo={personalInfo} />
                 <Footer personalInfo={personalInfo} />
