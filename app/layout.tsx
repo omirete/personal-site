@@ -43,7 +43,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
             </NavbarLink> */}
                                 {/* <NavbarLink href="/playground">Playground</NavbarLink> */}
                                 {session && (
-                                    <NavbarLink href="/admin">Admin</NavbarLink>
+                                    <NavbarLink href="/admin/files">Admin</NavbarLink>
                                 )}
                             </ul>
                             <Link
