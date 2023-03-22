@@ -1,7 +1,7 @@
 "use client";
 
 import useFileDirectory from "./useFileDirectory";
-import { FaPen, FaTrash, FaDownload } from "react-icons/fa";
+import FileDirectoryRow from "./FileDirectoryRow";
 
 export interface FileDirectoryProps
     extends React.DetailedHTMLProps<
@@ -27,7 +27,7 @@ const FileDirectory: React.FC<FileDirectoryProps> = ({
         return (
             <table {...props} className={`table caption-top ${className}`}>
                 <caption>Uploaded files</caption>
-                <tbody>
+                <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">File path</th>
@@ -39,44 +39,10 @@ const FileDirectory: React.FC<FileDirectoryProps> = ({
                             Action
                         </th>
                     </tr>
+                </thead>
+                <tbody>
                     {files.map((file, i) => (
-                        <tr key={i}>
-                            <td scope="row">{i + 1}</td>
-                            <td>{file.filename}</td>
-                            <td>
-                                {new Date(file.lastmod).toLocaleDateString(
-                                    undefined,
-                                    {
-                                        year: "numeric",
-                                        month: "2-digit",
-                                        day: "2-digit",
-                                        hour: "2-digit",
-                                        minute: "2-digit",
-                                        second: "2-digit",
-                                    }
-                                )}
-                            </td>
-                            <td>{file.size}</td>
-                            <td>{file.type}</td>
-                            {/* <td>{file.mime}</td> */}
-                            <td className="text-center">
-                                <a
-                                    className="btn m-0 p-0 border-0 shadow-none"
-                                    href={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}${file.filename}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    download
-                                >
-                                    <FaDownload className="text-primary opacity-75" />
-                                </a>{" "}
-                                <button className="btn m-0 p-0 border-0 shadow-none">
-                                    <FaPen className="text-info opacity-75" />
-                                </button>{" "}
-                                <button className="btn m-0 p-0 border-0 shadow-none">
-                                    <FaTrash className="text-dark opacity-75" />
-                                </button>
-                            </td>
-                        </tr>
+                        <FileDirectoryRow rowNr={i + 1} file={file} />
                     ))}
                 </tbody>
             </table>

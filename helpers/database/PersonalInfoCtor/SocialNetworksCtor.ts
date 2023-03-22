@@ -27,7 +27,7 @@ export class SocialNetworksMetadata {
 
     // private to disallow creating other instances of this type
     private constructor(
-        private readonly key: string,
+        public readonly code: keyof SocialNetworks,
         public readonly label: string,
         public readonly icon: IconType | null,
         public readonly userUrl: (username: string) => string,
