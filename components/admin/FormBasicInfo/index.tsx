@@ -1,6 +1,6 @@
 "use client";
 
-import SubmitButton from "@/components/forms/SubmitButton";
+import SubmitButton from "@/components/ui/forms/SubmitButton";
 import { BasicInfo } from "@/helpers/database/PersonalInfoCtor/BasicInfoCtor";
 import useFormBasicInfo from "./useFormBasicInfo";
 
