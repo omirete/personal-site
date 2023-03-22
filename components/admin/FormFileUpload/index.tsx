@@ -1,6 +1,6 @@
 "use client";
 
-import SubmitButton from "@/components/forms/SubmitButton";
+import SubmitButton from "@/components/ui/forms/SubmitButton";
 import useFormFileUpload from "./useFormFileUpload";
 
 const FormFileUpload: React.FC = () => {

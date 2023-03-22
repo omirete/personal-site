@@ -1,6 +1,6 @@
 "use client";
 
-import SubmitButton from "@/components/forms/SubmitButton";
+import SubmitButton from "@/components/ui/forms/SubmitButton";
 import useFormExperience from "./useFormExperience";
 
 const FormExperience: React.FC = () => {
