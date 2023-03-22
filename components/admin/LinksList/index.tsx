@@ -29,7 +29,7 @@ const LinksList: React.FC<LinksListProps> = ({
                     </th>
                 </tr>
                 {links.map((link, i) => {
-                    return <LinksRow rowNr={i + 1} link={link} />;
+                    return <LinksRow key={i} rowNr={i + 1} link={link} />;
                 })}
                 <RowCreateLink rowNr={links.length + 1} />
             </tbody>

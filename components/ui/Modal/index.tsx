@@ -30,7 +30,7 @@ const Modal: React.FC<ModalProps> = ({
             // "Esc" is the IE/Edge specific value
             setShow(false);
         }
-    }, []);
+    }, [setShow]);
 
     useEffect(() => {
         setShowClass(show);
@@ -43,7 +43,7 @@ const Modal: React.FC<ModalProps> = ({
                 document.removeEventListener("keydown", handleHide);
             }
         };
-    }, [show]);
+    }, [show, handleHide]);
 
     return (
         <div

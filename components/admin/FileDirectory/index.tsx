@@ -42,7 +42,7 @@ const FileDirectory: React.FC<FileDirectoryProps> = ({
                 </thead>
                 <tbody>
                     {files.map((file, i) => (
-                        <FileDirectoryRow rowNr={i + 1} file={file} />
+                        <FileDirectoryRow key={i} rowNr={i + 1} file={file} />
                     ))}
                 </tbody>
             </table>
