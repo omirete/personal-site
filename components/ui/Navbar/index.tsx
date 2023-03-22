@@ -1,10 +1,5 @@
 "use client";
-import {
-    DetailedHTMLProps,
-    HTMLAttributes,
-    useEffect,
-    useState,
-} from "react";
+import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from "react";
 
 export interface NavbarProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {}
@@ -29,7 +24,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 navbar navbar-expand-sm
                 position-fixed w-100
                 transition-all
-                ${scrolled ? "bg-dark bg-opacity-25" : ""}
+                ${scrolled ? "bg-dark bg-opacity-75" : ""}
                 ${className}
             `}
             style={{ top: 0, left: 0, zIndex: 9999, ...style }}

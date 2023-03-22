@@ -10,7 +10,7 @@ const FormContactInfo: React.FC<{ contactInfo?: ContactInfo }> = ({ contactInfo 
         <form onSubmit={handleSubmit} ref={formRef} className="mb-3">
             <h3>Contact information</h3>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12ch" }}>
+                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
                     Email
                 </span>
                 <input
@@ -23,7 +23,7 @@ const FormContactInfo: React.FC<{ contactInfo?: ContactInfo }> = ({ contactInfo 
                 />
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12ch" }}>
+                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
                     Phone
                 </span>
                 <input

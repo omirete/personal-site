@@ -9,7 +9,7 @@ const Home: NextPage<{}> = async () => {
     return (
         <div>
             <FormFileUpload />
-            <FileDirectory />
+            <FileDirectory className="mt-2" />
         </div>
     );
 };

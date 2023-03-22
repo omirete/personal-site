@@ -10,7 +10,7 @@ const FormBasicInfo: React.FC<{ basicInfo?: BasicInfo }> = ({ basicInfo }) => {
         <form onSubmit={handleSubmit} ref={formRef} className="mb-3">
             <h3>Basic information</h3>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12ch" }}>
+                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
                     Name
                 </span>
                 <input
@@ -30,7 +30,7 @@ const FormBasicInfo: React.FC<{ basicInfo?: BasicInfo }> = ({ basicInfo }) => {
                 />
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12ch" }}>
+                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
                     Title
                 </span>
                 <input
@@ -42,7 +42,7 @@ const FormBasicInfo: React.FC<{ basicInfo?: BasicInfo }> = ({ basicInfo }) => {
                 />
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12ch" }}>
+                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
                     Subtitle
                 </span>
                 <input
@@ -54,7 +54,7 @@ const FormBasicInfo: React.FC<{ basicInfo?: BasicInfo }> = ({ basicInfo }) => {
                 />
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12ch" }}>
+                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
                     Birth date
                 </span>
                 <input
@@ -66,7 +66,7 @@ const FormBasicInfo: React.FC<{ basicInfo?: BasicInfo }> = ({ basicInfo }) => {
                 />
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12ch" }}>
+                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
                     Description
                 </span>
                 <textarea
