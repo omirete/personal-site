@@ -1,6 +1,6 @@
-import FormBasicInfo from "@/components/admin/FormBasicInfo";
-import FormContactInfo from "@/components/admin/FormContactInfo";
-import FormSocialNetworks from "@/components/admin/FormSocialNetworks";
+import FormBasicInfo from "@/components/pages/admin/FormBasicInfo";
+import FormContactInfo from "@/components/pages/admin/FormContactInfo";
+import FormSocialNetworks from "@/components/pages/admin/FormSocialNetworks";
 import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
 import { DB } from "@/helpers/firebase";
 import { NextPage } from "next";

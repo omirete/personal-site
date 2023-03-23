@@ -1,4 +1,4 @@
-import LinksList from "@/components/admin/LinksList";
+import LinksList from "@/components/pages/admin/LinksList";
 import { DB } from "@/helpers/firebase";
 import LinkInfo from "@/types/DataObjects/LinkInfo";
 import { NextPage } from "next";

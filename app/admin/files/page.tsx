@@ -1,5 +1,5 @@
-import FileDirectory from "@/components/admin/FileDirectory";
-import FormFileUpload from "@/components/admin/FormFileUpload";
+import FileDirectory from "@/components/pages/admin/FileDirectory";
+import FormFileUpload from "@/components/pages/admin/FormFileUpload";
 import { NextPage } from "next";
 
 {/* @ts-expect-error Async Server Component */}

@@ -1,5 +1,5 @@
-import ExperienceList from "@/components/admin/ExperienceList";
-import FormExperience from "@/components/admin/FormExperience";
+import ExperienceList from "@/components/pages/admin/ExperienceList";
+import FormExperience from "@/components/pages/admin/FormExperience";
 import { Experience } from "@/helpers/database/ExperienceCtor";
 import { DB } from "@/helpers/firebase";
 import { NextPage } from "next";

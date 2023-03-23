@@ -1,4 +1,4 @@
-import AdminNav from "@/components/admin/AdminNav";
+import AdminNav from "@/components/pages/admin/AdminNav";
 import PrivateSection from "@/components/next-auth/PrivateSection";
 
 export default function Layout({ children }: { children: React.ReactNode }) {

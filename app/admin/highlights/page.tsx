@@ -1,5 +1,5 @@
-import FormHighlights from "@/components/admin/FormHighlights";
-import HighlightsList from "@/components/admin/HighlightsList";
+import FormHighlights from "@/components/pages/admin/FormHighlights";
+import HighlightsList from "@/components/pages/admin/HighlightsList";
 import { DB } from "@/helpers/firebase";
 import { NextPage } from "next";
 
