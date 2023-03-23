@@ -4,6 +4,15 @@ import { NextRequest, NextResponse } from "next/server";
 import getMissingProperties from "@/helpers/getMissingParams";
 import { getFiles, uploadBlob } from "@/helpers/fileStorage";
 
+const getFormatFromFilename = (name: string): string | undefined => {
+    const nameParts = name.split(".");
+    if (nameParts.length > 1) {
+        return nameParts[nameParts.length - 1];
+    } else {
+        return undefined;
+    }
+};
+
 export const GET = async (req: NextRequest): Promise<NextResponse> => {
     const session = await getServerSession(authOptions);
     if (session) {
@@ -32,22 +41,43 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
             const params = req.nextUrl.searchParams;
             const type = params.get("type");
             const lang = params.get("lang");
-
-            if (type && lang) {
+            const name = params.get("name");
+            if (type && lang && name) {
                 if (lang === "-1" || lang.toLowerCase().match(/^[a-z]{2}$/)) {
                     let directory = "/";
                     let filename = "";
+                    let format_src = getFormatFromFilename(name);
                     switch (type) {
                         case "profile-pic":
                             // TODO: Add handling of other image formats.
+                            if (format_src !== "png") {
+                                return NextResponse.json(
+                                    {
+                                        error: `Picture has to be .png.`,
+                                    },
+                                    { status: 400 }
+                                );
+                            }
                             filename = "profile.png";
+                            break;
+                        case "contact-pic":
+                            // TODO: Add handling of other image formats.
+                            if (format_src !== "png") {
+                                return NextResponse.json(
+                                    {
+                                        error: `Picture has to be .png.`,
+                                    },
+                                    { status: 400 }
+                                );
+                            }
+                            filename = "contact.png";
                             break;
                         case "signature-line":
                             filename = "signature-line.svg";
-                            break
+                            break;
                         case "signature":
                             filename = "signature.svg";
-                            break
+                            break;
                         case "cv":
                             // TODO: Add handling of other document formats.
                             // TODO: Add handling of other names.
@@ -81,7 +111,10 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
                         directory,
                         filename
                     );
-                    return NextResponse.json({ upload_ok: result });
+                    return NextResponse.json(
+                        { upload_ok: result },
+                        { status: result ? 200 : 400 }
+                    );
                 } else {
                     return NextResponse.json({ error: `Invalid lang.` });
                 }
@@ -89,17 +122,24 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
                 const missingParams = getMissingProperties({
                     type,
                     lang,
+                    name,
                 });
-                return NextResponse.json({
-                    error: `Missing params: ${missingParams.join(", ")}`,
-                });
+                return NextResponse.json(
+                    {
+                        error: `Missing params: ${missingParams.join(", ")}`,
+                    },
+                    { status: 400 }
+                );
             }
         } catch (error) {
-            return NextResponse.json({ error });
+            return NextResponse.json({ error }, { status: 400 });
         }
     } else {
-        return NextResponse.json({
-            error: "You must be signed in to upload a file.",
-        });
+        return NextResponse.json(
+            {
+                error: "You must be signed in to upload a file.",
+            },
+            { status: 400 }
+        );
     }
 };

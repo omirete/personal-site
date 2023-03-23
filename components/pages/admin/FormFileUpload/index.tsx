@@ -24,6 +24,7 @@ const FormFileUpload: React.FC = () => {
                             Select type
                         </option>
                         <option value="profile-pic">Profile pic</option>
+                        <option value="contact-pic">Contact pic</option>
                         <option value="cv">CV</option>
                         <option value="signature-line">Signature line (.svg)</option>
                         <option value="signature">Signature (.svg)</option>
