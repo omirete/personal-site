@@ -85,10 +85,10 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                     </div>
                 </div>
             </div>
-            <div className="d-flex py-3 flex-column align-items-center justify-content-center text-white">
+            <a className="d-flex py-3 flex-column align-items-center justify-content-center text-white text-decoration-none" href="#highlights">
                 <p>See more</p>
                 <FaChevronDown />
-            </div>
+            </a>
         </FullHeightSection>
     );
 };
