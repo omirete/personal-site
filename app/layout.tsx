@@ -25,17 +25,31 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                     <Navbar id="navbar">
                         <div className="collapse navbar-collapse">
                             <ul className="navbar-nav me-auto">
-                                <NavbarAnchor href="/#">Home</NavbarAnchor>
-                                <NavbarAnchor href="/#highlights">
+                                <NavbarAnchor href="/#" className="text-white">
+                                    Home
+                                </NavbarAnchor>
+                                <NavbarAnchor
+                                    href="/#highlights"
+                                    className="text-white"
+                                >
                                     Highlights
                                 </NavbarAnchor>
-                                <NavbarAnchor href="/#experience">
+                                <NavbarAnchor
+                                    href="/#experience"
+                                    className="text-white"
+                                >
                                     Experience
                                 </NavbarAnchor>
-                                <NavbarAnchor href="/#projects">
+                                <NavbarAnchor
+                                    href="/#projects"
+                                    className="text-white"
+                                >
                                     Projects
                                 </NavbarAnchor>
-                                <NavbarAnchor href="/#contact">
+                                <NavbarAnchor
+                                    href="/#contact"
+                                    className="text-white"
+                                >
                                     Contact
                                 </NavbarAnchor>
                                 {/* <NavbarLink href="/chat">
@@ -43,7 +57,12 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                                 </NavbarLink> */}
                                 {/* <NavbarLink href="/playground">Playground</NavbarLink> */}
                                 {session && (
-                                    <NavbarLink href="/admin/files">Admin</NavbarLink>
+                                    <NavbarLink
+                                        href="/admin/files"
+                                        className="text-white"
+                                    >
+                                        Admin
+                                    </NavbarLink>
                                 )}
                             </ul>
                             <Link
@@ -51,7 +70,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                                 download
                                 rel="noreferrer noopener"
                                 target="_blank"
-                                className="btn btn-primary"
+                                className="btn btn-primary text-white"
                             >
                                 <FaDownload /> CV!
                             </Link>

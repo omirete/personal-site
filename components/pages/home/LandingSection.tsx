@@ -85,7 +85,7 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                     </div>
                 </div>
             </div>
-            <div className="d-flex py-3 flex-column align-items-center justify-content-center">
+            <div className="d-flex py-3 flex-column align-items-center justify-content-center text-white">
                 <p>See more</p>
                 <FaChevronDown />
             </div>
