@@ -100,9 +100,24 @@ $utilities: map-merge(
     transition: all 0.2s ease-in-out;
 }
 
+.transition-all-500-ms {
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
 .transition-all-500-ms-linear {
     -webkit-transition: all 0.5s linear;
     -moz-transition: all 0.5s linear;
     -o-transition: all 0.5s linear;
     transition: all 0.5s linear;
+}
+
+.border-dashed {
+    border-style: dashed !important;
+}
+
+.border-opacity-25 {
+    --bs-border-opacity: 0.25;
 }
