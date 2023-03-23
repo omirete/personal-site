@@ -1,14 +1,17 @@
 import { Database } from "firebase/database";
 import GenericDataObjectCtor from "../GenericCtors";
 
+export type SupportedExperienceTypes = "work" | "studies";
+
 export interface Experience {
     id: string;
-    company: string;
-    companyUrl?: string;
-    position: string;
+    institution: string;
+    institutionUrl?: string;
+    title: string;
     dateFrom: string;
     dateTo?: string;
     description?: string;
+    type: SupportedExperienceTypes;
     tags: string[];
 }
 

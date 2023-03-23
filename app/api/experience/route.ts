@@ -17,29 +17,37 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
         try {
             const formData: FormData = await req.formData();
 
-            const position = formData.get("position")?.toString();
-            const company = formData.get("company")?.toString();
+            const expType = formData.get("type")?.toString();
+            const title = formData.get("title")?.toString();
+            const institution = formData.get("institution")?.toString();
             const dateFrom = formData.get("dateFrom")?.toString();
             const dateTo = formData.get("dateTo")?.toString();
             const description = formData.get("description")?.toString();
             const tags = (formData.get("tags")?.toString() ?? "").split(",");
-            const companyUrl = formData.get("companyUrl")?.toString() ?? "";
+            const institutionUrl =
+                formData.get("institutionUrl")?.toString() ?? "";
 
-            if (position && company && dateFrom) {
+            if (
+                (expType === "work" || expType === "studies") &&
+                title &&
+                institution &&
+                dateFrom
+            ) {
                 const experience: Experience = await DB.data.experience.create({
-                    position,
-                    company,
+                    type: expType,
+                    title,
+                    institution,
                     dateFrom,
                     dateTo,
                     description,
                     tags,
-                    companyUrl,
+                    institutionUrl,
                 });
                 return NextResponse.json({ experience });
             } else {
                 const missingProperties = getMissingProperties({
-                    position,
-                    company,
+                    position: title,
+                    company: institution,
                     dateFrom,
                 });
                 return NextResponse.json({
@@ -66,25 +74,33 @@ export const PUT = async (req: NextRequest): Promise<NextResponse> => {
             const body: Experience = await req.json();
 
             const id = body.id;
-            const position = body.position;
-            const company = body.company;
+            const expType = body.type;
+            const title = body.title;
+            const institution = body.institution;
             const dateFrom = body.dateFrom;
             const dateTo = body.dateTo;
             const description = body.description;
             const tags = body.tags ?? [];
-            const companyUrl = body.companyUrl ?? "";
+            const institutionUrl = body.institutionUrl ?? "";
 
-            if (id && position && company && dateFrom) {
+            if (
+                (expType === "work" || expType === "studies") &&
+                id &&
+                title &&
+                institution &&
+                dateFrom
+            ) {
                 const experience: Experience | false =
                     await DB.data.experience.update({
                         id,
-                        position,
-                        company,
+                        type: expType,
+                        title,
+                        institution,
                         dateFrom,
                         dateTo,
                         description,
                         tags,
-                        companyUrl,
+                        institutionUrl,
                     });
                 if (experience !== false) {
                     return NextResponse.json({ experience });
@@ -97,8 +113,9 @@ export const PUT = async (req: NextRequest): Promise<NextResponse> => {
             } else {
                 const missingProperties = getMissingProperties({
                     id,
-                    position,
-                    company,
+                    type: expType,
+                    title,
+                    institution,
                     dateFrom,
                 });
                 return NextResponse.json({

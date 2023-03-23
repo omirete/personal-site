@@ -24,9 +24,10 @@ const ExperienceList: React.FC<ExperienceListProps> = ({
                 <tr>
                     <th scope="col">#</th>
                     {/* <th scope="col">id</th> */}
-                    <th scope="col">Company</th>
-                    <th scope="col">CompanyUrl</th>
-                    <th scope="col">Position</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Institution</th>
+                    <th scope="col">InstitutionUrl</th>
+                    <th scope="col">Title</th>
                     <th scope="col">From</th>
                     <th scope="col">To</th>
                     <th scope="col">Description</th>

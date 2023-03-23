@@ -8,31 +8,55 @@ const FormExperience: React.FC = () => {
     return (
         <form onSubmit={handleCreate} className="mb-3">
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
-                    Position
+                <span
+                    className="input-group-text"
+                    style={{ minWidth: "12.5ch" }}
+                >
+                    Type
+                </span>
+                <select className="form-control" name="type" required>
+                    <option value="" disabled>
+                        Select an option
+                    </option>
+                    <option value="work">💼 Work</option>
+                    <option value="studies">🎓 Studies</option>
+                </select>
+            </div>
+            <div className="input-group mb-2">
+                <span
+                    className="input-group-text"
+                    style={{ minWidth: "12.5ch" }}
+                >
+                    Title
                 </span>
                 <input
                     className="form-control"
                     type="text"
                     placeholder="Your position."
-                    name="position"
+                    name="title"
                     required
                 />
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
-                    Company
+                <span
+                    className="input-group-text"
+                    style={{ minWidth: "12.5ch" }}
+                >
+                    Institution
                 </span>
                 <input
                     className="form-control"
                     type="text"
                     placeholder="Name of the company."
-                    name="company"
+                    name="institution"
                     required
                 />
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
+                <span
+                    className="input-group-text"
+                    style={{ minWidth: "12.5ch" }}
+                >
                     Dates
                 </span>
                 <div className="form-control p-0 d-flex flex-wrap">
@@ -54,7 +78,10 @@ const FormExperience: React.FC = () => {
                 </div>
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
+                <span
+                    className="input-group-text"
+                    style={{ minWidth: "12.5ch" }}
+                >
                     Description
                 </span>
                 <textarea
@@ -64,7 +91,10 @@ const FormExperience: React.FC = () => {
                 />
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
+                <span
+                    className="input-group-text"
+                    style={{ minWidth: "12.5ch" }}
+                >
                     Tags
                 </span>
                 <input

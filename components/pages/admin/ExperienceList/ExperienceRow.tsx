@@ -1,6 +1,9 @@
 "use client";
 
-import { Experience } from "@/helpers/database/ExperienceCtor";
+import {
+    Experience,
+    SupportedExperienceTypes,
+} from "@/helpers/database/ExperienceCtor";
 import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import { FaSave, FaTrash } from "react-icons/fa";
 
@@ -35,15 +38,30 @@ const ExperienceRow: React.FC<ExperienceRowProps> = ({
                 {rowNr}
             </td>
             <td>
+                <select
+                    className="form-control form-control-sm"
+                    onChange={(e) =>
+                        setVirtualExp((prev) => ({
+                            ...prev,
+                            type: e.target.value as SupportedExperienceTypes,
+                        }))
+                    }
+                    defaultValue={virtualExp.type}
+                >
+                    <option value="work">💼</option>
+                    <option value="studies">🎓</option>
+                </select>
+            </td>
+            <td>
                 <input
                     className="form-control form-control-sm"
                     onChange={(e) =>
                         setVirtualExp((prev) => ({
                             ...prev,
-                            company: e.target.value,
+                            institution: e.target.value,
                         }))
                     }
-                    value={virtualExp.company}
+                    value={virtualExp.institution}
                 />
             </td>
             <td>
@@ -52,10 +70,10 @@ const ExperienceRow: React.FC<ExperienceRowProps> = ({
                     onChange={(e) =>
                         setVirtualExp((prev) => ({
                             ...prev,
-                            companyUrl: e.target.value,
+                            institutionUrl: e.target.value,
                         }))
                     }
-                    value={virtualExp.companyUrl}
+                    value={virtualExp.institutionUrl}
                 />
             </td>
             <td>
@@ -64,10 +82,10 @@ const ExperienceRow: React.FC<ExperienceRowProps> = ({
                     onChange={(e) =>
                         setVirtualExp((prev) => ({
                             ...prev,
-                            position: e.target.value,
+                            title: e.target.value,
                         }))
                     }
-                    value={virtualExp.position}
+                    value={virtualExp.title}
                 />
             </td>
             <td>
