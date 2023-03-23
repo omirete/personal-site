@@ -5,7 +5,7 @@ import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
 
 const Footer: React.FC<{ personalInfo: PersonalInfo }> = ({ personalInfo }) => {
     return (
-        <div className="text-decoration-none mt-4 text-center bg-dark py-4">
+        <div className="text-decoration-none text-center bg-dark py-4">
             <SocialRow
                 className="h3"
                 classNameIcons="text-white me-1 opacity-50 opacity-100-hover transition-all"
