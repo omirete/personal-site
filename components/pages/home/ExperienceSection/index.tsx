@@ -7,7 +7,7 @@ const ExperienceSection: React.FC<{ experience: Experience[] }> = ({
     experience,
 }) => {
     return (
-        <FullHeightSection id="experience" className="py-4 px-5">
+        <FullHeightSection id="experience" className="py-4 px-3 px-sm-5">
             <h3 className="mt-5 mb-3 text-white">Experience</h3>
             <div className="row g-3">
                 {experience.sort(sortExperience).map((exp) => (

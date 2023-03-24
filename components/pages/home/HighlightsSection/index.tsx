@@ -14,7 +14,7 @@ const HighlightsSection: React.FC<{ highlights: Highlight[] }> = ({
     return (
         <FullHeightSection
             id="highlights"
-            className="py-4 px-5"
+            className="py-4 px-3 px-sm-5"
             onPointerLeave={() => setActiveHighlight(undefined)}
         >
             <h3 className="mt-5 mb-3 text-white">Highlights</h3>
