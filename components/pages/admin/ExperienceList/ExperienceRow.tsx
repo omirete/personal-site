@@ -58,6 +58,18 @@ const ExperienceRow: React.FC<ExperienceRowProps> = ({
                     onChange={(e) =>
                         setVirtualExp((prev) => ({
                             ...prev,
+                            title: e.target.value,
+                        }))
+                    }
+                    value={virtualExp.title}
+                />
+            </td>
+            <td>
+                <input
+                    className="form-control form-control-sm"
+                    onChange={(e) =>
+                        setVirtualExp((prev) => ({
+                            ...prev,
                             institution: e.target.value,
                         }))
                     }
@@ -74,18 +86,6 @@ const ExperienceRow: React.FC<ExperienceRowProps> = ({
                         }))
                     }
                     value={virtualExp.institutionUrl}
-                />
-            </td>
-            <td>
-                <input
-                    className="form-control form-control-sm"
-                    onChange={(e) =>
-                        setVirtualExp((prev) => ({
-                            ...prev,
-                            title: e.target.value,
-                        }))
-                    }
-                    value={virtualExp.title}
                 />
             </td>
             <td>
