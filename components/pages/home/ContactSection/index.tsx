@@ -59,6 +59,8 @@ const ContactSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                                     <a
                                         href="https://goo.gl/maps/ZaG6gcrgzQpjb2qf9"
                                         className="link-primary"
+                                        target="_blank"
+                                        rel="noreferrer noopener"
                                     >
                                         Santa Fe, Argentina
                                     </a>
