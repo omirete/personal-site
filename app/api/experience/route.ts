@@ -24,8 +24,8 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
             const dateTo = formData.get("dateTo")?.toString();
             const description = formData.get("description")?.toString();
             const tags = (formData.get("tags")?.toString() ?? "").split(",");
-            const institutionUrl =
-                formData.get("institutionUrl")?.toString() ?? "";
+            const relevantUrl =
+                formData.get("relevantUrl")?.toString() ?? "";
 
             if (
                 (expType === "work" || expType === "studies") &&
@@ -41,7 +41,7 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
                     dateTo,
                     description,
                     tags,
-                    institutionUrl,
+                    relevantUrl,
                 });
                 return NextResponse.json({ experience });
             } else {
@@ -81,7 +81,7 @@ export const PUT = async (req: NextRequest): Promise<NextResponse> => {
             const dateTo = body.dateTo;
             const description = body.description;
             const tags = body.tags ?? [];
-            const institutionUrl = body.institutionUrl ?? "";
+            const relevantUrl = body.relevantUrl ?? "";
 
             if (
                 (expType === "work" || expType === "studies") &&
@@ -100,7 +100,7 @@ export const PUT = async (req: NextRequest): Promise<NextResponse> => {
                         dateTo,
                         description,
                         tags,
-                        institutionUrl,
+                        relevantUrl,
                     });
                 if (experience !== false) {
                     return NextResponse.json({ experience });

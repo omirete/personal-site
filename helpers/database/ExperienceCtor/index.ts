@@ -6,7 +6,7 @@ export type SupportedExperienceTypes = "work" | "studies";
 export interface Experience {
     id: string;
     institution: string;
-    institutionUrl?: string;
+    relevantUrl?: string;
     title: string;
     dateFrom: string;
     dateTo?: string;

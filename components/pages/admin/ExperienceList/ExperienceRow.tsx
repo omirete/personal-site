@@ -82,10 +82,10 @@ const ExperienceRow: React.FC<ExperienceRowProps> = ({
                     onChange={(e) =>
                         setVirtualExp((prev) => ({
                             ...prev,
-                            institutionUrl: e.target.value,
+                            relevantUrl: e.target.value,
                         }))
                     }
-                    value={virtualExp.institutionUrl}
+                    value={virtualExp.relevantUrl}
                 />
             </td>
             <td>
