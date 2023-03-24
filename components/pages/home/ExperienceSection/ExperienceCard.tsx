@@ -12,24 +12,56 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({
     ...props
 }) => {
     return (
-        <div className={`card h-100 ${className ?? ""}`} {...props}>
+        <div className={`card ${className ?? ""}`} {...props}>
             <div className="card-body d-flex flex-column">
                 <h5 className="card-title d-flex flex-row">
-                    <span className="flex-grow-1">{experience.title}</span>
-                    <span>
-                        {experience.type === 'work' && '💼'}
-                        {experience.type === 'studies' && '🎓'}
-                    </span>
+                    {experience.title}
                 </h5>
                 <h6 className="card-subtitle mb-2 text-muted">
                     {experience.institution}
                 </h6>
-                <p className="card-text flex-grow-1">{experience.description}</p>
-                <p className="card-text text-secondary">
-                    <span>From: {experience.dateFrom}</span>
-                    <span>, until: </span>
-                    <span>{experience.dateTo}</span>
+                <p className="card-text small text-muted flex-grow-1">
+                    <span>{experience.description}</span>
+                    {experience.relevantUrl && (
+                        <a
+                            href={experience.relevantUrl}
+                            className="badge bg-info text-decoration-none text-muted"
+                            target="_blank"
+                            rel="noreferrer noopener"
+                        >
+                            {experience.type === "studies" &&
+                                "View certificate"}
+                            {experience.type !== "studies" && "See link"}
+                        </a>
+                    )}
                 </p>
+                <div className="card-text text-secondary d-flex small">
+                    <div className="flex-grow-1">
+                        <span>
+                            {new Date(experience.dateFrom).toLocaleDateString(
+                                undefined,
+                                { year: "numeric", month: "short" }
+                            )}
+                        </span>
+                        {experience.dateTo && (
+                            <>
+                                <span>, </span>
+                                <span>
+                                    {new Date(
+                                        experience.dateTo
+                                    ).toLocaleDateString(undefined, {
+                                        year: "numeric",
+                                        month: "short",
+                                    })}
+                                </span>
+                            </>
+                        )}
+                    </div>
+                    <div>
+                        {experience.type === "work" && "💼"}
+                        {experience.type === "studies" && "🎓"}
+                    </div>
+                </div>
             </div>
         </div>
     );
