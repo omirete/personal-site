@@ -66,7 +66,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                                 )}
                             </ul>
                             <Link
-                                href={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/cv/Federico_Giancarelli_ES.pdf`}
+                                href={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/cv/Federico_Giancarelli_EN.pdf`}
                                 download
                                 rel="noreferrer noopener"
                                 target="_blank"
