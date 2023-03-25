@@ -6,7 +6,7 @@ const NavbarLink: React.FC<
 > = ({ className, children, ...props }) => {
     return (
         <li className="nav-item rounded">
-            <Link className={`nav-link fw-bold ${className ?? ""}`} {...props}>
+            <Link className={`nav-link ${className ?? ""}`} {...props}>
                 {children}
             </Link>
         </li>

@@ -17,64 +17,66 @@ export const metadata = {
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
     const session = await getServerSession(authOptions);
-
+    const linkClasses = "text-white fw-sm-bold"
     return (
         <html lang="en" data-bs-theme="light">
             <body>
                 <ClientSessionProvider session={session}>
                     <Navbar id="navbar">
-                        <div className="collapse navbar-collapse">
-                            <ul className="navbar-nav me-auto">
-                                <NavbarAnchor href="/#" className="text-white">
-                                    Home
-                                </NavbarAnchor>
-                                <NavbarAnchor
-                                    href="/#highlights"
-                                    className="text-white"
-                                >
-                                    Highlights
-                                </NavbarAnchor>
-                                <NavbarAnchor
-                                    href="/#experience"
-                                    className="text-white"
-                                >
-                                    Experience
-                                </NavbarAnchor>
-                                <NavbarAnchor
-                                    href="/#projects"
-                                    className="text-white"
-                                >
-                                    Projects
-                                </NavbarAnchor>
-                                <NavbarAnchor
-                                    href="/#contact"
-                                    className="text-white"
-                                >
-                                    Contact
-                                </NavbarAnchor>
-                                {/* <NavbarLink href="/chat">
+                        <ul className="navbar-nav me-auto">
+                            <NavbarAnchor
+                                href="/#"
+                                className={linkClasses}
+                            >
+                                Home
+                            </NavbarAnchor>
+                            <NavbarAnchor
+                                href="/#highlights"
+                                className={linkClasses}
+                            >
+                                Highlights
+                            </NavbarAnchor>
+                            <NavbarAnchor
+                                href="/#experience"
+                                className={linkClasses}
+                            >
+                                Experience
+                            </NavbarAnchor>
+                            <NavbarAnchor
+                                href="/#projects"
+                                className={linkClasses}
+                            >
+                                Projects
+                            </NavbarAnchor>
+                            <NavbarAnchor
+                                href="/#contact"
+                                className={linkClasses}
+                            >
+                                Contact
+                            </NavbarAnchor>
+                            {/* <NavbarLink href="/chat">
                                     Chat with "me" now! (AI)
                                 </NavbarLink> */}
-                                {/* <NavbarLink href="/playground">Playground</NavbarLink> */}
-                                {session && (
-                                    <NavbarLink
-                                        href="/admin/files"
-                                        className="text-white"
-                                    >
-                                        Admin
-                                    </NavbarLink>
-                                )}
-                            </ul>
-                            <Link
-                                href={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/cv/Federico_Giancarelli_EN.pdf`}
-                                download
-                                rel="noreferrer noopener"
-                                target="_blank"
-                                className="btn btn-primary text-white"
-                            >
-                                <FaDownload /> CV!
-                            </Link>
-                        </div>
+                            {/* <NavbarLink href="/playground">Playground</NavbarLink> */}
+                            {session && (
+                                <NavbarLink
+                                    href="/admin/files"
+                                    className={linkClasses}
+                                >
+                                    Admin
+                                </NavbarLink>
+                            )}
+                        </ul>
+                        <Link
+                            href={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/cv/Federico_Giancarelli_EN.pdf`}
+                            download
+                            rel="noreferrer noopener"
+                            target="_blank"
+                            className="btn btn-primary text-white mt-3 mt-sm-0"
+                        >
+                            <span className="d-none d-sm-block"><FaDownload /> CV!</span>
+                            <span className="d-block d-sm-none fs-4"><FaDownload /> CV!</span>
+                        </Link>
                     </Navbar>
                     {children}
                 </ClientSessionProvider>
