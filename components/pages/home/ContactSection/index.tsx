@@ -57,7 +57,7 @@ const ContactSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                                 <figcaption className="figure-caption">
                                     My home town:{" "}
                                     <a
-                                        href="https://goo.gl/maps/ZaG6gcrgzQpjb2qf9"
+                                        href="https://goo.gl/maps/f7jhRtt5FBUJ5W1Q6"
                                         className="link-primary"
                                         target="_blank"
                                         rel="noreferrer noopener"
