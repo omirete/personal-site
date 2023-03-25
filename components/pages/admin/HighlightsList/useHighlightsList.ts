@@ -11,13 +11,13 @@ interface UseHighlightsList {
 const useHighlightsList = (): UseHighlightsList => {
     const [loadingId, setLoadingId] = useState<string | undefined>(undefined);
 
-    const handleUpdate = useCallback(async (experience: Highlight) => {
-        if (experience.id) {
+    const handleUpdate = useCallback(async (highlight: Highlight) => {
+        if (highlight.id) {
             const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/highlights`;
-            setLoadingId(experience.id);
+            setLoadingId(highlight.id);
             const res = await fetch(url, {
                 method: "PUT",
-                body: JSON.stringify(experience),
+                body: JSON.stringify(highlight),
             });
             if (res.status === 200) {
                 alert("Highlight updated correctly.");

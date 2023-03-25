@@ -2,7 +2,7 @@
 
 import { Highlight } from "@/helpers/database/HighlightsCtor";
 import HighlightsRow from "./HighlightsRow";
-import useHighlightsList from "./useExperienceList";
+import useHighlightsList from "./useHighlightsList";
 
 export interface HighlightsListProps
     extends React.DetailedHTMLProps<
