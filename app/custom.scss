@@ -152,3 +152,7 @@ $utilities: map-merge(
 .border-opacity-25 {
     --bs-border-opacity: 0.25;
 }
+
+.cursor-pointer-hover:hover {
+    cursor: pointer;
+}
