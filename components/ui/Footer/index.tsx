@@ -19,7 +19,7 @@ const Footer: React.FC<{ personalInfo: PersonalInfo }> = ({ personalInfo }) => {
                 Source code available on{" "}
                 <a
                     href="https://github.com/omirete/federicogiancarelli.com"
-                    className="link-secondary"
+                    className="link-info"
                 >
                     GitHub!
                 </a>
