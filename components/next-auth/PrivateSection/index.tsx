@@ -1,6 +1,6 @@
-import { getServerSession, Session } from "next-auth";
+import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode } from "react";
 import { NextPage } from "next";
 import LoginButton from "../LoginButton";
 
