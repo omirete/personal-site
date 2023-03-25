@@ -33,7 +33,6 @@ const HighlightDetail: React.FC<HighlightDetailProps> = ({
         >
             {highlight.description}
         </div>
-        // </div>
     );
 };
 
