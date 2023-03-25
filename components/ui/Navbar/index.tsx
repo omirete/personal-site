@@ -1,7 +1,7 @@
 "use client";
 import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from "react";
 import SignatureLine from "@/assets/svg/signature-line.svg";
-import { MdClose } from "react-icons/md";
+import { MdClose, MdMenu } from "react-icons/md";
 
 export interface NavbarProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {}
@@ -60,8 +60,11 @@ const Navbar: React.FC<NavbarProps> = ({
             {...props}
         >
             <div className="container-fluid">
+                <div className="navbar-brand d-block d-sm-none">
+                    <SignatureLine className="fill-white" />
+                </div>
                 <button
-                    className="navbar-toggler border-0"
+                    className="btn border-0 shadow-none text-white"
                     type="button"
                     aria-expanded={navState.expanded}
                     aria-label="Toggle navigation"
@@ -72,12 +75,16 @@ const Navbar: React.FC<NavbarProps> = ({
                         }));
                     }}
                 >
-                    <span className="navbar-toggler-icon"></span>
+                    <MdMenu style={{width: '1.7em', height: '1.7em'}} />
                 </button>
-                <div className="collapse navbar-collapse d-none d-sm-block">{children}</div>
+                <div className="collapse navbar-collapse d-none d-sm-block">
+                    {children}
+                </div>
                 <div
                     className={`
-                        offcanvas offcanvas-end bg-dark d-block d-sm-none
+                        offcanvas offcanvas-end
+                        w-100 border-0 bg-dark
+                        d-block d-sm-none
                         ${
                             navState.expanded && navState.transitioning
                                 ? "showing"
@@ -111,7 +118,7 @@ const Navbar: React.FC<NavbarProps> = ({
                                 }));
                             }}
                         >
-                            <MdClose />
+                            <MdClose style={{width: '1.7em', height: '1.7em'}} />
                         </button>
                     </div>
                     <div className="offcanvas-body fs-4">{children}</div>

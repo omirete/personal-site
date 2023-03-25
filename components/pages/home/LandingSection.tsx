@@ -7,7 +7,7 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
     personalInfo,
 }) => {
     return (
-        <FullHeightSection className="p-3 py-sm-4 px-sm-5 d-flex flex-column">
+        <FullHeightSection className="px-3 py-5 py-sm-4 px-sm-5 d-flex flex-column">
             <div className="d-flex flex-grow-1 flex-wrap align-items-center">
                 <div className="col-12 col-sm-6 h-100 mt-3 mt-sm-0">
                     <div className="p-2 px-sm-4 pt-sm-4 pb-sm-5 rounded shadow bg-white d-flex">
@@ -61,7 +61,7 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                 className={`
                     d-flex flex-column
                     align-items-center justify-content-center
-                    pt-3 pb-5 pb-sm-3 mb-4 mb-sm-0
+                    pt-3 mb-4 mb-sm-0
                     text-white text-decoration-none
                 `}
                 href="#highlights"
