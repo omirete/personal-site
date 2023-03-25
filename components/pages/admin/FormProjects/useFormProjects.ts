@@ -12,13 +12,11 @@ const useFormProjects = (): UseFormProjects => {
             const form = e.target as HTMLFormElement;
             const formData = new FormData(form);
             const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/projects`;
-            console.log("will make request. Url: " + url);
             setCreating(true);
             const res = await fetch(url, {
                 method: "POST",
                 body: formData,
             });
-            console.log('made request')
             if (res.status === 200) {
                 alert("Project created correctly.");
                 window.location.reload();

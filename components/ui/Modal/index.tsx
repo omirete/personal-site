@@ -25,7 +25,6 @@ const Modal: React.FC<ModalProps> = ({
     const [showClass, setShowClass] = useState(false);
 
     const handleHide = useCallback((e: KeyboardEvent) => {
-        console.log({ code: e.code, key: e.key });
         if (e.key === "Esc" || e.key === "Escape") {
             // "Esc" is the IE/Edge specific value
             setShow(false);

@@ -34,7 +34,6 @@ const markdownToHtml = async (markdown?: string): Promise<string> => {
             .process(matterResult.content);
         // .use(rehypeExternalLinks, { rel: "noreferrer noopener" })
         const htmlStr = processedContent.toString();
-        console.log({ htmlStr });
         return htmlStr;
     } else {
         return "";
