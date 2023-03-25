@@ -31,6 +31,24 @@ const Navbar: React.FC<NavbarProps> = ({
     }, []);
 
     useEffect(() => {
+        const handleClick = (e: MouseEvent) => {
+            const el = e.target as HTMLElement;
+            const navItemsDesktop = document.getElementById(
+                "navbar-items-desktop"
+            );
+            const navItemsMobile = document.getElementById(
+                "navbar-items-mobile"
+            );
+            if (
+                navState.expanded &&
+                (navItemsMobile?.contains(el) || navItemsDesktop?.contains(el))
+            ) {
+                setNavState(() => ({
+                    expanded: false,
+                    transitioning: true,
+                }));
+            }
+        };
         let timeout: NodeJS.Timeout | undefined = undefined;
         if (navState.transitioning) {
             timeout = setTimeout(() => {
@@ -40,10 +58,12 @@ const Navbar: React.FC<NavbarProps> = ({
                 }));
             }, 400);
         }
+        window.addEventListener("click", handleClick);
         return () => {
             if (timeout) {
                 clearTimeout(timeout);
             }
+            window.removeEventListener("click", handleClick);
         };
     }, [navState]);
 
@@ -60,9 +80,9 @@ const Navbar: React.FC<NavbarProps> = ({
             {...props}
         >
             <div className="container-fluid">
-                <div className="navbar-brand d-block d-sm-none">
+                <a className="navbar-brand d-block d-sm-none" href="/#home">
                     <SignatureLine className="fill-white" />
-                </div>
+                </a>
                 <button
                     className="btn border-0 shadow-none text-white"
                     type="button"
@@ -75,9 +95,12 @@ const Navbar: React.FC<NavbarProps> = ({
                         }));
                     }}
                 >
-                    <MdMenu style={{width: '1.7em', height: '1.7em'}} />
+                    <MdMenu style={{ width: "1.7em", height: "1.7em" }} />
                 </button>
-                <div className="collapse navbar-collapse d-none d-sm-block">
+                <div
+                    id="navbar-items-desktop"
+                    className="collapse navbar-collapse d-none d-sm-block"
+                >
                     {children}
                 </div>
                 <div
@@ -103,10 +126,19 @@ const Navbar: React.FC<NavbarProps> = ({
                     `}
                     tabIndex={-1}
                 >
-                    <div className="offcanvas-header">
-                        <div className="offcanvas-title">
+                    <div className="offcanvas-header pt-2">
+                        <a
+                            className="offcanvas-title"
+                            href="/#home"
+                            onClick={() =>
+                                setNavState({
+                                    expanded: false,
+                                    transitioning: true,
+                                })
+                            }
+                        >
                             <SignatureLine className="fill-white" />
-                        </div>
+                        </a>
                         <button
                             type="button"
                             className="btn border-0 shadow-none text-white"
@@ -118,10 +150,17 @@ const Navbar: React.FC<NavbarProps> = ({
                                 }));
                             }}
                         >
-                            <MdClose style={{width: '1.7em', height: '1.7em'}} />
+                            <MdClose
+                                style={{ width: "1.7em", height: "1.7em" }}
+                            />
                         </button>
                     </div>
-                    <div className="offcanvas-body fs-4">{children}</div>
+                    <div
+                        id="navbar-items-mobile"
+                        className="offcanvas-body fs-4"
+                    >
+                        {children}
+                    </div>
                 </div>
             </div>
         </nav>
