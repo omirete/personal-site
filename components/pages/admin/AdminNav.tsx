@@ -10,7 +10,8 @@ const AdminNav: React.FC = () => {
         { url: "/admin/personal-info", text: "Personal info" },
         { url: "/admin/highlights", text: "Highlights" },
         { url: "/admin/experience", text: "Experience" },
-        { url: "/admin/links", text: "Links" },
+        { url: "/admin/projects", text: "Projects" },
+        // { url: "/admin/links", text: "Links" },
     ];
     const pathname = usePathname();
     return (
