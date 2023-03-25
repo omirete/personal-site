@@ -29,16 +29,34 @@ const ProjectsSection: React.FC<{ projects: Project[] }> = ({ projects }) => {
                                     className="col-12 col-md-6 col-lg-4"
                                 >
                                     <div className="d-flex flex-column h-100">
+                                        {/* Desktop variant */}
                                         <ProjectCard
                                             project={p}
                                             className={`
-                                            bg-white cursor-pointer-hover flex-grow-1
-                                            ${
-                                                active
-                                                    ? "bg-opacity-100"
-                                                    : "bg-opacity-75"
-                                            }
-                                        `}
+                                                flex-grow-1 d-none d-sm-block
+                                                bg-white cursor-pointer-hover
+                                                ${
+                                                    active
+                                                        ? "bg-opacity-100"
+                                                        : "bg-opacity-75"
+                                                }
+                                            `}
+                                            onPointerEnter={() => {
+                                                setActiveProject(p);
+                                            }}
+                                        />
+                                        {/* Mobile variant */}
+                                        <ProjectCard
+                                            project={p}
+                                            className={`
+                                                flex-grow-1 d-block d-sm-none
+                                                bg-white cursor-pointer-hover
+                                                ${
+                                                    active
+                                                        ? "bg-opacity-100"
+                                                        : "bg-opacity-75"
+                                                }
+                                            `}
                                             onClick={() => {
                                                 if (
                                                     activeProject?.id === p.id
@@ -49,19 +67,19 @@ const ProjectsSection: React.FC<{ projects: Project[] }> = ({ projects }) => {
                                                 }
                                             }}
                                         />
-                                            {activeProject &&
-                                                activeProject.id === p.id && (
-                                                    <ProjectDetail
-                                                        project={activeProject}
-                                                        className={`
+                                        {activeProject &&
+                                            activeProject.id === p.id && (
+                                                <ProjectDetail
+                                                    project={activeProject}
+                                                    className={`
                                                             px-3 py-2 mt-2
                                                             rounded shadow
                                                             bg-dark bg-opacity-75
                                                             text-white
                                                             d-block d-sm-none
                                                         `}
-                                                    />
-                                                )}
+                                                />
+                                            )}
                                     </div>
                                 </div>
                             );
@@ -77,9 +95,7 @@ const ProjectsSection: React.FC<{ projects: Project[] }> = ({ projects }) => {
                                 text-white fw-bold
                             `}
                         >
-                            <span>
-                                👈 Click on each card to learn more!
-                            </span>
+                            <span>👈 Click on each card to learn more!</span>
                             <div
                                 className={`
                                     h-100 w-100 position-absolute
