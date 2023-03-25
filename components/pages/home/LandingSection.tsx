@@ -61,7 +61,7 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                 className={`
                     d-flex flex-column
                     align-items-center justify-content-center
-                    pt-3 pb-5 pb-sm-3 mb-3 mb-sm-0
+                    pt-3 pb-5 pb-sm-3 mb-4 mb-sm-0
                     text-white text-decoration-none
                 `}
                 href="#highlights"
