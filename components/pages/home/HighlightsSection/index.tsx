@@ -9,16 +9,13 @@ const HighlightsSection: React.FC<{ highlights: Highlight[] }> = ({
     highlights,
 }) => {
     const [activeHighlight, setActiveHighlight] = useState<
-        string | undefined
+        Highlight | undefined
     >();
     return (
-        <FullHeightSection
-            id="highlights"
-            className="py-4 px-3 px-sm-5"
-        >
+        <FullHeightSection id="highlights" className="py-4 px-3 px-sm-5">
             <h3 className="mt-5 mb-3 text-white">Highlights</h3>
             <p className="text-white d-block d-sm-none">
-                Hover or touch on each card to learn more!
+                Touch each card to learn more! 👇
             </p>
             <div className="row">
                 <div className="d-none d-sm-block col-sm-6 col-md-8">
@@ -43,29 +40,61 @@ const HighlightsSection: React.FC<{ highlights: Highlight[] }> = ({
                             />
                         </div>
                     )}
-                    {highlights.map((h) => {
-                        return (
-                            <HighlightDetail
-                                key={h.id}
-                                highlight={h}
-                                show={activeHighlight === h.id}
-                            />
-                        );
-                    })}
+                    {activeHighlight && (
+                        <HighlightDetail
+                            highlight={activeHighlight}
+                            className={`
+                                px-3 py-2
+                                rounded shadow
+                                bg-dark bg-opacity-75
+                                text-white
+                            `}
+                        />
+                    )}
                 </div>
                 <div className="col-12 col-sm-6 col-md-4">
                     <ul className="list-group bg-transparent rounded">
                         {highlights.map((h, i) => {
                             return (
-                                <HighlightTile
-                                    key={h.id}
-                                    highlight={h}
-                                    active={activeHighlight === h.id}
-                                    onPointerEnter={() => {
-                                        setActiveHighlight(h.id);
-                                    }}
-                                    isLastChild={i + 1 == highlights.length}
-                                />
+                                <div key={h.id}>
+                                    {/* Desktop variant */}
+                                    <HighlightTile
+                                        highlight={h}
+                                        active={activeHighlight?.id === h.id}
+                                        onPointerEnter={() => {
+                                            setActiveHighlight(h);
+                                        }}
+                                        isLastChild={i + 1 == highlights.length}
+                                        className="d-none d-sm-block"
+                                    />
+                                    {/* Mobile variant */}
+                                    <HighlightTile
+                                        key={`${h.id}_mobile`}
+                                        highlight={h}
+                                        active={activeHighlight?.id === h.id}
+                                        onClick={() => {
+                                            if (activeHighlight?.id === h.id) {
+                                                setActiveHighlight(undefined);
+                                            } else {
+                                                setActiveHighlight(h);
+                                            }
+                                        }}
+                                        isLastChild={i + 1 == highlights.length}
+                                        className="d-block d-sm-none bg-dark"
+                                    />
+                                    {activeHighlight?.id === h.id && (
+                                        <HighlightDetail
+                                            highlight={h}
+                                            className={`
+                                                px-3 py-2 my-2
+                                                rounded shadow
+                                                bg-dark bg-opacity-75
+                                                text-white
+                                                d-block d-sm-none
+                                            `}
+                                        />
+                                    )}
+                                </div>
                             );
                         })}
                     </ul>

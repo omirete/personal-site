@@ -20,7 +20,7 @@ const HighlightTile: React.FC<HighlightTileProps> = ({
             className={`
                 list-group-item
                 p-3
-                ${isLastChild ? 'mb-0' : 'mb-3'}
+                ${isLastChild ? 'mb-0' : 'mb-2'}
                 border-0 rounded shadow
                 bg-white
                 transition-all
@@ -30,18 +30,6 @@ const HighlightTile: React.FC<HighlightTileProps> = ({
             {...props}
         >
             {highlight.title}
-            <div className={`d-sm-none ${active ? "d-block" : "d-none"}`}>
-                <div
-                    className={`
-                        p-3 mt-3
-                        bg-dark text-white rounded
-                        fade
-                        ${active ? "show" : ""}
-                    `}
-                >
-                    {highlight.description}
-                </div>
-            </div>
         </li>
     );
 };
