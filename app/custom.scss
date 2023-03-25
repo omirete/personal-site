@@ -113,6 +113,13 @@ $utilities: map-merge(
                     state: hover,
                 )
             ),
+        "font-weight":
+            map-merge(
+                map-get($utilities, "font-weight"),
+                (
+                    responsive: true,
+                )
+            )
     )
 );
 
