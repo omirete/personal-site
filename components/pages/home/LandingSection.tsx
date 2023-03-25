@@ -7,13 +7,7 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
     personalInfo,
 }) => {
     return (
-        <FullHeightSection
-            className="p-3 py-sm-4 px-sm-5 d-flex flex-column"
-            style={{
-                // backgroundImage:
-                //     "linear-gradient(to right top,#3b4969,#7a5283,#be5678,#e3704f,#d7a319)",
-            }}
-        >
+        <FullHeightSection className="p-3 py-sm-4 px-sm-5 d-flex flex-column">
             <div className="d-flex flex-grow-1 flex-wrap align-items-center">
                 <div className="col-12 col-sm-6 h-100 mt-3 mt-sm-0">
                     <div className="p-2 px-sm-4 pt-sm-4 pb-5 rounded shadow bg-white d-flex">
@@ -29,32 +23,10 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                             </p>
                             <p>{personalInfo.basicInfo.subtitle}</p>
                         </div>
-                        <div className="position-relative d-block d-sm-none">
-                            <IconBlob
-                                className="position-absolute"
-                                style={{
-                                    scale: 1.4,
-                                    fill: "#44444433",
-                                    width: "100%",
-                                    height: "auto",
-                                    zIndex: 1
-                                }}
-                            />
-                            <img
-                                src={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/profile.png`}
-                                alt="Profile picture."
-                                className="rounded-circle shadow h-100 w-100 position-relative mb-3"
-                                style={{
-                                    maxHeight: "100px",
-                                    maxWidth: "100px",
-                                    zIndex: 2
-                                }}
-                            />
-                        </div>
                     </div>
                 </div>
                 <div className="col-12 col-sm-6 h-100 d-flex flex-column justify-content-center align-items-center mt-3 mt-sm-0">
-                    <div className="position-relative d-none d-sm-block">
+                    <div className="position-relative">
                         <IconBlob
                             className="position-absolute"
                             style={{
@@ -69,8 +41,8 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                             alt="Profile picture."
                             className="rounded-circle shadow h-100 w-100 position-relative mb-3"
                             style={{
-                                maxHeight: "200px",
-                                maxWidth: "200px",
+                                maxHeight: "180px",
+                                maxWidth: "180px",
                             }}
                         />
                     </div>
@@ -85,7 +57,15 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                     </div>
                 </div>
             </div>
-            <a className="d-flex py-3 flex-column align-items-center justify-content-center text-white text-decoration-none" href="#highlights">
+            <a
+                className={`
+                    d-flex flex-column
+                    align-items-center justify-content-center
+                    pt-3 pb-5 pb-sm-3
+                    text-white text-decoration-none
+                `}
+                href="#highlights"
+            >
                 <p>See more</p>
                 <FaChevronDown />
             </a>
