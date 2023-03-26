@@ -30,7 +30,9 @@ export const metadata: Metadata = {
         creator: "@fedegianca",
         images: [
             {
-                url: "https://files.federicogiancarelli.com/meta/twitter-card.webp",
+                url: "https://files.federicogiancarelli.com/meta/twitter-card.webp?v=0.1",
+                width: 1000,
+                height: 500,
                 alt: "Twitter card for website federicogiancarelli.com",
             },
         ],
@@ -40,7 +42,7 @@ export const metadata: Metadata = {
         type: "website",
         images: [
             {
-                url: "https://files.federicogiancarelli.com/meta/twitter-card.webp",
+                url: "https://files.federicogiancarelli.com/meta/twitter-card.webp?v=0.1",
                 width: 1000,
                 height: 500,
             },
