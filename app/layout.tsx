@@ -25,7 +25,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
             <body>
                 {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
                 <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-L1HLH88FGG"
+                    src="https://www.googletagmanager.com/gtag/js?id=G-EHBY1TY7CP"
                     strategy="afterInteractive"
                 />
                 <ClientSessionProvider session={session}>
@@ -88,7 +88,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                     </Navbar>
                     {children}
                 </ClientSessionProvider>
-                <GAnalytics google_id="G-L1HLH88FGG" />
+                <GAnalytics google_id="G-EHBY1TY7CP" />
                 <Script id="onRouteChange">{`
                     (function (history) {
                     var pushState = history.pushState;
