@@ -84,7 +84,10 @@ const Navbar: React.FC<NavbarProps> = ({
                     <SignatureLine className="fill-white" />
                 </a>
                 <button
-                    className="btn border-0 shadow-none text-white"
+                    className={`
+                        d-block d-sm-none
+                        btn border-0 shadow-none text-white
+                    `}
                     type="button"
                     aria-expanded={navState.expanded}
                     aria-label="Toggle navigation"
