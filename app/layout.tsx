@@ -1,4 +1,4 @@
-import GAnalytics from "@/components/analytics/GAnalytics";
+import { Analytics } from "@vercel/analytics/react";
 import ClientSessionProvider from "@/components/next-auth/ClientSessionProvider";
 import Navbar from "@/components/ui/Navbar";
 import NavbarAnchor from "@/components/ui/Navbar/NavbarAnchor";
@@ -6,7 +6,6 @@ import NavbarLink from "@/components/ui/Navbar/NavbarLink";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
-import Script from "next/script";
 import { ReactNode } from "react";
 import { FaDownload } from "react-icons/fa";
 
@@ -23,11 +22,6 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
     return (
         <html lang="en" data-bs-theme="light">
             <body>
-                {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-EHBY1TY7CP"
-                    strategy="afterInteractive"
-                />
                 <ClientSessionProvider session={session}>
                     <Navbar id="navbar">
                         <ul className="navbar-nav me-auto">
@@ -88,17 +82,7 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                     </Navbar>
                     {children}
                 </ClientSessionProvider>
-                <GAnalytics google_id="G-EHBY1TY7CP" />
-                <Script id="onRouteChange">{`
-                    (function (history) {
-                    var pushState = history.pushState;
-                    history.pushState = function(state){
-                        var result = pushState.apply(history, arguments);
-                        window.dispatchEvent(new Event("routeChange", state));
-                        return result;
-                    };
-                    })(window.history);
-                `}</Script>
+                <Analytics />
             </body>
         </html>
     );
