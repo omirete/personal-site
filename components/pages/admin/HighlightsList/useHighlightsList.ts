@@ -13,7 +13,7 @@ const useHighlightsList = (): UseHighlightsList => {
 
     const handleUpdate = useCallback(async (highlight: Highlight) => {
         if (highlight.id) {
-            const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/highlights`;
+            const url = `/api/highlights`;
             setLoadingId(highlight.id);
             const res = await fetch(url, {
                 method: "PUT",
@@ -32,7 +32,7 @@ const useHighlightsList = (): UseHighlightsList => {
     }, []);
     const handleDelete = useCallback(async (id: string) => {
         if (id) {
-            const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/highlights?id=${id}`;
+            const url = `/api/highlights?id=${id}`;
             setLoadingId(id);
             const res = await fetch(url, { method: "DELETE" });
             if (res.status === 200) {

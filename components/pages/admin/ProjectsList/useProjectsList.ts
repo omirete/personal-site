@@ -13,7 +13,7 @@ const useProjectsList = (): UseProjectsList => {
 
     const handleUpdate = useCallback(async (project: Project) => {
         if (project.id) {
-            const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/projects`;
+            const url = `/api/projects`;
             setLoadingId(project.id);
             const res = await fetch(url, {
                 method: "PUT",
@@ -32,7 +32,7 @@ const useProjectsList = (): UseProjectsList => {
     }, []);
     const handleDelete = useCallback(async (id: string) => {
         if (id) {
-            const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/projects?id=${id}`;
+            const url = `/api/projects?id=${id}`;
             setLoadingId(id);
             const res = await fetch(url, { method: "DELETE" });
             if (res.status === 200) {

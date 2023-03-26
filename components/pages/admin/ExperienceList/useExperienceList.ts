@@ -13,7 +13,7 @@ const useExperienceList = (): UseExperienceList => {
 
     const handleUpdate = useCallback(async (experience: Experience) => {
         if (experience.id) {
-            const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/experience`;
+            const url = `/api/experience`;
             setLoadingId(experience.id);
             const res = await fetch(url, {
                 method: "PUT",
@@ -34,7 +34,7 @@ const useExperienceList = (): UseExperienceList => {
     }, []);
     const handleDelete = useCallback(async (id: string) => {
         if (id) {
-            const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/experience?id=${id}`;
+            const url = `/api/experience?id=${id}`;
             setLoadingId(id);
             const res = await fetch(url, { method: "DELETE" });
             if (res.status === 200) {

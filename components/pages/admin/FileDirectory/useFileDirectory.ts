@@ -11,7 +11,7 @@ const useFileDirectory = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/files`, {
+        fetch(`/api/files`, {
             method: "GET",
         })
             .then(async (res) => {

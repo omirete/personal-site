@@ -17,7 +17,7 @@ const useFormSocialNetworks = (): UseFormSocialNetworks => {
         const form = e.target as HTMLFormElement;
         const data = new FormData(form);
 
-        const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/personal-info/social-networks`;
+        const url = `/api/personal-info/social-networks`;
         try {
             const res = await fetch(url, {
                 method: "PUT",

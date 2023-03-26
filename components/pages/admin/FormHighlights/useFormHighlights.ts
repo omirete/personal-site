@@ -11,7 +11,7 @@ const useFormHighlights = (): UseFormHighlights => {
         async (e) => {
             const form = e.target as HTMLFormElement;
             const formData = new FormData(form);
-            const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/highlights`;
+            const url = `/api/highlights`;
             setCreating(true);
             const res = await fetch(url, {
                 method: "POST",

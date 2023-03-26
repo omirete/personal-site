@@ -14,7 +14,7 @@ const useLinksList = (): UseLinksList => {
     const [loading, setLoading] = useState(false);
     const handleCreate = useCallback(async (link: Omit<LinkInfo, "id">) => {
         if (link.url !== "") {
-            const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/links`;
+            const url = `/api/links`;
             setLoading(true);
             const res = await fetch(url, {
                 method: "POST",
@@ -34,7 +34,7 @@ const useLinksList = (): UseLinksList => {
 
     const handleUpdate = useCallback(async (link: LinkInfo) => {
         if (link.url !== "") {
-            const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/links`;
+            const url = `/api/links`;
             setLoading(true);
             const res = await fetch(url, {
                 method: "PUT",
@@ -53,7 +53,7 @@ const useLinksList = (): UseLinksList => {
     }, []);
 
     const handleDelete = useCallback(async (id: string) => {
-        const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/links`;
+        const url = `/api/links`;
         setLoading(true);
         const res = await fetch(url, {
             method: "DELETE",

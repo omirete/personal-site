@@ -22,7 +22,7 @@ const useFormFileUpload = (): UseFormFileUpload => {
         const lang = data.get("file-lang")?.toString();
 
         if (src && filetype && lang) {
-            const url = `${process.env.NEXT_PUBLIC_API_BASE_FETCH_URL}/api/files?type=${filetype}&lang=${lang}&name=${src?.name}`;
+            const url = `/api/files?type=${filetype}&lang=${lang}&name=${src?.name}`;
             try {
                 const res = await fetch(url, {
                     method: "POST",
