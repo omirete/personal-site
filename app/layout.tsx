@@ -10,10 +10,43 @@ import { ReactNode } from "react";
 import { FaDownload } from "react-icons/fa";
 
 import "./custom.scss";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
     title: "Federico Giancarelli",
-    description: "Maker of things. 🚀",
+    description: "Maker of things, dev, amazed by the world 🚀",
+    themeColor: "#e3704f",
+    icons: {
+        icon: "https://files.federicogiancarelli.com/profile.png",
+        shortcut: "https://files.federicogiancarelli.com/profile.png",
+        apple: "https://files.federicogiancarelli.com/profile.png",
+    },
+    category: "portfolio",
+    twitter: {
+        card: "summary_large_image",
+        title: "Federico Giancarelli",
+        description: "Maker of things, dev, amazed by the world 🚀",
+        site: "@fedegianca",
+        creator: "@fedegianca",
+        images: [
+            {
+                url: "https://files.federicogiancarelli.com/meta/twitter-card.webp",
+                alt: "Twitter card for website federicogiancarelli.com",
+            },
+        ],
+    },
+    openGraph: {
+        title: "Federico Giancarelli",
+        type: "website",
+        images: [
+            {
+                url: "https://files.federicogiancarelli.com/meta/twitter-card.webp",
+                width: 1000,
+                height: 500,
+            },
+        ],
+        url: "https://federicogiancarelli.com",
+    },
 };
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
