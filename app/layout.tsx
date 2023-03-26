@@ -5,6 +5,7 @@ import NavbarLink from "@/components/ui/Navbar/NavbarLink";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
+import Script from "next/script";
 import { ReactNode } from "react";
 import { FaDownload } from "react-icons/fa";
 
@@ -17,17 +18,28 @@ export const metadata = {
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
     const session = await getServerSession(authOptions);
-    const linkClasses = "text-white fw-sm-bold"
+    const linkClasses = "text-white fw-sm-bold";
     return (
         <html lang="en" data-bs-theme="light">
             <body>
+                {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-L1HLH88FGG"
+                    strategy="afterInteractive"
+                />
+                <Script id="google-analytics" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){window.dataLayer.push(arguments);}
+                        gtag('js', new Date());
+
+                        gtag('config', 'G-L1HLH88FGG');
+                    `}
+                </Script>
                 <ClientSessionProvider session={session}>
                     <Navbar id="navbar">
                         <ul className="navbar-nav me-auto">
-                            <NavbarAnchor
-                                href="/#"
-                                className={linkClasses}
-                            >
+                            <NavbarAnchor href="/#" className={linkClasses}>
                                 Home
                             </NavbarAnchor>
                             <NavbarAnchor
@@ -74,8 +86,12 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                             target="_blank"
                             className="btn btn-primary text-white mt-3 mt-sm-0"
                         >
-                            <span className="d-none d-sm-block"><FaDownload /> CV!</span>
-                            <span className="d-block d-sm-none fs-4"><FaDownload /> CV!</span>
+                            <span className="d-none d-sm-block">
+                                <FaDownload /> CV!
+                            </span>
+                            <span className="d-block d-sm-none fs-4">
+                                <FaDownload /> CV!
+                            </span>
                         </Link>
                     </Navbar>
                     {children}
