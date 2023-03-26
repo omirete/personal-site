@@ -21,21 +21,21 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
     const linkClasses = "text-white fw-sm-bold";
     return (
         <html lang="en" data-bs-theme="light">
-            <body>
-                {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-L1HLH88FGG"
-                    strategy="afterInteractive"
-                />
-                <Script id="google-analytics" strategy="afterInteractive">
-                    {`
+            {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+            <Script
+                src="https://www.googletagmanager.com/gtag/js?id=G-L1HLH88FGG"
+                strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+                {`
                         window.dataLayer = window.dataLayer || [];
                         function gtag(){window.dataLayer.push(arguments);}
                         gtag('js', new Date());
 
                         gtag('config', 'G-L1HLH88FGG');
                     `}
-                </Script>
+            </Script>
+            <body>
                 <ClientSessionProvider session={session}>
                     <Navbar id="navbar">
                         <ul className="navbar-nav me-auto">
