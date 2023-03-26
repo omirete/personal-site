@@ -108,10 +108,10 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                             className="btn btn-primary text-white mt-3 mt-sm-0"
                         >
                             <span className="d-none d-sm-block">
-                                <FaDownload /> CV!
+                                <FaDownload /> CV
                             </span>
                             <span className="d-block d-sm-none fs-4">
-                                <FaDownload /> CV!
+                                <FaDownload /> CV
                             </span>
                         </Link>
                     </Navbar>
