@@ -1,3 +1,4 @@
+import GAnalytics from "@/components/analytics/GAnalytics";
 import ClientSessionProvider from "@/components/next-auth/ClientSessionProvider";
 import Navbar from "@/components/ui/Navbar";
 import NavbarAnchor from "@/components/ui/Navbar/NavbarAnchor";
@@ -21,21 +22,12 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
     const linkClasses = "text-white fw-sm-bold";
     return (
         <html lang="en" data-bs-theme="light">
-            {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-            <Script
-                src="https://www.googletagmanager.com/gtag/js?id=G-L1HLH88FGG"
-                strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-                {`
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){window.dataLayer.push(arguments);}
-                        gtag('js', new Date());
-
-                        gtag('config', 'G-L1HLH88FGG');
-                    `}
-            </Script>
             <body>
+                {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-L1HLH88FGG"
+                    strategy="afterInteractive"
+                />
                 <ClientSessionProvider session={session}>
                     <Navbar id="navbar">
                         <ul className="navbar-nav me-auto">
@@ -96,6 +88,17 @@ const RootLayout = async ({ children }: { children: ReactNode }) => {
                     </Navbar>
                     {children}
                 </ClientSessionProvider>
+                <GAnalytics google_id="G-L1HLH88FGG" />
+                <Script id="onRouteChange">{`
+                    (function (history) {
+                    var pushState = history.pushState;
+                    history.pushState = function(state){
+                        var result = pushState.apply(history, arguments);
+                        window.dispatchEvent(new Event("routeChange", state));
+                        return result;
+                    };
+                    })(window.history);
+                `}</Script>
             </body>
         </html>
     );
