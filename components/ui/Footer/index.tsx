@@ -18,7 +18,7 @@ const Footer: React.FC<{ personalInfo: PersonalInfo }> = ({ personalInfo }) => {
             <div className="mt-4 text-light opacity-50">
                 Source code available on{" "}
                 <a
-                    href="https://github.com/omirete/federicogiancarelli.com"
+                    href="https://github.com/omirete/personal-site"
                     className="link-info"
                 >
                     GitHub!
