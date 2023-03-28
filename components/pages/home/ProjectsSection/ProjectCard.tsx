@@ -12,7 +12,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     ...props
 }) => {
     return (
-        <div className={`card ${className}`} {...props}>
+        <div className={`card border-0 ${className}`} {...props}>
             <div className="card-body p-2 h-100">
                 <div className="d-flex flex-column h-100">
                     <div className="flex-grow-1">
