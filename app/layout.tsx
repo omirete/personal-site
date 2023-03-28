@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     description: "Maker of things, dev, amazed by the world 🚀",
     themeColor: "#e3704f",
     icons: {
-        icon: "https://files.federicogiancarelli.com/profile.png",
-        shortcut: "https://files.federicogiancarelli.com/profile.png",
-        apple: "https://files.federicogiancarelli.com/profile.png",
+        icon: "https://files.federicogiancarelli.com/profile.png?v=0.1",
+        shortcut: "https://files.federicogiancarelli.com/profile.png?v=0.1",
+        apple: "https://files.federicogiancarelli.com/profile.png?v=0.1",
     },
     category: "portfolio",
     twitter: {
