@@ -2,21 +2,24 @@
 
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { Project } from "@/helpers/database/ProjectsCtor";
+import FCi18n from "@/i18n/types/FCi18n";
 import { useState } from "react";
+import { dict } from "./dictionary";
 import ProjectCard from "./ProjectCard";
 import ProjectDetail from "./ProjectDetail";
 
-const ProjectsSection: React.FC<{ projects: Project[] }> = ({ projects }) => {
+const ProjectsSection: FCi18n<{ projects: Project[] }> = ({
+    lang,
+    projects,
+}) => {
     const [activeProject, setActiveProject] = useState<Project | undefined>();
+    const localeDict = dict[lang];
     return (
         <FullHeightSection id="projects" className="py-4 px-3 px-sm-5">
-            <h3 className="mt-5 mb-3 text-white">Projects</h3>
-            <p className="text-white">
-                This is a cherry-picked collection of some of my favorite
-                personal projects.
-            </p>
+            <h3 className="mt-5 mb-3 text-white">{localeDict.projects}</h3>
+            <p className="text-white">{localeDict.explanation}</p>
             <p className="text-white d-block d-sm-none">
-                Touch each card to learn more! 👇
+                {localeDict.touchToLearn}
             </p>
             <div className="row">
                 <div className="col-12 col-sm-6">
@@ -70,6 +73,7 @@ const ProjectsSection: React.FC<{ projects: Project[] }> = ({ projects }) => {
                                         {activeProject &&
                                             activeProject.id === p.id && (
                                                 <ProjectDetail
+                                                    lang={lang}
                                                     project={activeProject}
                                                     className={`
                                                             px-3 py-2 mt-2
@@ -95,7 +99,7 @@ const ProjectsSection: React.FC<{ projects: Project[] }> = ({ projects }) => {
                                 text-white fw-bold
                             `}
                         >
-                            <span>👈 Click on each card to learn more!</span>
+                            <span>{localeDict.hoverToLearn}</span>
                             <div
                                 className={`
                                     h-100 w-100 position-absolute
@@ -109,6 +113,7 @@ const ProjectsSection: React.FC<{ projects: Project[] }> = ({ projects }) => {
                     {activeProject !== undefined && (
                         <div>
                             <ProjectDetail
+                                lang={lang}
                                 project={activeProject}
                                 className={`
                                     px-3 py-2

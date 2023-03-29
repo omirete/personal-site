@@ -9,7 +9,6 @@ export interface HighlightDetailProps
 const HighlightDetail: React.FC<HighlightDetailProps> = ({
     highlight,
     className,
-    style,
     ...props
 }) => {
     return (
@@ -17,11 +16,6 @@ const HighlightDetail: React.FC<HighlightDetailProps> = ({
             className={`
                     ${className}
                 `}
-            style={{
-                // opacity: showClass ? "100%" : "0%",
-                // transform: `translateY(${showClass ? "0" : "20%"})`,
-                ...style,
-            }}
             {...props}
         >
             {highlight.description}

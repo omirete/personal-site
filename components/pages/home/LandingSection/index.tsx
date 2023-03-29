@@ -2,10 +2,14 @@ import FullHeightSection from "@/components/ui/FullHeightSection";
 import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
 import { FaChevronDown } from "react-icons/fa";
 import IconBlob from "@/assets/svg/blob-1.svg";
+import { dict } from "./dictionary";
+import FCi18n from "@/i18n/types/FCi18n";
 
-const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
+const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
+    lang,
     personalInfo,
 }) => {
+    const localeDict = dict[lang];
     return (
         <FullHeightSection
             id="home"
@@ -16,10 +20,12 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                     <div className="p-2 px-sm-4 pt-sm-4 pb-sm-5 rounded shadow bg-white d-flex">
                         <div className="flex-grow-1">
                             <p className="m-0">
-                                <code className="fs-2">Hello,</code>
+                                <code className="fs-2">{localeDict.hello}</code>
                             </p>
                             <p className="m-0 fs-4">
-                                I am {personalInfo.basicInfo.name}
+                                {localeDict.iamName(
+                                    personalInfo.basicInfo.name
+                                )}
                             </p>
                             <p className="m-0">
                                 {personalInfo.basicInfo.title}
@@ -41,7 +47,7 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                         />
                         <img
                             src={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/profile.png`}
-                            alt="Profile picture."
+                            alt={localeDict.profilePictureAlt}
                             className="rounded-circle shadow h-100 w-100 position-relative mb-3"
                             style={{
                                 maxHeight: "180px",
@@ -55,7 +61,7 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                             style={{
                                 maxWidth: "100%",
                             }}
-                            src={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/voice-notes/en.m4a`}
+                            src={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/voice-notes/${lang}.m4a`}
                         />
                     </div>
                 </div>
@@ -69,7 +75,7 @@ const LandingSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                 `}
                 href="#highlights"
             >
-                <p>See more</p>
+                <p>{localeDict.seeMore}</p>
                 <FaChevronDown />
             </a>
         </FullHeightSection>

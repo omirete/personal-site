@@ -1,38 +1,33 @@
 import SocialRow from "@/components/social/SocialRow";
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
+import FCi18n from "@/i18n/types/FCi18n";
 import Image from "next/image";
-import ButtonLaunchContactForm from "./ButtonLaunchContactForm";
+import { dict } from "./dictionary";
 
-const ContactSection: React.FC<{ personalInfo: PersonalInfo }> = ({
+const ContactSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
+    lang,
     personalInfo,
 }) => {
+    const localeDict = dict[lang];
     return (
         <FullHeightSection id="contact" className="py-4 px-3 px-sm-5">
             <div className="mt-5">
                 <div className="row flex-wrap">
                     <div className="col-12 col-sm-6">
-                        <h3 className="mb-3">Contact</h3>
+                        <h3 className="mb-3">{localeDict.contact}</h3>
                         <p>
-                            If you are interested in collaborating, have some
-                            fancy freelancing request, or just want to have a
-                            chat about life, you may reach out in any of the
-                            networks listed below.
+                            {localeDict.youMayReachOut}
                         </p>
                         <div className="mb-3">
-                            Also, if you are a form person, you may use{" "}
-                            {/* <ButtonConfetti className="btn btn-dark btn-sm">
-                            </ButtonConfetti>{" "} */}
-                            <ButtonLaunchContactForm className="btn btn-dark btn-sm d-inline">
-                                ✨ the form ✨
-                            </ButtonLaunchContactForm>{" "}
-                            as well. 🥳
+                            {localeDict.orYouMaySendMeAMessageWithTheForm}
                         </div>
                         <p className="m-0">Federico Giancarelli</p>
                         <p className="">
                             <code>hello@federicogiancarelli.com</code>
                         </p>
                         <SocialRow
+                            lang={lang}
                             personalInfo={personalInfo}
                             styleIcons={{ width: "2em", height: "2em" }}
                             className="mb-3"
@@ -55,7 +50,7 @@ const ContactSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                                     }}
                                 />
                                 <figcaption className="figure-caption">
-                                    My home town:{" "}
+                                    {localeDict.myHomeTown}:{" "}
                                     <a
                                         href="https://goo.gl/maps/f7jhRtt5FBUJ5W1Q6"
                                         className="link-primary"
@@ -70,11 +65,6 @@ const ContactSection: React.FC<{ personalInfo: PersonalInfo }> = ({
                         </div>
                     </div>
                 </div>
-
-                {/* <p>
-                        You may reach out in any of these networks, or you can
-                        also use the form to leave me a message.
-                    </p> */}
             </div>
         </FullHeightSection>
     );

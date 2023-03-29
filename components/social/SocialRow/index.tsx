@@ -1,5 +1,6 @@
 import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
 import { SocialNetworksMetadata } from "@/helpers/database/PersonalInfoCtor/SocialNetworksCtor";
+import FCi18n from "@/i18n/types/FCi18n";
 import Link from "next/link";
 import { CSSProperties, DetailedHTMLProps, HTMLAttributes } from "react";
 import {
@@ -13,6 +14,7 @@ import {
     FaSoundcloud,
     FaYoutube,
 } from "react-icons/fa";
+import { dict } from "./dictionary";
 
 export interface SocialRowProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -21,21 +23,22 @@ export interface SocialRowProps
     styleIcons?: CSSProperties;
 }
 
-const SocialRow: React.FC<SocialRowProps> = ({
+const SocialRow: FCi18n<SocialRowProps> = ({
+    lang,
     personalInfo,
     classNameIcons,
     styleIcons,
     ...props
 }) => {
     const socialNetworks = personalInfo.socialNetworks;
-
+    const localeDict = dict[lang];
     return (
         <div {...props}>
             {socialNetworks.linkedin && (
                 <Link
                     rel="noreferrer noopener"
                     target="_blank"
-                    title="Follow me on LinkedIn!"
+                    title={`${localeDict.followMeOn} LinkedIn!`}
                     href={SocialNetworksMetadata.linkedin.userUrl(
                         socialNetworks.linkedin
                     )}
@@ -47,7 +50,7 @@ const SocialRow: React.FC<SocialRowProps> = ({
                 <Link
                     rel="noreferrer noopener"
                     target="_blank"
-                    title="Follow me on GitHub!"
+                    title={`${localeDict.followMeOn} GitHub!`}
                     href={SocialNetworksMetadata.github.userUrl(
                         socialNetworks.github
                     )}
@@ -59,7 +62,7 @@ const SocialRow: React.FC<SocialRowProps> = ({
                 <Link
                     rel="noreferrer noopener"
                     target="_blank"
-                    title="Follow me on Twitter!"
+                    title={`${localeDict.followMeOn} Twitter!`}
                     href={SocialNetworksMetadata.twitter.userUrl(
                         socialNetworks.twitter
                     )}
@@ -71,7 +74,7 @@ const SocialRow: React.FC<SocialRowProps> = ({
                 <Link
                     rel="noreferrer noopener"
                     target="_blank"
-                    title="Follow me on Telegram!"
+                    title={`${localeDict.sendMeAMessageOver} Telegram!`}
                     href={SocialNetworksMetadata.telegram.userUrl(
                         socialNetworks.telegram
                     )}
@@ -83,7 +86,7 @@ const SocialRow: React.FC<SocialRowProps> = ({
                 <Link
                     rel="noreferrer noopener"
                     target="_blank"
-                    title="Follow me on Instagram!"
+                    title={`${localeDict.followMeOn} Instagram!`}
                     href={SocialNetworksMetadata.instagram.userUrl(
                         socialNetworks.instagram
                     )}
@@ -98,7 +101,7 @@ const SocialRow: React.FC<SocialRowProps> = ({
                 <Link
                     rel="noreferrer noopener"
                     target="_blank"
-                    title="Follow me on Facebook!"
+                    title={`${localeDict.followMeOn} Facebook!`}
                     href={SocialNetworksMetadata.facebook.userUrl(
                         socialNetworks.facebook
                     )}
@@ -110,7 +113,7 @@ const SocialRow: React.FC<SocialRowProps> = ({
                 <Link
                     rel="noreferrer noopener"
                     target="_blank"
-                    title="Follow me on SoundCloud!"
+                    title={`${localeDict.followMeOn} SoundCloud!`}
                     href={SocialNetworksMetadata.soundcloud.userUrl(
                         socialNetworks.soundcloud
                     )}
@@ -125,7 +128,7 @@ const SocialRow: React.FC<SocialRowProps> = ({
                 <Link
                     rel="noreferrer noopener"
                     target="_blank"
-                    title="Follow me on YouTube!"
+                    title={`${localeDict.followMeOn} YouTube!`}
                     href={SocialNetworksMetadata.youtube.userUrl(
                         socialNetworks.youtube
                     )}
@@ -136,7 +139,7 @@ const SocialRow: React.FC<SocialRowProps> = ({
             <Link
                 rel="noreferrer noopener"
                 target="_blank"
-                title="Send me an Email!"
+                title={localeDict.sendMeAnEmail}
                 href={`mailto:${personalInfo.contactInfo.email}`}
             >
                 <FaEnvelope className={classNameIcons} style={styleIcons} />

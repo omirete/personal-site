@@ -1,12 +1,18 @@
 import Signature from "assets/svg/signature.svg";
-import { useContext } from "react";
 import SocialRow from "@/components/social/SocialRow";
 import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
+import FCi18n from "@/i18n/types/FCi18n";
+import { dict } from "./dictionary";
 
-const Footer: React.FC<{ personalInfo: PersonalInfo }> = ({ personalInfo }) => {
+const Footer: FCi18n<{ personalInfo: PersonalInfo }> = ({
+    lang,
+    personalInfo,
+}) => {
+    const localeDict = dict[lang];
     return (
         <div className="text-decoration-none text-center bg-dark py-4">
             <SocialRow
+                lang={lang}
                 className="h3"
                 classNameIcons="text-white me-1 opacity-50 opacity-100-hover transition-all"
                 personalInfo={personalInfo}
@@ -16,7 +22,7 @@ const Footer: React.FC<{ personalInfo: PersonalInfo }> = ({ personalInfo }) => {
                 style={{ fill: "#ffffff" }}
             />
             <div className="mt-4 text-light opacity-50">
-                Source code available on{" "}
+                {localeDict.sourceCodeAvailableOn}{" "}
                 <a
                     href="https://github.com/omirete/personal-site"
                     className="link-info"

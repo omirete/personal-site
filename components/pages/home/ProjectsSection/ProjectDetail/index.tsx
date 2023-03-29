@@ -10,6 +10,8 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import rehypeStringify from "rehype-stringify";
 import rehypeSanitize from "rehype-sanitize";
+import FCi18n from "@/i18n/types/FCi18n";
+import { dict } from "../dictionary";
 
 export interface ProjectDetailProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -40,13 +42,15 @@ const markdownToHtml = async (markdown?: string): Promise<string> => {
     }
 };
 
-const ProjectDetail: React.FC<ProjectDetailProps> = ({
+const ProjectDetail: FCi18n<ProjectDetailProps> = ({
+    lang,
     project,
     className,
     ...props
 }) => {
     const [loading, setLoading] = useState(true);
     const [contentHtml, setContentHtml] = useState<string | undefined>();
+    const localeDict = dict[lang];
 
     useEffect(() => {
         markdownToHtml(project.fullContent).then((htmlContent) => {
@@ -55,7 +59,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({
         });
     }, [project]);
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>{localeDict.loading}...</div>;
     } else {
         return (
             <div

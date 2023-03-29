@@ -1,13 +1,17 @@
 import { Experience } from "@/helpers/database/ExperienceCtor";
+import FCi18n from "@/i18n/types/FCi18n";
 import { Fragment } from "react";
+import { dict } from "../dictionary";
 
 export interface ExperienceTimelineProps {
     experience: Experience[];
 }
 
-const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
+const ExperienceTimeline: FCi18n<ExperienceTimelineProps> = ({
+    lang,
     experience,
 }) => {
+    const localeDict = dict[lang];
     return (
         <table className="text-white">
             <tbody>
@@ -75,8 +79,9 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
                                             rel="noreferrer noopener"
                                         >
                                             {e.type === "studies" &&
-                                                "View certificate"}
-                                            {e.type !== "studies" && "See link"}
+                                                localeDict.viewCertificate}
+                                            {e.type !== "studies" &&
+                                                localeDict.seeLink}
                                         </a>
                                     )}
                                 </td>
