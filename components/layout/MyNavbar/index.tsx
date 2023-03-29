@@ -41,7 +41,7 @@ const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
             </ul>
             <div
                 className={`
-                    mt-3 mt-sm-0 me-0 me-sm-2
+                    mt-3 mt-md-0 me-0 me-md-2
                 `}
             >
                 <Link
@@ -55,15 +55,15 @@ const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
                     btn px-2 py-1 btn-primary text-white text-nowrap
                 `}
                 >
-                    <span className="d-none d-sm-block">
+                    <span className="d-none d-md-block">
                         <FaDownload /> {localeDict.cv}
                     </span>
-                    <span className="d-block d-sm-none fs-4">
+                    <span className="d-block d-md-none fs-4">
                         <FaDownload /> {localeDict.cv}
                     </span>
                 </Link>
             </div>
-            <div className="mt-4 mt-sm-0">
+            <div className="mt-4 mt-md-0">
                 <LangSelector lang={lang} className="" />
             </div>
         </Navbar>
