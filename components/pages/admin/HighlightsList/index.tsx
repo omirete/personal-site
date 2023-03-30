@@ -1,6 +1,7 @@
 "use client";
 
 import { Highlight } from "@/helpers/database/HighlightsCtor";
+import FCi18n from "@/i18n/types/FCi18n";
 import HighlightsRow from "./HighlightsRow";
 import useHighlightsList from "./useHighlightsList";
 
@@ -12,14 +13,15 @@ export interface HighlightsListProps
     highlights: Highlight[];
 }
 
-const HighlightsList: React.FC<HighlightsListProps> = ({
+const HighlightsList: FCi18n<HighlightsListProps> = ({
+    lang,
     highlights,
     className,
     ...props
 }) => {
     const { handleDelete, handleUpdate, loadingId } = useHighlightsList();
     return (
-        <table {...props} className={`table caption-top ${className}`}>
+        <table {...props} className={`table border-primary caption-top ${className}`}>
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -35,6 +37,7 @@ const HighlightsList: React.FC<HighlightsListProps> = ({
                 {highlights.map((h, i) => {
                     return (
                         <HighlightsRow
+                            lang={lang}
                             key={i}
                             highlight={h}
                             handleUpdate={handleUpdate}

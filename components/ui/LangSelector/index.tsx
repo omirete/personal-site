@@ -1,6 +1,9 @@
+"use client";
 import { i18n, LocaleFlags } from "@/i18n/config";
 import FCi18n from "@/i18n/types/FCi18n";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
 const LangSelector: FCi18n<
@@ -9,6 +12,7 @@ const LangSelector: FCi18n<
         "children"
     >
 > = ({ lang, className, ...props }) => {
+    const pathname = usePathname();
     return (
         <div className={`d-flex ${className}`} {...props}>
             <ul className="list-group list-group-horizontal">
@@ -18,11 +22,11 @@ const LangSelector: FCi18n<
                         <li
                             key={locale}
                             className={`
-                            list-group-item p-0
-                            bg-white bg-opacity-25
-                            d-flex align-items-center justify-content-center
-                            ${locale === lang ? "bg-opacity-75" : ""}
-                        `}
+                                list-group-item p-0
+                                bg-white bg-opacity-25
+                                d-flex align-items-center justify-content-center
+                                ${locale === lang ? "bg-opacity-75" : ""}
+                            `}
                         >
                             <Link
                                 className={`
@@ -30,7 +34,14 @@ const LangSelector: FCi18n<
                                     d-flex
                                     align-items-center justify-content-center
                                 `}
-                                href={locale}
+                                href={
+                                    pathname === `/${lang}`
+                                        ? `/${locale}`
+                                        : pathname?.replace(
+                                              `/${lang}/`,
+                                              `/${locale}/`
+                                          ) ?? "/"
+                                }
                             >
                                 <Icon width="1em" height="1em" />
                             </Link>

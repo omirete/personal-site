@@ -1,7 +1,17 @@
 "use client";
 
 import { Highlight } from "@/helpers/database/HighlightsCtor";
-import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
+import parseStringI18N from "@/i18n/helpers/parseStringI18N";
+import FCi18n from "@/i18n/types/FCi18n";
+import StringI18N from "@/i18n/types/StringI18N";
+import {
+    ChangeEvent,
+    DetailedHTMLProps,
+    HTMLAttributes,
+    useCallback,
+    useEffect,
+    useState,
+} from "react";
 import { FaSave, FaTrash } from "react-icons/fa";
 
 export interface ExperienceRowProps
@@ -16,7 +26,8 @@ export interface ExperienceRowProps
     handleDelete: (id: string) => void;
 }
 
-const HighlightsRow: React.FC<ExperienceRowProps> = ({
+const HighlightsRow: FCi18n<ExperienceRowProps> = ({
+    lang,
     loading,
     highlight,
     className,
@@ -38,25 +49,38 @@ const HighlightsRow: React.FC<ExperienceRowProps> = ({
             <td>
                 <input
                     className="form-control form-control-sm"
-                    onChange={(e) =>
-                        setVirtualHighlight((prev) => ({
-                            ...prev,
-                            title: e.target.value,
-                        }))
-                    }
-                    value={virtualHighlight.title}
+                    onChange={(e) => {
+                        e.preventDefault();
+                        setVirtualHighlight((prev) => {
+                            const newVal = { ...prev.title };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                title: newVal as StringI18N,
+                            };
+                        });
+                    }}
+                    defaultValue={parseStringI18N(virtualHighlight.title, lang)}
                 />
             </td>
             <td>
                 <input
                     className="form-control form-control-sm"
-                    onChange={(e) =>
-                        setVirtualHighlight((prev) => ({
-                            ...prev,
-                            description: e.target.value,
-                        }))
-                    }
-                    value={virtualHighlight.description}
+                    onChange={(e) => {
+                        e.preventDefault();
+                        setVirtualHighlight((prev) => {
+                            const newVal = { ...prev.description };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                description: newVal as StringI18N,
+                            };
+                        });
+                    }}
+                    defaultValue={parseStringI18N(
+                        virtualHighlight.description,
+                        lang
+                    )}
                 />
             </td>
             <td className="text-center">

@@ -44,7 +44,7 @@ export const metadata: Metadata = {
             },
         ],
         url: "https://federicogiancarelli.com",
-    }
+    },
 };
 
 const RootLayout = async ({
@@ -52,7 +52,7 @@ const RootLayout = async ({
     params,
 }: {
     children: ReactNode;
-    params: { lang: string };
+    params: { lang: Locale };
 }) => {
     const session = await getServerSession(authOptions);
     return (

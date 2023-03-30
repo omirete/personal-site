@@ -44,6 +44,7 @@ const HighlightsSection: FCi18n<{ highlights: Highlight[] }> = ({
                     )}
                     {activeHighlight && (
                         <HighlightDetail
+                            lang={lang}
                             highlight={activeHighlight}
                             className={`
                                 px-3 py-2
@@ -61,6 +62,7 @@ const HighlightsSection: FCi18n<{ highlights: Highlight[] }> = ({
                                 <div key={h.id}>
                                     {/* Desktop variant */}
                                     <HighlightTile
+                                        lang={lang}
                                         highlight={h}
                                         active={activeHighlight?.id === h.id}
                                         onPointerEnter={() => {
@@ -71,6 +73,7 @@ const HighlightsSection: FCi18n<{ highlights: Highlight[] }> = ({
                                     />
                                     {/* Mobile variant */}
                                     <HighlightTile
+                                        lang={lang}
                                         key={`${h.id}_mobile`}
                                         highlight={h}
                                         active={activeHighlight?.id === h.id}
@@ -86,6 +89,7 @@ const HighlightsSection: FCi18n<{ highlights: Highlight[] }> = ({
                                     />
                                     {activeHighlight?.id === h.id && (
                                         <HighlightDetail
+                                            lang={lang}
                                             highlight={h}
                                             className={`
                                                 px-3 py-2 my-2

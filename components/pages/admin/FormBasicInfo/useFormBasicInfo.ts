@@ -1,9 +1,16 @@
 "use client";
 
-import { FormEventHandler, RefObject, useRef, useState } from "react";
+import { BasicInfo } from "@/helpers/database/PersonalInfoCtor/BasicInfoCtor";
+import {
+    FormEvent,
+    FormEventHandler,
+    RefObject,
+    useRef,
+    useState,
+} from "react";
 
 export interface UseFormBasicInfo {
-    handleSubmit: FormEventHandler<HTMLFormElement>;
+    handleSubmit: (e: FormEvent<HTMLFormElement>, basicInfo: BasicInfo) => void;
     loading: boolean;
     formRef: RefObject<HTMLFormElement>;
 }
@@ -11,17 +18,17 @@ export interface UseFormBasicInfo {
 const useFormBasicInfo = (): UseFormBasicInfo => {
     const [loading, setLoading] = useState(false);
     const formRef = useRef<HTMLFormElement>(null);
-    const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    const handleSubmit = async (
+        e: FormEvent<HTMLFormElement>,
+        basicInfo: BasicInfo
+    ) => {
         e.preventDefault();
         setLoading(true);
-        const form = e.target as HTMLFormElement;
-        const data = new FormData(form);
-
         const url = `/api/personal-info/basic-info`;
         try {
             const res = await fetch(url, {
                 method: "PUT",
-                body: data,
+                body: JSON.stringify(basicInfo),
             });
             if (!res.ok) {
                 throw new Error(`Error saving. ${await res.text()}`);

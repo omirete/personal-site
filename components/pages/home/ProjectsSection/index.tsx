@@ -34,6 +34,7 @@ const ProjectsSection: FCi18n<{ projects: Project[] }> = ({
                                     <div className="d-flex flex-column h-100">
                                         {/* Desktop variant */}
                                         <ProjectCard
+                                            lang={lang}
                                             project={p}
                                             className={`
                                                 flex-grow-1 d-none d-sm-block
@@ -50,6 +51,7 @@ const ProjectsSection: FCi18n<{ projects: Project[] }> = ({
                                         />
                                         {/* Mobile variant */}
                                         <ProjectCard
+                                            lang={lang}
                                             project={p}
                                             className={`
                                                 flex-grow-1 d-block d-sm-none

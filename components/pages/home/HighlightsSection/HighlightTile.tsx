@@ -1,4 +1,6 @@
 import { Highlight } from "@/helpers/database/HighlightsCtor";
+import parseStringI18N from "@/i18n/helpers/parseStringI18N";
+import FCi18n from "@/i18n/types/FCi18n";
 import { DetailedHTMLProps, LiHTMLAttributes } from "react";
 
 export interface HighlightTileProps
@@ -8,7 +10,8 @@ export interface HighlightTileProps
     isLastChild?: boolean;
 }
 
-const HighlightTile: React.FC<HighlightTileProps> = ({
+const HighlightTile: FCi18n<HighlightTileProps> = ({
+    lang,
     highlight,
     active,
     className,
@@ -29,7 +32,7 @@ const HighlightTile: React.FC<HighlightTileProps> = ({
             `}
             {...props}
         >
-            {highlight.title}
+            {parseStringI18N(highlight.title, lang)}
         </li>
     );
 };

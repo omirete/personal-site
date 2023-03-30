@@ -1,4 +1,5 @@
 import { Experience } from "@/helpers/database/ExperienceCtor";
+import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 import FCi18n from "@/i18n/types/FCi18n";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { dict } from "./dictionary";
@@ -19,13 +20,13 @@ const ExperienceCard: FCi18n<ExperienceCardProps> = ({
         <div className={`card ${className ?? ""}`} {...props}>
             <div className="card-body d-flex flex-column">
                 <h5 className="card-title d-flex flex-row">
-                    {experience.title}
+                    {parseStringI18N(experience.title, lang)}
                 </h5>
                 <h6 className="card-subtitle mb-2 text-muted">
                     {experience.institution}
                 </h6>
                 <p className="card-text small text-muted flex-grow-1">
-                    <span>{experience.description}</span>
+                    <span>{parseStringI18N(experience.description, lang)}</span>
                     {experience.relevantUrl && (
                         <a
                             href={experience.relevantUrl}

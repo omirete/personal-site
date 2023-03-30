@@ -4,6 +4,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import getMissingProperties from "@/helpers/getMissingParams";
 import { Experience } from "@/helpers/database/ExperienceCtor";
+import { i18n, Locale } from "@/i18n/config";
+import StringI18N from "@/i18n/types/StringI18N";
 
 export const GET = async (req: NextRequest): Promise<NextResponse> => {
     const experience = await DB.data.experience.getAll();
@@ -14,50 +16,67 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
     const session = await getServerSession(authOptions);
     if (session) {
         // Authorized
-        try {
-            const formData: FormData = await req.formData();
+        const lang = req.nextUrl.searchParams.get("locale");
+        if (lang && i18n.locales.includes(lang as any)) {
+            try {
+                const formData: FormData = await req.formData();
 
-            const expType = formData.get("type")?.toString();
-            const title = formData.get("title")?.toString();
-            const institution = formData.get("institution")?.toString();
-            const dateFrom = formData.get("dateFrom")?.toString();
-            const dateTo = formData.get("dateTo")?.toString();
-            const description = formData.get("description")?.toString();
-            const tags = (formData.get("tags")?.toString() ?? "").split(",");
-            const relevantUrl =
-                formData.get("relevantUrl")?.toString() ?? "";
+                const expType = formData.get("type")?.toString();
+                const title: StringI18N = {} as StringI18N;
+                title[lang as Locale] = formData.get("title")?.toString();
+                const institution = formData.get("institution")?.toString();
+                const dateFrom = formData.get("dateFrom")?.toString();
+                const dateTo = formData.get("dateTo")?.toString();
+                const description = {} as StringI18N;
+                description[lang as Locale] = formData
+                    .get("description")
+                    ?.toString();
+                const tags = (formData.get("tags")?.toString() ?? "").split(
+                    ","
+                );
+                const relevantUrl =
+                    formData.get("relevantUrl")?.toString() ?? "";
 
-            if (
-                (expType === "work" || expType === "studies") &&
-                title &&
-                institution &&
-                dateFrom
-            ) {
-                const experience: Experience = await DB.data.experience.create({
-                    type: expType,
-                    title,
-                    institution,
-                    dateFrom,
-                    dateTo,
-                    description,
-                    tags,
-                    relevantUrl,
-                });
-                return NextResponse.json({ experience });
-            } else {
-                const missingProperties = getMissingProperties({
-                    position: title,
-                    company: institution,
-                    dateFrom,
-                });
-                return NextResponse.json({
-                    error: `Missing properties: ${missingProperties.join(
-                        ", "
-                    )}`,
-                });
+                if (
+                    (expType === "work" || expType === "studies") &&
+                    title &&
+                    institution &&
+                    dateFrom
+                ) {
+                    const experience: Experience =
+                        await DB.data.experience.create({
+                            type: expType,
+                            title,
+                            institution,
+                            dateFrom,
+                            dateTo,
+                            description,
+                            tags,
+                            relevantUrl,
+                        });
+                    return NextResponse.json({ experience });
+                } else {
+                    const missingProperties = getMissingProperties({
+                        position: title,
+                        company: institution,
+                        dateFrom,
+                    });
+                    return NextResponse.json({
+                        error: `Missing properties: ${missingProperties.join(
+                            ", "
+                        )}`,
+                    });
+                }
+            } catch (error) {
+                return NextResponse.json({ error });
             }
-        } catch (error) {
-            return NextResponse.json({ error });
+        } else {
+            return NextResponse.json(
+                {
+                    error: "Missing or unsupported locale.",
+                },
+                { status: 400 }
+            );
         }
     } else {
         return NextResponse.json({

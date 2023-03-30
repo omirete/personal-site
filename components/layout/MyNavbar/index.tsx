@@ -10,7 +10,7 @@ import { dict } from "./dictionary";
 
 const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
     const linkClasses = "text-white fw-sm-bold";
-    const localeDict = dict[lang];
+    const localeDict = dict[lang] ?? dict["en"];
     return (
         <Navbar id="navbar">
             <ul className="navbar-nav me-auto">
@@ -34,7 +34,10 @@ const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
                 </NavbarLink> */}
                 {/* <NavbarLink href="/playground">Playground</NavbarLink> */}
                 {session && (
-                    <NavbarLink href="/admin/files" className={linkClasses}>
+                    <NavbarLink
+                        href={`/${lang}/admin/files`}
+                        className={linkClasses}
+                    >
                         {localeDict.admin}
                     </NavbarLink>
                 )}

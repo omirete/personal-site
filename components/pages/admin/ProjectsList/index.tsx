@@ -1,7 +1,7 @@
 "use client";
 
-import { Highlight } from "@/helpers/database/HighlightsCtor";
 import { Project } from "@/helpers/database/ProjectsCtor";
+import FCi18n from "@/i18n/types/FCi18n";
 import ProjectsRow from "./ProjectsRow";
 import useProjectsList from "./useProjectsList";
 
@@ -13,14 +13,15 @@ export interface ProjectsListProps
     projects: Project[];
 }
 
-const ProjectsList: React.FC<ProjectsListProps> = ({
+const ProjectsList: FCi18n<ProjectsListProps> = ({
+    lang,
     projects,
     className,
     ...props
 }) => {
     const { handleDelete, handleUpdate, loadingId } = useProjectsList();
     return (
-        <table {...props} className={`table caption-top ${className}`}>
+        <table {...props} className={`table border-primary caption-top ${className}`}>
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -40,6 +41,7 @@ const ProjectsList: React.FC<ProjectsListProps> = ({
                 {projects.map((p, i) => {
                     return (
                         <ProjectsRow
+                            lang={lang}
                             key={i}
                             project={p}
                             handleUpdate={handleUpdate}

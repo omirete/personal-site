@@ -1,4 +1,5 @@
 import { Experience } from "@/helpers/database/ExperienceCtor";
+import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 import FCi18n from "@/i18n/types/FCi18n";
 import { Fragment } from "react";
 import { dict } from "../dictionary";
@@ -33,7 +34,7 @@ const ExperienceTimeline: FCi18n<ExperienceTimelineProps> = ({
                                 </td>
                                 <td className="opacity-100 opacity-md-75">
                                     <div className="">
-                                        <b>{e.title}</b>
+                                        <b>{parseStringI18N(e.title, lang)}</b>
                                     </div>
                                     <div>{e.institution}</div>
                                 </td>
@@ -69,7 +70,7 @@ const ExperienceTimeline: FCi18n<ExperienceTimelineProps> = ({
                                         )}
                                     </div>
                                     <div className="text-muted bg-white bg-opacity-20 rounded py-1 px-2 mt-2">
-                                        {e.description}
+                                        {parseStringI18N(e.description, lang)}
                                     </div>
                                     {e.relevantUrl && (
                                         <a

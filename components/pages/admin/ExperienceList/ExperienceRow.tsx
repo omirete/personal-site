@@ -4,6 +4,9 @@ import {
     Experience,
     SupportedExperienceTypes,
 } from "@/helpers/database/ExperienceCtor";
+import parseStringI18N from "@/i18n/helpers/parseStringI18N";
+import FCi18n from "@/i18n/types/FCi18n";
+import StringI18N from "@/i18n/types/StringI18N";
 import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import { FaSave, FaTrash } from "react-icons/fa";
 
@@ -19,7 +22,10 @@ export interface ExperienceRowProps
     handleDelete: (id: string) => void;
 }
 
-const ExperienceRow: React.FC<ExperienceRowProps> = ({
+
+
+const ExperienceRow: FCi18n<ExperienceRowProps> = ({
+    lang,
     loading,
     experience,
     className,
@@ -55,13 +61,18 @@ const ExperienceRow: React.FC<ExperienceRowProps> = ({
             <td>
                 <input
                     className="form-control form-control-sm"
-                    onChange={(e) =>
-                        setVirtualExp((prev) => ({
-                            ...prev,
-                            title: e.target.value,
-                        }))
-                    }
-                    value={virtualExp.title}
+                    onChange={(e) => {
+                        e.preventDefault();
+                        setVirtualExp((prev) => {
+                            const newVal = { ...prev.title };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                title: newVal as StringI18N,
+                            };
+                        });
+                    }}
+                    value={parseStringI18N(virtualExp.title, lang)}
                 />
             </td>
             <td>
@@ -117,13 +128,18 @@ const ExperienceRow: React.FC<ExperienceRowProps> = ({
             <td>
                 <input
                     className="form-control form-control-sm"
-                    onChange={(e) =>
-                        setVirtualExp((prev) => ({
-                            ...prev,
-                            description: e.target.value,
-                        }))
-                    }
-                    value={virtualExp.description}
+                    onChange={(e) => {
+                        e.preventDefault();
+                        setVirtualExp((prev) => {
+                            const newVal = { ...prev.description };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                description: newVal as StringI18N,
+                            };
+                        });
+                    }}
+                    value={parseStringI18N(virtualExp.description, lang)}
                 />
             </td>
             <td>

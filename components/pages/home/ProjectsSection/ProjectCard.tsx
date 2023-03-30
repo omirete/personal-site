@@ -1,4 +1,6 @@
 import { Project } from "@/helpers/database/ProjectsCtor";
+import parseStringI18N from "@/i18n/helpers/parseStringI18N";
+import FCi18n from "@/i18n/types/FCi18n";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
 export interface ProjectCardProps
@@ -6,7 +8,8 @@ export interface ProjectCardProps
     project: Project;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
+const ProjectCard: FCi18n<ProjectCardProps> = ({
+    lang,
     project,
     className,
     ...props
@@ -16,9 +19,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <div className="card-body p-2 h-100">
                 <div className="d-flex flex-column h-100">
                     <div className="flex-grow-1">
-                        <b className="card-title">{project.name}</b>
+                        <b className="card-title">{parseStringI18N(project.name, lang)}</b>
                         <p className="card-text text-muted small mb-0">
-                            {project.description}
+                            {parseStringI18N(project.description, lang)}
                         </p>
                     </div>
                     <div>

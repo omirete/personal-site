@@ -1,4 +1,4 @@
-import { ReactNode, SVGProps } from "react";
+import { SVGProps } from "react";
 import IconFlagEn from "@/assets/svg/lang/en.svg";
 import IconFlagEs from "@/assets/svg/lang/es.svg";
 import IconFlagDe from "@/assets/svg/lang/de.svg";
