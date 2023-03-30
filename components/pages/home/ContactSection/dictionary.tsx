@@ -51,7 +51,7 @@ export const dict: Dictionaries<Dictionary> = {
                 Außerdem, falls du eine Formular-Person bist, kannst du auch
                 gerne{" "}
                 <ButtonLaunchContactForm className="btn btn-dark btn-sm d-inline">
-                    ✨ dar Formular ✨
+                    ✨ das Formular ✨
                 </ButtonLaunchContactForm>{" "}
                 benutzen. 🥳
             </>
