@@ -73,12 +73,12 @@ const FormBasicInfo: FCi18n<{ basicInfo?: BasicInfo }> = ({
                     defaultValue={parseStringI18N(virtualBasicInfo.title, lang)}
                     onChange={(e) => {
                         setVirtualBasicInfo((prev) => {
-                            const newVal = prev;
-                            if (!newVal.title) {
-                                newVal.title = {} as StringI18N;
-                            }
-                            newVal.title[lang] = e.target.value;
-                            return newVal;
+                            const newVal = { ...prev.title };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                title: newVal as StringI18N,
+                            };
                         });
                     }}
                 />
@@ -101,12 +101,12 @@ const FormBasicInfo: FCi18n<{ basicInfo?: BasicInfo }> = ({
                     )}
                     onChange={(e) =>
                         setVirtualBasicInfo((prev) => {
-                            const newVal = prev;
-                            if (!newVal.subtitle) {
-                                newVal.subtitle = {} as StringI18N;
-                            }
-                            newVal.subtitle[lang] = e.target.value;
-                            return newVal;
+                            const newVal = { ...prev.subtitle };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                subtitle: newVal as StringI18N,
+                            };
                         })
                     }
                 />
@@ -149,12 +149,12 @@ const FormBasicInfo: FCi18n<{ basicInfo?: BasicInfo }> = ({
                     )}
                     onChange={(e) =>
                         setVirtualBasicInfo((prev) => {
-                            const newVal = prev;
-                            if (!newVal.description) {
-                                newVal.description = {} as StringI18N;
-                            }
-                            newVal.description[lang] = e.target.value;
-                            return newVal;
+                            const newVal = { ...prev.description };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                description: newVal as StringI18N,
+                            };
                         })
                     }
                 />
