@@ -1,6 +1,7 @@
 "use client";
 
 import { Experience } from "@/helpers/database/ExperienceCtor";
+import FCi18n from "@/i18n/types/FCi18n";
 import ExperienceRow from "./ExperienceRow";
 import useExperienceList from "./useExperienceList";
 
@@ -12,14 +13,15 @@ export interface ExperienceListProps
     experience: Experience[];
 }
 
-const ExperienceList: React.FC<ExperienceListProps> = ({
+const ExperienceList: FCi18n<ExperienceListProps> = ({
+    lang,
     experience,
     className,
     ...props
 }) => {
     const { handleDelete, handleUpdate, loadingId } = useExperienceList();
     return (
-        <table {...props} className={`table caption-top ${className}`}>
+        <table {...props} className={`table border-primary caption-top ${className}`}>
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -41,6 +43,7 @@ const ExperienceList: React.FC<ExperienceListProps> = ({
                 {experience.map((exp, i) => {
                     return (
                         <ExperienceRow
+                            lang={lang}
                             key={i}
                             experience={exp}
                             handleUpdate={handleUpdate}

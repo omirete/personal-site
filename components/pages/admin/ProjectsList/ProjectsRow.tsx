@@ -1,6 +1,9 @@
 "use client";
 
 import { Project } from "@/helpers/database/ProjectsCtor";
+import parseStringI18N from "@/i18n/helpers/parseStringI18N";
+import FCi18n from "@/i18n/types/FCi18n";
+import StringI18N from "@/i18n/types/StringI18N";
 import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import { FaSave, FaTrash } from "react-icons/fa";
 
@@ -16,7 +19,8 @@ export interface ProjectsRowProps
     handleDelete: (id: string) => void;
 }
 
-const ProjectsRow: React.FC<ProjectsRowProps> = ({
+const ProjectsRow: FCi18n<ProjectsRowProps> = ({
+    lang,
     loading,
     project,
     className,
@@ -37,13 +41,18 @@ const ProjectsRow: React.FC<ProjectsRowProps> = ({
             <td>
                 <input
                     className="form-control form-control-sm"
-                    onChange={(e) =>
-                        setVirtualProject((prev) => ({
-                            ...prev,
-                            name: e.target.value,
-                        }))
-                    }
-                    value={virtualProject.name}
+                    onChange={(e) => {
+                        e.preventDefault();
+                        setVirtualProject((prev) => {
+                            const newVal = { ...prev.name };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                name: newVal as StringI18N,
+                            };
+                        });
+                    }}
+                    defaultValue={parseStringI18N(virtualProject.name, lang)}
                 />
             </td>
             <td>
@@ -61,28 +70,44 @@ const ProjectsRow: React.FC<ProjectsRowProps> = ({
             <td>
                 <input
                     className="form-control form-control-sm"
-                    onChange={(e) =>
-                        setVirtualProject((prev) => ({
-                            ...prev,
-                            description: e.target.value,
-                        }))
-                    }
-                    value={virtualProject.description}
+                    onChange={(e) => {
+                        e.preventDefault();
+                        setVirtualProject((prev) => {
+                            const newVal = { ...prev.description };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                description: newVal as StringI18N,
+                            };
+                        });
+                    }}
+                    defaultValue={parseStringI18N(
+                        virtualProject.description,
+                        lang
+                    )}
                 />
             </td>
             <td>
                 <textarea
                     className="form-control form-control-sm"
-                    onChange={(e) =>
-                        setVirtualProject((prev) => ({
-                            ...prev,
-                            fullContent: e.target.value,
-                        }))
-                    }
-                    style={{
-                        resize: 'both'
+                    onChange={(e) => {
+                        e.preventDefault();
+                        setVirtualProject((prev) => {
+                            const newVal = { ...prev.fullContent };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                fullContent: newVal as StringI18N,
+                            };
+                        });
                     }}
-                    value={virtualProject.fullContent}
+                    style={{
+                        resize: "both",
+                    }}
+                    defaultValue={parseStringI18N(
+                        virtualProject.fullContent,
+                        lang
+                    )}
                 />
             </td>
             <td>

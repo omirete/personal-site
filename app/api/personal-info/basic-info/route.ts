@@ -14,14 +14,14 @@ export const PUT = async (req: NextRequest): Promise<NextResponse> => {
     if (session) {
         // Authorized
         try {
-            const formData = await req.formData();
+            const body: BasicInfo = await req.json();
 
-            const name = formData.get("name")?.toString();
-            const lastName = formData.get("lastName")?.toString();
-            const dateOfBirth = formData.get("dateOfBirth")?.toString();
-            const title = formData.get("title")?.toString();
-            const subtitle = formData.get("subtitle")?.toString();
-            const description = formData.get("description")?.toString();
+            const name = body.name;
+            const lastName = body.lastName;
+            const dateOfBirth = body.dateOfBirth;
+            const title = body.title;
+            const subtitle = body.subtitle;
+            const description = body.description;
 
             if (!name) {
                 throw new Error("You need to specify at least your name.");

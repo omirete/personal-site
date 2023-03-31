@@ -70,7 +70,7 @@ const Navbar: React.FC<NavbarProps> = ({
     return (
         <nav
             className={`
-                navbar navbar-expand-sm
+                navbar navbar-expand-md
                 position-fixed w-100
                 transition-all
                 ${scrolled ? "bg-dark bg-opacity-75" : ""}
@@ -80,12 +80,12 @@ const Navbar: React.FC<NavbarProps> = ({
             {...props}
         >
             <div className="container-fluid">
-                <a className="navbar-brand d-block d-sm-none" href="/#home">
+                <a className="navbar-brand d-block d-md-none" href="/#home">
                     <SignatureLine className="fill-white" />
                 </a>
                 <button
                     className={`
-                        d-block d-sm-none
+                        d-block d-md-none
                         btn border-0 shadow-none text-white
                     `}
                     type="button"
@@ -102,7 +102,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 </button>
                 <div
                     id="navbar-items-desktop"
-                    className="collapse navbar-collapse d-none d-sm-block"
+                    className="collapse navbar-collapse d-none d-md-block"
                 >
                     {children}
                 </div>
@@ -110,7 +110,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     className={`
                         offcanvas offcanvas-end
                         w-100 border-0 bg-dark
-                        d-block d-sm-none
+                        d-block d-md-none
                         ${
                             navState.expanded && navState.transitioning
                                 ? "showing"

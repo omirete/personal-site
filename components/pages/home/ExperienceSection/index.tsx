@@ -1,18 +1,23 @@
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { Experience } from "@/helpers/database/ExperienceCtor";
 import sortExperience from "@/helpers/sortExperience";
+import FCi18n from "@/i18n/types/FCi18n";
+import { dict } from "./dictionary";
 import ExperienceCard from "./ExperienceCard";
 import ExperienceTimeline from "./ExperienceTimeline";
 
-const ExperienceSection: React.FC<{ experience: Experience[] }> = ({
+const ExperienceSection: FCi18n<{ experience: Experience[] }> = ({
+    lang,
     experience,
 }) => {
+    const localeDict = dict[lang];
     return (
         <FullHeightSection id="experience" className="py-4 px-3 px-sm-5">
-            <h3 className="mt-5 mb-3 text-white">Experience</h3>
+            <h3 className="mt-5 mb-3 text-white">{localeDict.experience}</h3>
             <div className="row">
                 <div className="col-12 col-md-4">
                     <ExperienceTimeline
+                        lang={lang}
                         experience={experience.sort((a, b) =>
                             sortExperience(a, b, false)
                         )}
@@ -26,6 +31,7 @@ const ExperienceSection: React.FC<{ experience: Experience[] }> = ({
                                 className="col-12 col-sm-6 col-lg-4"
                             >
                                 <ExperienceCard
+                                    lang={lang}
                                     experience={exp}
                                     className={`
                                         bg-opacity-75 bg-white border-0 shadow

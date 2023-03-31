@@ -1,13 +1,18 @@
 import { Experience } from "@/helpers/database/ExperienceCtor";
+import parseStringI18N from "@/i18n/helpers/parseStringI18N";
+import FCi18n from "@/i18n/types/FCi18n";
 import { Fragment } from "react";
+import { dict } from "../dictionary";
 
 export interface ExperienceTimelineProps {
     experience: Experience[];
 }
 
-const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
+const ExperienceTimeline: FCi18n<ExperienceTimelineProps> = ({
+    lang,
     experience,
 }) => {
+    const localeDict = dict[lang];
     return (
         <table className="text-white">
             <tbody>
@@ -29,7 +34,7 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
                                 </td>
                                 <td className="opacity-100 opacity-md-75">
                                     <div className="">
-                                        <b>{e.title}</b>
+                                        <b>{parseStringI18N(e.title, lang)}</b>
                                     </div>
                                     <div>{e.institution}</div>
                                 </td>
@@ -65,7 +70,7 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
                                         )}
                                     </div>
                                     <div className="text-muted bg-white bg-opacity-20 rounded py-1 px-2 mt-2">
-                                        {e.description}
+                                        {parseStringI18N(e.description, lang)}
                                     </div>
                                     {e.relevantUrl && (
                                         <a
@@ -75,8 +80,9 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
                                             rel="noreferrer noopener"
                                         >
                                             {e.type === "studies" &&
-                                                "View certificate"}
-                                            {e.type !== "studies" && "See link"}
+                                                localeDict.viewCertificate}
+                                            {e.type !== "studies" &&
+                                                localeDict.seeLink}
                                         </a>
                                     )}
                                 </td>

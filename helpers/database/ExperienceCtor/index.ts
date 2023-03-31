@@ -1,3 +1,4 @@
+import StringI18N from "@/i18n/types/StringI18N";
 import { Database } from "firebase/database";
 import GenericDataObjectCtor from "../GenericCtors";
 
@@ -7,10 +8,10 @@ export interface Experience {
     id: string;
     institution: string;
     relevantUrl?: string;
-    title: string;
+    title: StringI18N;
     dateFrom: string;
     dateTo?: string;
-    description?: string;
+    description?: StringI18N;
     type: SupportedExperienceTypes;
     tags: string[];
 }

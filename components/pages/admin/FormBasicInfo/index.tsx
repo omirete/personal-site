@@ -2,15 +2,32 @@
 
 import SubmitButton from "@/components/ui/forms/SubmitButton";
 import { BasicInfo } from "@/helpers/database/PersonalInfoCtor/BasicInfoCtor";
+import parseStringI18N from "@/i18n/helpers/parseStringI18N";
+import FCi18n from "@/i18n/types/FCi18n";
+import StringI18N from "@/i18n/types/StringI18N";
+import { useState } from "react";
 import useFormBasicInfo from "./useFormBasicInfo";
 
-const FormBasicInfo: React.FC<{ basicInfo?: BasicInfo }> = ({ basicInfo }) => {
+const FormBasicInfo: FCi18n<{ basicInfo?: BasicInfo }> = ({
+    lang,
+    basicInfo,
+}) => {
     const { handleSubmit, loading, formRef } = useFormBasicInfo();
+    const [virtualBasicInfo, setVirtualBasicInfo] = useState<BasicInfo>(
+        basicInfo ?? ({} as BasicInfo)
+    );
     return (
-        <form onSubmit={handleSubmit} ref={formRef} className="mb-3">
+        <form
+            onSubmit={(e) => handleSubmit(e, virtualBasicInfo)}
+            ref={formRef}
+            className="mb-3"
+        >
             <h3>Basic information</h3>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
+                <span
+                    className="input-group-text"
+                    style={{ minWidth: "12.5ch" }}
+                >
                     Name
                 </span>
                 <input
@@ -18,7 +35,13 @@ const FormBasicInfo: React.FC<{ basicInfo?: BasicInfo }> = ({ basicInfo }) => {
                     type="text"
                     placeholder="Name"
                     name="name"
-                    defaultValue={basicInfo?.name}
+                    value={virtualBasicInfo.name ?? ""}
+                    onChange={(e) =>
+                        setVirtualBasicInfo((prev) => ({
+                            ...prev,
+                            name: e.target.value,
+                        }))
+                    }
                     required
                 />
                 <input
@@ -26,11 +49,20 @@ const FormBasicInfo: React.FC<{ basicInfo?: BasicInfo }> = ({ basicInfo }) => {
                     type="test"
                     placeholder="Last name"
                     name="lastName"
-                    defaultValue={basicInfo?.lastName}
+                    value={virtualBasicInfo.lastName ?? ""}
+                    onChange={(e) =>
+                        setVirtualBasicInfo((prev) => ({
+                            ...prev,
+                            lastName: e.target.value,
+                        }))
+                    }
                 />
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
+                <span
+                    className="input-group-text"
+                    style={{ minWidth: "12.5ch" }}
+                >
                     Title
                 </span>
                 <input
@@ -38,11 +70,24 @@ const FormBasicInfo: React.FC<{ basicInfo?: BasicInfo }> = ({ basicInfo }) => {
                     type="text"
                     placeholder="A title for your profile"
                     name="title"
-                    defaultValue={basicInfo?.title}
+                    defaultValue={parseStringI18N(virtualBasicInfo.title, lang)}
+                    onChange={(e) => {
+                        setVirtualBasicInfo((prev) => {
+                            const newVal = { ...prev.title };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                title: newVal as StringI18N,
+                            };
+                        });
+                    }}
                 />
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
+                <span
+                    className="input-group-text"
+                    style={{ minWidth: "12.5ch" }}
+                >
                     Subtitle
                 </span>
                 <input
@@ -50,11 +95,27 @@ const FormBasicInfo: React.FC<{ basicInfo?: BasicInfo }> = ({ basicInfo }) => {
                     type="text"
                     placeholder="A subtitle for your profile"
                     name="subtitle"
-                    defaultValue={basicInfo?.subtitle}
+                    defaultValue={parseStringI18N(
+                        virtualBasicInfo.subtitle,
+                        lang
+                    )}
+                    onChange={(e) =>
+                        setVirtualBasicInfo((prev) => {
+                            const newVal = { ...prev.subtitle };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                subtitle: newVal as StringI18N,
+                            };
+                        })
+                    }
                 />
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
+                <span
+                    className="input-group-text"
+                    style={{ minWidth: "12.5ch" }}
+                >
                     Birth date
                 </span>
                 <input
@@ -62,18 +123,40 @@ const FormBasicInfo: React.FC<{ basicInfo?: BasicInfo }> = ({ basicInfo }) => {
                     type="date"
                     placeholder="A title for your profile"
                     name="dateOfBirth"
-                    defaultValue={basicInfo?.dateOfBirth}
+                    value={virtualBasicInfo.dateOfBirth ?? ""}
+                    onChange={(e) =>
+                        setVirtualBasicInfo((prev) => ({
+                            ...prev,
+                            dateOfBirth: e.target.value,
+                        }))
+                    }
                 />
             </div>
             <div className="input-group mb-2">
-                <span className="input-group-text" style={{ minWidth: "12.5ch" }}>
+                <span
+                    className="input-group-text"
+                    style={{ minWidth: "12.5ch" }}
+                >
                     Description
                 </span>
                 <textarea
                     className="form-control"
                     placeholder="Give yourself a short description."
                     name="description"
-                    defaultValue={basicInfo?.description}
+                    defaultValue={parseStringI18N(
+                        virtualBasicInfo.description,
+                        lang
+                    )}
+                    onChange={(e) =>
+                        setVirtualBasicInfo((prev) => {
+                            const newVal = { ...prev.description };
+                            newVal[lang] = e.target.value;
+                            return {
+                                ...prev,
+                                description: newVal as StringI18N,
+                            };
+                        })
+                    }
                 />
             </div>
             <SubmitButton

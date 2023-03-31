@@ -4,6 +4,8 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import getMissingProperties from "@/helpers/getMissingParams";
 import { Highlight } from "@/helpers/database/HighlightsCtor";
+import { i18n, Locale } from "@/i18n/config";
+import StringI18N from "@/i18n/types/StringI18N";
 
 export const GET = async (req: NextRequest): Promise<NextResponse> => {
     const highlights = await DB.data.highlights.getAll();
@@ -14,30 +16,45 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
     const session = await getServerSession(authOptions);
     if (session) {
         // Authorized
-        try {
-            const formData: FormData = await req.formData();
+        const lang = req.nextUrl.searchParams.get("locale");
+        if (lang && i18n.locales.includes(lang as any)) {
+            try {
+                const formData: FormData = await req.formData();
 
-            const title = formData.get("title")?.toString();
-            const description = formData.get("description")?.toString();
+                const title = {} as StringI18N;
+                title[lang as Locale] = formData.get("title")?.toString();
+                const description = {} as StringI18N;
+                description[lang as Locale] = formData
+                    .get("description")
+                    ?.toString();
 
-            if (title) {
-                const highlight: Highlight = await DB.data.highlights.create({
-                    title,
-                    description,
-                });
-                return NextResponse.json({ highlight });
-            } else {
-                const missingProperties = getMissingProperties({
-                    title,
-                });
-                return NextResponse.json({
-                    error: `Missing properties: ${missingProperties.join(
-                        ", "
-                    )}`,
-                });
+                if (title) {
+                    const highlight: Highlight =
+                        await DB.data.highlights.create({
+                            title,
+                            description,
+                        });
+                    return NextResponse.json({ highlight });
+                } else {
+                    const missingProperties = getMissingProperties({
+                        title,
+                    });
+                    return NextResponse.json({
+                        error: `Missing properties: ${missingProperties.join(
+                            ", "
+                        )}`,
+                    });
+                }
+            } catch (error) {
+                return NextResponse.json({ error });
             }
-        } catch (error) {
-            return NextResponse.json({ error });
+        } else {
+            return NextResponse.json(
+                {
+                    error: "Missing or unsupported locale.",
+                },
+                { status: 400 }
+            );
         }
     } else {
         return NextResponse.json({

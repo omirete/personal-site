@@ -1,3 +1,4 @@
+import StringI18N from "@/i18n/types/StringI18N";
 import { Database } from "firebase/database";
 import { PropertyGetterSetterCtor } from "../GenericCtors";
 
@@ -5,9 +6,9 @@ export interface BasicInfo {
     name: string;
     lastName?: string;
     dateOfBirth?: string;
-    title?: string;
-    subtitle?: string;
-    description?: string;
+    title?: StringI18N;
+    subtitle?: StringI18N;
+    description?: StringI18N;
 }
 
 export default class BasicInfoCtor {

@@ -1,4 +1,6 @@
 import { Highlight } from "@/helpers/database/HighlightsCtor";
+import parseStringI18N from "@/i18n/helpers/parseStringI18N";
+import FCi18n from "@/i18n/types/FCi18n";
 import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from "react";
 
 export interface HighlightDetailProps
@@ -6,10 +8,10 @@ export interface HighlightDetailProps
     highlight: Highlight;
 }
 
-const HighlightDetail: React.FC<HighlightDetailProps> = ({
+const HighlightDetail: FCi18n<HighlightDetailProps> = ({
+    lang,
     highlight,
     className,
-    style,
     ...props
 }) => {
     return (
@@ -17,14 +19,9 @@ const HighlightDetail: React.FC<HighlightDetailProps> = ({
             className={`
                     ${className}
                 `}
-            style={{
-                // opacity: showClass ? "100%" : "0%",
-                // transform: `translateY(${showClass ? "0" : "20%"})`,
-                ...style,
-            }}
             {...props}
         >
-            {highlight.description}
+            {parseStringI18N(highlight.description, lang)}
         </div>
     );
 };

@@ -1,21 +1,25 @@
 "use client";
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { Highlight } from "@/helpers/database/HighlightsCtor";
+import FCi18n from "@/i18n/types/FCi18n";
 import { useState } from "react";
+import { dict } from "./dictionary";
 import HighlightDetail from "./HighlightDetail";
 import HighlightTile from "./HighlightTile";
 
-const HighlightsSection: React.FC<{ highlights: Highlight[] }> = ({
+const HighlightsSection: FCi18n<{ highlights: Highlight[] }> = ({
+    lang,
     highlights,
 }) => {
     const [activeHighlight, setActiveHighlight] = useState<
         Highlight | undefined
     >();
+    const localeDict = dict[lang];
     return (
         <FullHeightSection id="highlights" className="py-4 px-3 px-sm-5">
-            <h3 className="mt-5 mb-3 text-white">Highlights</h3>
+            <h3 className="mt-5 mb-3 text-white">{localeDict.highlights}</h3>
             <p className="text-white d-block d-sm-none">
-                Touch each card to learn more! 👇
+                {localeDict.touchToLearn}
             </p>
             <div className="row">
                 <div className="d-none d-sm-block col-sm-6 col-md-8">
@@ -27,9 +31,7 @@ const HighlightsSection: React.FC<{ highlights: Highlight[] }> = ({
                                 text-white fw-bold
                             `}
                         >
-                            <span>
-                                Hover or touch on each card to learn more! 👉
-                            </span>
+                            <span>{localeDict.hoverToLearn}</span>
                             <div
                                 className={`
                                     h-100 w-100 position-absolute
@@ -42,6 +44,7 @@ const HighlightsSection: React.FC<{ highlights: Highlight[] }> = ({
                     )}
                     {activeHighlight && (
                         <HighlightDetail
+                            lang={lang}
                             highlight={activeHighlight}
                             className={`
                                 px-3 py-2
@@ -59,6 +62,7 @@ const HighlightsSection: React.FC<{ highlights: Highlight[] }> = ({
                                 <div key={h.id}>
                                     {/* Desktop variant */}
                                     <HighlightTile
+                                        lang={lang}
                                         highlight={h}
                                         active={activeHighlight?.id === h.id}
                                         onPointerEnter={() => {
@@ -69,6 +73,7 @@ const HighlightsSection: React.FC<{ highlights: Highlight[] }> = ({
                                     />
                                     {/* Mobile variant */}
                                     <HighlightTile
+                                        lang={lang}
                                         key={`${h.id}_mobile`}
                                         highlight={h}
                                         active={activeHighlight?.id === h.id}
@@ -84,6 +89,7 @@ const HighlightsSection: React.FC<{ highlights: Highlight[] }> = ({
                                     />
                                     {activeHighlight?.id === h.id && (
                                         <HighlightDetail
+                                            lang={lang}
                                             highlight={h}
                                             className={`
                                                 px-3 py-2 my-2

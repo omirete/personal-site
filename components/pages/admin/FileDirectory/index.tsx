@@ -25,7 +25,10 @@ const FileDirectory: React.FC<FileDirectoryProps> = ({
         );
     } else {
         return (
-            <table {...props} className={`table caption-top ${className}`}>
+            <table
+                {...props}
+                className={`table border-primary caption-top ${className}`}
+            >
                 <caption>Uploaded files</caption>
                 <thead>
                     <tr>

@@ -1,17 +1,19 @@
+import { Locale } from "@/i18n/config";
 import { FormEventHandler, useCallback, useState } from "react";
 
 export interface UseFormHighlights {
     creating: boolean;
     handleCreate: FormEventHandler<HTMLFormElement>;
 }
-const useFormHighlights = (): UseFormHighlights => {
+const useFormHighlights = (lang: Locale): UseFormHighlights => {
     const [creating, setCreating] = useState(false);
 
     const handleCreate: FormEventHandler<HTMLFormElement> = useCallback(
         async (e) => {
+            e.preventDefault();
             const form = e.target as HTMLFormElement;
             const formData = new FormData(form);
-            const url = `/api/highlights`;
+            const url = `/api/highlights?locale=${lang}`;
             setCreating(true);
             const res = await fetch(url, {
                 method: "POST",
@@ -27,7 +29,7 @@ const useFormHighlights = (): UseFormHighlights => {
             }
             setCreating(false);
         },
-        []
+        [lang]
     );
 
     return {

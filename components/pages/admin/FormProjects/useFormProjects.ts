@@ -1,17 +1,19 @@
+import { Locale } from "@/i18n/config";
 import { FormEventHandler, useCallback, useState } from "react";
 
 export interface UseFormProjects {
     creating: boolean;
     handleCreate: FormEventHandler<HTMLFormElement>;
 }
-const useFormProjects = (): UseFormProjects => {
+const useFormProjects = (lang: Locale): UseFormProjects => {
     const [creating, setCreating] = useState(false);
 
     const handleCreate: FormEventHandler<HTMLFormElement> = useCallback(
         async (e) => {
+            e.preventDefault();
             const form = e.target as HTMLFormElement;
             const formData = new FormData(form);
-            const url = `/api/projects`;
+            const url = `/api/projects?locale=${lang}`;
             setCreating(true);
             const res = await fetch(url, {
                 method: "POST",
@@ -25,7 +27,7 @@ const useFormProjects = (): UseFormProjects => {
             }
             setCreating(false);
         },
-        []
+        [lang]
     );
 
     return {

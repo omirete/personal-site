@@ -1,10 +1,11 @@
 "use client";
 
 import SubmitButton from "@/components/ui/forms/SubmitButton";
+import FCi18n from "@/i18n/types/FCi18n";
 import useFormExperience from "./useFormExperience";
 
-const FormExperience: React.FC = () => {
-    const { handleCreate, creating } = useFormExperience();
+const FormExperience: FCi18n = ({ lang }) => {
+    const { handleCreate, creating } = useFormExperience(lang);
     return (
         <form onSubmit={handleCreate} className="mb-3">
             <div className="input-group mb-2">
