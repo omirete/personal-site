@@ -1,4 +1,3 @@
-import "../custom.scss";
 import { Analytics } from "@vercel/analytics/react";
 import ClientSessionProvider from "@/components/next-auth/ClientSessionProvider";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
