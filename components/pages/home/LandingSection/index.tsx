@@ -1,7 +1,7 @@
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
 import { FaChevronDown } from "react-icons/fa";
-import IconBlob from "@/assets/svg/blob-1.svg";
+import IconBlob from "@/assets/svg/blob-7.svg";
 import { dict } from "./dictionary";
 import FCi18n from "@/i18n/types/FCi18n";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
@@ -49,10 +49,10 @@ const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                     <div className="col-12 col-sm-6 h-100 d-flex flex-column justify-content-center align-items-center mt-3 mt-sm-0">
                         <div className="position-relative">
                             <IconBlob
-                                className="position-absolute"
+                                className="position-absolute opacity-50"
                                 style={{
                                     scale: 1.4,
-                                    fill: "#ffffff33",
+                                    fill: "#ffffff",
                                     width: "100%",
                                     height: "auto",
                                 }}
