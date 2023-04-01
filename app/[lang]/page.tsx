@@ -16,7 +16,7 @@ const Home: NextPage = async ({ params }: { params: { lang: Locale } }) => {
     const highlights = await DB.data.highlights.getAll();
     const experience = await DB.data.experience.getAll();
     const projects = await DB.data.projects.getAll();
-    
+
     if (personalInfo) {
         return (
             <main>
