@@ -1,5 +1,3 @@
-// import { Dictionary } from "@/i18n/types/Dictionary";
-
 import { Dictionaries } from "@/i18n/types/Dictionaries";
 import { ReactNode } from "react";
 import ButtonLaunchContactForm from "./ButtonLaunchContactForm";
