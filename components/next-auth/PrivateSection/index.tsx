@@ -3,10 +3,15 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { ReactNode } from "react";
 import { NextPage } from "next";
 import LoginButton from "../LoginButton";
+import { redirect } from "next/navigation";
 
 export interface PrivateSectionProps {
     children?: ReactNode;
-    behaviourOnUnauthorized?: "unauthorized" | "redirect" | "hide";
+    behaviourOnUnauthorized?:
+        | "unauthorized"
+        | "redirect-home"
+        | "redirect-unauthorized"
+        | "hide";
 }
 
 {/* @ts-expect-error Async Server Component */}
@@ -26,15 +31,17 @@ const PrivateSection: NextPage<PrivateSectionProps> = async ({
                 return null;
             case "unauthorized":
                 return (
-                    <div>
-                        <p>You are not authorized to view this content.</p>
+                    <div className="px-3 py-5">
+                        <p className="mt-3">You are not authorized to view this content.</p>
                         <LoginButton />
                     </div>
                 );
-            case "redirect":
-                return <span>Redirect.</span>;
+            case "redirect-unauthorized":
+                return redirect("/unauthorized");
+            case "redirect-home":
+                return redirect("/");
             default:
-                return <span>Redirect (default).</span>;
+                return redirect("/");
         }
     }
 };
