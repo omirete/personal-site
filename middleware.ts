@@ -46,6 +46,17 @@ export function middleware(request: NextRequest) {
         // The new URL is now /en-US/products
         const newUrl = new URL(`/${locale}/${pathname}`, request.url);
         return NextResponse.redirect(newUrl);
+    } else {
+        // Store current request url in a custom header, which you can read later
+        const requestHeaders = new Headers(request.headers);
+        requestHeaders.set("x-url", request.url);
+
+        return NextResponse.next({
+            request: {
+                // Apply new request headers
+                headers: requestHeaders,
+            },
+        });
     }
 }
 
