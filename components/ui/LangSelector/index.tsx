@@ -25,7 +25,11 @@ const LangSelector: FCi18n<
                                 list-group-item p-0
                                 bg-white bg-opacity-25
                                 d-flex align-items-center justify-content-center
-                                ${locale === lang ? "bg-opacity-75" : ""}
+                                ${
+                                    locale === lang
+                                        ? "bg-opacity-75"
+                                        : "bg-opacity-50-hover"
+                                }
                             `}
                         >
                             <Link
