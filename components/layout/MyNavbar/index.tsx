@@ -1,3 +1,4 @@
+import LoginButton from "@/components/next-auth/LoginButton";
 import LangSelector from "@/components/ui/LangSelector";
 import Navbar from "@/components/ui/Navbar";
 import NavbarAnchor from "@/components/ui/Navbar/NavbarAnchor";
@@ -42,9 +43,10 @@ const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
                     </NavbarLink>
                 )}
             </ul>
+            {session && <LoginButton className="px-2 py-1 me-2 text-white" />}
             <div
                 className={`
-                    mt-3 mt-md-0 me-0 me-md-2
+                mt-3 mt-md-0 me-0 me-md-2
                 `}
             >
                 <Link
