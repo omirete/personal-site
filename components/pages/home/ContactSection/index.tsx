@@ -38,7 +38,7 @@ const ContactSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                         <div className="d-flex justify-content-center position-relative">
                             <figure className="figure">
                                 <Image
-                                    src={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/contact.png`}
+                                    src={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/contact.webp`}
                                     alt="Alternate profile picture."
                                     className="figure-img img-fluid rounded shadow"
                                     width={500}

@@ -62,15 +62,15 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
                             break;
                         case "contact-pic":
                             // TODO: Add handling of other image formats.
-                            if (format_src !== "png") {
+                            if (format_src !== "webp") {
                                 return NextResponse.json(
                                     {
-                                        error: `Picture has to be .png.`,
+                                        error: `Picture has to be .webp.`,
                                     },
                                     { status: 400 }
                                 );
                             }
-                            filename = "contact.png";
+                            filename = "contact.webp";
                             break;
                         case "signature-line":
                             filename = "signature-line.svg";
