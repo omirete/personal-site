@@ -72,20 +72,21 @@ const ProjectsSection: FCi18n<{ projects: Project[] }> = ({
                                                 }
                                             }}
                                         />
-                                        {activeProject &&
-                                            activeProject.id === p.id && (
-                                                <ProjectDetail
-                                                    lang={lang}
-                                                    project={activeProject}
-                                                    className={`
+                                        <div className="d-block d-sm-none">
+                                            {activeProject &&
+                                                activeProject.id === p.id && (
+                                                    <ProjectDetail
+                                                        lang={lang}
+                                                        project={activeProject}
+                                                        className={`
                                                             px-3 py-2 mt-2
                                                             rounded shadow
                                                             bg-dark bg-opacity-75
                                                             text-white
-                                                            d-block d-sm-none
                                                         `}
-                                                />
-                                            )}
+                                                    />
+                                                )}
+                                        </div>
                                     </div>
                                 </div>
                             );
