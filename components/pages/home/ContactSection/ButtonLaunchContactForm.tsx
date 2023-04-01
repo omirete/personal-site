@@ -23,11 +23,13 @@ const ButtonLaunchContactForm: React.FC<
                 {...props}
             />
             <Modal show={show} setShow={setShow} className="modal-lg">
-                <iframe
-                    src="https://form.jotform.com/230786688727071"
-                    className="w-100 rounded shadow"
-                    height="500px"
-                />
+                {show && (
+                    <iframe
+                        src="https://form.jotform.com/230786688727071"
+                        className="w-100 rounded shadow"
+                        height="500px"
+                    />
+                )}
             </Modal>
         </>
     );
