@@ -1,14 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-
 import { DB } from "@/helpers/firebase";
 import { writeFile } from "fs/promises";
-import { PathLike } from "fs";
+import { PathLike, existsSync, mkdirSync } from "fs";
 
 const saveToCache = async (path: PathLike, data: any): Promise<void> => {
     await writeFile(path, JSON.stringify(data), { encoding: "utf-8" });
 };
 
 export const GET = async (req: NextRequest): Promise<NextResponse> => {
+    if (!existsSync("cache")) {
+        mkdirSync("cache");
+    }
     try {
         await saveToCache(
             "cache/personalInfo.json",
