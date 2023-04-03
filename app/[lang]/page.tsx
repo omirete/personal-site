@@ -4,18 +4,67 @@ import HighlightsSection from "@/components/pages/home/HighlightsSection";
 import LandingSection from "@/components/pages/home/LandingSection";
 import ProjectsSection from "@/components/pages/home/ProjectsSection";
 import Footer from "@/components/ui/Footer";
-import { DB } from "@/helpers/firebase";
+import { Experience } from "@/helpers/database/ExperienceCtor";
+import { Highlight } from "@/helpers/database/HighlightsCtor";
+import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
+import { Project } from "@/helpers/database/ProjectsCtor";
+import { readFile } from "fs/promises";
 import { Locale } from "@/i18n/config";
 import { NextPage } from "next";
+
+interface GetData {
+    personalInfo: PersonalInfo | null;
+    highlights: Highlight[];
+    experience: Experience[];
+    projects: Project[];
+}
+
+const getData = async (): Promise<GetData> => {
+    try {
+        const personalInfo = JSON.parse(
+            await readFile(`cache/personalInfo.json`, { encoding: "utf-8" })
+        );
+        const highlights = JSON.parse(
+            await readFile(`cache/highlights.json`, { encoding: "utf-8" })
+        );
+        const experience = JSON.parse(
+            await readFile(`cache/experience.json`, { encoding: "utf-8" })
+        );
+        const projects = JSON.parse(
+            await readFile(`cache/projects.json`, { encoding: "utf-8" })
+        );
+
+        return {
+            personalInfo,
+            highlights,
+            experience,
+            projects,
+        };
+    } catch (error) {
+        console.error(error);
+        // Fallback, get the data directly from the DB (time costly).
+        // const personalInfo = await DB.data.personalInfo.ALL.get();
+        // const highlights = await DB.data.highlights.getAll();
+        // const experience = await DB.data.experience.getAll();
+        // const projects = await DB.data.projects.getAll();
+        return {
+            personalInfo: {
+                basicInfo: { name: "" },
+                contactInfo: { email: "" },
+                socialNetworks: {},
+            },
+            highlights: [],
+            experience: [],
+            projects: [],
+        };
+    }
+};
 
 {/* @ts-expect-error Async Server Component */}
 // Previous line needed as per docs. See "Async Server Component TypeScript
 // Error" here: https://beta.nextjs.org/docs/data-fetching/fetching
 const Home: NextPage = async ({ params }: { params: { lang: Locale } }) => {
-    const personalInfo = await DB.data.personalInfo.ALL.get();
-    const highlights = await DB.data.highlights.getAll();
-    const experience = await DB.data.experience.getAll();
-    const projects = await DB.data.projects.getAll();
+    const { personalInfo, highlights, experience, projects } = await getData();
 
     if (personalInfo) {
         return (
