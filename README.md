@@ -2,7 +2,9 @@
 
 ## federicogiancarelli.com
 
-Built with 🐒 using Next.js, Typescript, React, Bootstrap and Sass.
+Built with 🐒 using Typescript, Next.js, React, Bootstrap and Sass.
+
+Backend: Vercel and Firebase.
 
 It even has an admin panel to manage its content!
 
