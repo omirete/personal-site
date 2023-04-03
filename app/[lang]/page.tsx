@@ -33,7 +33,6 @@ const getData = async (): Promise<GetData> => {
         const projects = JSON.parse(
             await readFile(`cache/projects.json`, { encoding: "utf-8" })
         );
-
         return {
             personalInfo,
             highlights,
