@@ -11,6 +11,7 @@ import { Project } from "@/helpers/database/ProjectsCtor";
 import { readFile } from "fs/promises";
 import { Locale } from "@/i18n/config";
 import { NextPage } from "next";
+import { DB } from "@/helpers/firebase";
 
 interface GetData {
     personalInfo: PersonalInfo | null;
@@ -42,19 +43,15 @@ const getData = async (): Promise<GetData> => {
     } catch (error) {
         console.error(error);
         // Fallback, get the data directly from the DB (time costly).
-        // const personalInfo = await DB.data.personalInfo.ALL.get();
-        // const highlights = await DB.data.highlights.getAll();
-        // const experience = await DB.data.experience.getAll();
-        // const projects = await DB.data.projects.getAll();
+        const personalInfo = await DB.data.personalInfo.ALL.get();
+        const highlights = await DB.data.highlights.getAll();
+        const experience = await DB.data.experience.getAll();
+        const projects = await DB.data.projects.getAll();
         return {
-            personalInfo: {
-                basicInfo: { name: "" },
-                contactInfo: { email: "" },
-                socialNetworks: {},
-            },
-            highlights: [],
-            experience: [],
-            projects: [],
+            personalInfo,
+            highlights,
+            experience,
+            projects,
         };
     }
 };
