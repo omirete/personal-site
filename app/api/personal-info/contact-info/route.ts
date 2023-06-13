@@ -1,6 +1,6 @@
 import { ContactInfo } from "@/helpers/database/PersonalInfoCtor/ContactInfoCtor";
 import { DB } from "@/helpers/firebase";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { DB } from "@/helpers/firebase";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import getMissingProperties from "@/helpers/getMissingParams";
 import { Highlight } from "@/helpers/database/HighlightsCtor";
 import { i18n, Locale } from "@/i18n/config";

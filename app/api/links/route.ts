@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { DB } from "@/helpers/firebase";
 import getMissingProperties from "@/helpers/getMissingParams";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export const GET = async (req: NextRequest): Promise<NextResponse> => {
     const links = await DB.data.links.getAll();

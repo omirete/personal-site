@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import ClientSessionProvider from "@/components/next-auth/ClientSessionProvider";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import { ReactNode } from "react";
 import { Metadata } from "next";
