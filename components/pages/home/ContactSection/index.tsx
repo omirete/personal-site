@@ -1,6 +1,7 @@
 import SocialRow from "@/components/social/SocialRow";
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
+import { i18n } from "@/i18n/config";
 import FCi18n from "@/i18n/types/FCi18n";
 import Image from "next/image";
 import { dict } from "./dictionary";
@@ -9,7 +10,7 @@ const ContactSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
     lang,
     personalInfo,
 }) => {
-    const localeDict = dict[lang];
+    const localeDict = dict[lang ?? i18n.defaultLocale];
     return (
         <FullHeightSection id="contact" className="py-4 px-3 px-sm-5">
             <div className="mt-5">

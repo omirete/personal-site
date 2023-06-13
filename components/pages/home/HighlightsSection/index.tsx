@@ -1,6 +1,7 @@
 "use client";
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { Highlight } from "@/helpers/database/HighlightsCtor";
+import { i18n } from "@/i18n/config";
 import FCi18n from "@/i18n/types/FCi18n";
 import { useState } from "react";
 import { dict } from "./dictionary";
@@ -14,7 +15,7 @@ const HighlightsSection: FCi18n<{ highlights: Highlight[] }> = ({
     const [activeHighlight, setActiveHighlight] = useState<
         Highlight | undefined
     >();
-    const localeDict = dict[lang];
+    const localeDict = dict[lang ?? i18n.defaultLocale];
     return (
         <FullHeightSection id="highlights" className="py-4 px-3 px-sm-5">
             <h3 className="mt-5 mb-3 text-white">{localeDict.highlights}</h3>

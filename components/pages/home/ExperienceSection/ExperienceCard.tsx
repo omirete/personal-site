@@ -1,4 +1,5 @@
 import { Experience } from "@/helpers/database/ExperienceCtor";
+import { i18n } from "@/i18n/config";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 import FCi18n from "@/i18n/types/FCi18n";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
@@ -15,7 +16,7 @@ const ExperienceCard: FCi18n<ExperienceCardProps> = ({
     className,
     ...props
 }) => {
-    const localeDict = dict[lang];
+    const localeDict = dict[lang ?? i18n.defaultLocale];
     return (
         <div className={`card ${className ?? ""}`} {...props}>
             <div className="card-body d-flex flex-column">

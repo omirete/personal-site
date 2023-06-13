@@ -3,12 +3,13 @@ import SocialRow from "@/components/social/SocialRow";
 import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
 import FCi18n from "@/i18n/types/FCi18n";
 import { dict } from "./dictionary";
+import { i18n } from "@/i18n/config";
 
 const Footer: FCi18n<{ personalInfo: PersonalInfo }> = ({
     lang,
     personalInfo,
 }) => {
-    const localeDict = dict[lang];
+    const localeDict = dict[lang ?? i18n.defaultLocale];
     return (
         <div className="text-decoration-none text-center bg-dark py-4">
             <SocialRow

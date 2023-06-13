@@ -1,4 +1,5 @@
 import { Experience } from "@/helpers/database/ExperienceCtor";
+import { i18n } from "@/i18n/config";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 import FCi18n from "@/i18n/types/FCi18n";
 import { Fragment } from "react";
@@ -12,7 +13,7 @@ const ExperienceTimeline: FCi18n<ExperienceTimelineProps> = ({
     lang,
     experience,
 }) => {
-    const localeDict = dict[lang];
+    const localeDict = dict[lang ?? i18n.defaultLocale];
     return (
         <table className="text-white">
             <tbody>

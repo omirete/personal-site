@@ -5,12 +5,13 @@ import IconBlob from "@/assets/svg/blob-7.svg";
 import { dict } from "./dictionary";
 import FCi18n from "@/i18n/types/FCi18n";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
+import { i18n } from "@/i18n/config";
 
 const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
     lang,
     personalInfo,
 }) => {
-    const localeDict = dict[lang];
+    const localeDict = dict[lang ?? i18n.defaultLocale];
     if (localeDict) {
         return (
             <FullHeightSection

@@ -2,6 +2,7 @@
 
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { Project } from "@/helpers/database/ProjectsCtor";
+import { i18n } from "@/i18n/config";
 import FCi18n from "@/i18n/types/FCi18n";
 import { useState } from "react";
 import { dict } from "./dictionary";
@@ -13,7 +14,7 @@ const ProjectsSection: FCi18n<{ projects: Project[] }> = ({
     projects,
 }) => {
     const [activeProject, setActiveProject] = useState<Project | undefined>();
-    const localeDict = dict[lang];
+    const localeDict = dict[lang ?? i18n.defaultLocale];
     return (
         <FullHeightSection id="projects" className="py-4 px-3 px-sm-5">
             <h3 className="mt-5 mb-3 text-white">{localeDict.projects}</h3>

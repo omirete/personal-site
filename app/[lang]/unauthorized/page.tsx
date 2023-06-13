@@ -1,10 +1,10 @@
-import { Locale } from "@/i18n/config";
+import { i18n, Locale } from "@/i18n/config";
 import { NextPage } from "next";
 import Link from "next/link";
 import { dict } from "./dictionary";
 
 const Home: NextPage<{ params: { lang: Locale } }> = ({ params: { lang } }) => {
-    const localeDict = dict[lang];
+    const localeDict = dict[lang ?? i18n.defaultLocale];
     return (
         <main
             className="min-vh-100 px-1 px-sm-3 py-5"

@@ -1,5 +1,6 @@
 import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
 import { SocialNetworksMetadata } from "@/helpers/database/PersonalInfoCtor/SocialNetworksCtor";
+import { i18n } from "@/i18n/config";
 import FCi18n from "@/i18n/types/FCi18n";
 import Link from "next/link";
 import { CSSProperties, DetailedHTMLProps, HTMLAttributes } from "react";
@@ -31,7 +32,7 @@ const SocialRow: FCi18n<SocialRowProps> = ({
     ...props
 }) => {
     const socialNetworks = personalInfo.socialNetworks;
-    const localeDict = dict[lang];
+    const localeDict = dict[lang ?? i18n.defaultLocale];
     return (
         <div {...props}>
             {socialNetworks.linkedin && (

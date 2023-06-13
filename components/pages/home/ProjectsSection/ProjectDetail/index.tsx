@@ -13,6 +13,7 @@ import rehypeSanitize from "rehype-sanitize";
 import FCi18n from "@/i18n/types/FCi18n";
 import { dict } from "../dictionary";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
+import { i18n } from "@/i18n/config";
 
 export interface ProjectDetailProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -51,7 +52,7 @@ const ProjectDetail: FCi18n<ProjectDetailProps> = ({
 }) => {
     const [loading, setLoading] = useState(true);
     const [contentHtml, setContentHtml] = useState<string | undefined>();
-    const localeDict = dict[lang];
+    const localeDict = dict[lang ?? i18n.defaultLocale];
 
     useEffect(() => {
         markdownToHtml(parseStringI18N(project.fullContent, lang)).then(

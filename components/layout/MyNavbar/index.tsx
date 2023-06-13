@@ -3,6 +3,7 @@ import LangSelector from "@/components/ui/LangSelector";
 import Navbar from "@/components/ui/Navbar";
 import NavbarAnchor from "@/components/ui/Navbar/NavbarAnchor";
 import NavbarLink from "@/components/ui/Navbar/NavbarLink";
+import { i18n } from "@/i18n/config";
 import FCi18n from "@/i18n/types/FCi18n";
 import { Session } from "next-auth";
 import Link from "next/link";
@@ -11,7 +12,7 @@ import { dict } from "./dictionary";
 
 const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
     const linkClasses = "text-white fw-sm-bold";
-    const localeDict = dict[lang] ?? dict["en"];
+    const localeDict = dict[lang ?? i18n.defaultLocale];
     return (
         <Navbar id="navbar">
             <ul className="navbar-nav me-auto">
