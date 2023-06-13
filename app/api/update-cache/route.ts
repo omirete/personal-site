@@ -8,12 +8,12 @@ const saveToCache = async (path: PathLike, data: any): Promise<void> => {
 };
 
 export const GET = async (req: NextRequest): Promise<NextResponse> => {
-    if (!existsSync("cache")) {
-        mkdirSync("cache");
+    if (!existsSync("public/cache")) {
+        mkdirSync("public/cache", { recursive: true });
     }
     try {
         await saveToCache(
-            "cache/personalInfo.json",
+            "public/cache/personalInfo.json",
             await DB.data.personalInfo.ALL.get()
         );
     } catch (error) {
@@ -21,7 +21,7 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
     }
     try {
         await saveToCache(
-            "cache/highlights.json",
+            "public/cache/highlights.json",
             await DB.data.highlights.getAll()
         );
     } catch (error) {
@@ -29,7 +29,7 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
     }
     try {
         await saveToCache(
-            "cache/experience.json",
+            "public/cache/experience.json",
             await DB.data.experience.getAll()
         );
     } catch (error) {
@@ -37,7 +37,7 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
     }
     try {
         await saveToCache(
-            "cache/projects.json",
+            "public/cache/projects.json",
             await DB.data.projects.getAll()
         );
     } catch (error) {

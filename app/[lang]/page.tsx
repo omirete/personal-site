@@ -23,16 +23,16 @@ interface GetData {
 const getData = async (): Promise<GetData> => {
     try {
         const personalInfo = JSON.parse(
-            await readFile(`cache/personalInfo.json`, { encoding: "utf-8" })
+            await readFile(`public/cache/personalInfo.json`, { encoding: "utf-8" })
         );
         const highlights = JSON.parse(
-            await readFile(`cache/highlights.json`, { encoding: "utf-8" })
+            await readFile(`public/cache/highlights.json`, { encoding: "utf-8" })
         );
         const experience = JSON.parse(
-            await readFile(`cache/experience.json`, { encoding: "utf-8" })
+            await readFile(`public/cache/experience.json`, { encoding: "utf-8" })
         );
         const projects = JSON.parse(
-            await readFile(`cache/projects.json`, { encoding: "utf-8" })
+            await readFile(`public/cache/projects.json`, { encoding: "utf-8" })
         );
         return {
             personalInfo,
