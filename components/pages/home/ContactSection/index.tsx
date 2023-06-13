@@ -16,9 +16,7 @@ const ContactSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                 <div className="row flex-wrap">
                     <div className="col-12 col-sm-6">
                         <h3 className="mb-3">{localeDict.contact}</h3>
-                        <p>
-                            {localeDict.youMayReachOut}
-                        </p>
+                        <p>{localeDict.youMayReachOut}</p>
                         <div className="mb-3">
                             {localeDict.orYouMaySendMeAMessageWithTheForm}
                         </div>
