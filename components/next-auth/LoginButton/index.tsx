@@ -1,6 +1,7 @@
 "use client";
 
-import { i18n, Locale } from "@/i18n/config";
+import { i18n } from "@/i18n/config";
+import FCi18n from "@/i18n/types/FCi18n";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import { dict } from "./dictionary";
@@ -8,16 +9,15 @@ import { dict } from "./dictionary";
 export type LoginButtonProps = DetailedHTMLProps<
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
-> &
-    Partial<{ lang?: Locale }>;
+>;
 
-const LoginButton: React.FC<LoginButtonProps> = ({
+const LoginButton: FCi18n<LoginButtonProps> = ({
     lang,
     className,
     ...props
 }) => {
     const { data: session } = useSession();
-    const localeDict = dict[lang ?? i18n.defaultLocale];
+    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     if (session) {
         return (
             <button

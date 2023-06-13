@@ -11,7 +11,7 @@ const ExperienceSection: FCi18n<{ experience: Experience[] }> = ({
     lang,
     experience,
 }) => {
-    const localeDict = dict[lang ?? i18n.defaultLocale];
+    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     return (
         <FullHeightSection id="experience" className="py-4 px-3 px-sm-5">
             <h3 className="mt-5 mb-3 text-white">{localeDict.experience}</h3>

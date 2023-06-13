@@ -12,7 +12,7 @@ import { dict } from "./dictionary";
 
 const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
     const linkClasses = "text-white fw-sm-bold";
-    const localeDict = dict[lang ?? i18n.defaultLocale];
+    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     return (
         <Navbar id="navbar">
             <ul className="navbar-nav me-auto">
@@ -44,7 +44,7 @@ const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
                     </NavbarLink>
                 )}
             </ul>
-            {session && <LoginButton className="px-2 py-1 me-2 text-white" />}
+            {session && <LoginButton lang={lang} className="px-2 py-1 me-2 text-white" />}
             <div
                 className={`
                 mt-3 mt-md-0 me-0 me-md-2

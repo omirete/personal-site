@@ -16,7 +16,7 @@ const ExperienceCard: FCi18n<ExperienceCardProps> = ({
     className,
     ...props
 }) => {
-    const localeDict = dict[lang ?? i18n.defaultLocale];
+    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     return (
         <div className={`card ${className ?? ""}`} {...props}>
             <div className="card-body d-flex flex-column">

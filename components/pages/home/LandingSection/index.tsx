@@ -11,7 +11,7 @@ const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
     lang,
     personalInfo,
 }) => {
-    const localeDict = dict[lang ?? i18n.defaultLocale];
+    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     if (localeDict) {
         return (
             <FullHeightSection

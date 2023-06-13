@@ -32,7 +32,7 @@ const SocialRow: FCi18n<SocialRowProps> = ({
     ...props
 }) => {
     const socialNetworks = personalInfo.socialNetworks;
-    const localeDict = dict[lang ?? i18n.defaultLocale];
+    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     return (
         <div {...props}>
             {socialNetworks.linkedin && (

@@ -13,7 +13,7 @@ const ExperienceTimeline: FCi18n<ExperienceTimelineProps> = ({
     lang,
     experience,
 }) => {
-    const localeDict = dict[lang ?? i18n.defaultLocale];
+    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     return (
         <table className="text-white">
             <tbody>

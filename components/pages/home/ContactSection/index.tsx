@@ -10,7 +10,7 @@ const ContactSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
     lang,
     personalInfo,
 }) => {
-    const localeDict = dict[lang ?? i18n.defaultLocale];
+    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     return (
         <FullHeightSection id="contact" className="py-4 px-3 px-sm-5">
             <div className="mt-5">

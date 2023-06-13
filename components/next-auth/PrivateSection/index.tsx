@@ -33,7 +33,7 @@ const PrivateSection: NextPage<PrivateSectionProps> = async ({
                 return (
                     <div className="px-3 py-5">
                         <p className="mt-3">You are not authorized to view this content.</p>
-                        <LoginButton />
+                        <LoginButton lang="en" />
                     </div>
                 );
             case "redirect-unauthorized":

@@ -52,7 +52,7 @@ const ProjectDetail: FCi18n<ProjectDetailProps> = ({
 }) => {
     const [loading, setLoading] = useState(true);
     const [contentHtml, setContentHtml] = useState<string | undefined>();
-    const localeDict = dict[lang ?? i18n.defaultLocale];
+    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
 
     useEffect(() => {
         markdownToHtml(parseStringI18N(project.fullContent, lang)).then(
