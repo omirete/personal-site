@@ -1,5 +1,3 @@
-import { Analytics } from "@vercel/analytics/react";
-import ClientSessionProvider from "@/components/next-auth/ClientSessionProvider";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import { ReactNode } from "react";
@@ -32,11 +30,8 @@ const RootLayout = async ({
     return (
         <html lang={params.lang} data-bs-theme="light">
             <body>
-                <ClientSessionProvider session={session}>
-                    <MyNavbar session={session} lang={params.lang as Locale} />
-                    {children}
-                </ClientSessionProvider>
-                <Analytics />
+                <MyNavbar session={session} lang={params.lang as Locale} />
+                {children}
             </body>
         </html>
     );

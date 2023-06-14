@@ -1,6 +1,10 @@
 import { Metadata } from "next";
 import { ReactNode } from "react";
 import "./custom.scss";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
+import ClientSessionProvider from "@/components/next-auth/ClientSessionProvider";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
     title: "Federico Giancarelli",
@@ -42,7 +46,13 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
-    return children;
+    const session = await getServerSession(authOptions);
+    return (
+        <ClientSessionProvider session={session}>
+            {children}
+            <Analytics />
+        </ClientSessionProvider>
+    );
 };
 
 export default RootLayout;

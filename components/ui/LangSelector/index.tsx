@@ -39,7 +39,9 @@ const LangSelector: FCi18n<
                                     align-items-center justify-content-center
                                 `}
                                 href={
-                                    pathname === `/${lang}`
+                                    pathname === "/"
+                                        ? `/${locale}`
+                                        : pathname === `/${lang}`
                                         ? `/${locale}`
                                         : pathname?.replace(
                                               `/${lang}/`,
