@@ -18,7 +18,7 @@ const ExperienceTimeline: FCi18n<ExperienceTimelineProps> = ({
         <table className="text-white">
             <tbody>
                 <tr>
-                    <td className="border-end border-2"></td>
+                    <td className="border-2 border-start-0 border-top-0 border-bottom-0 border-white"></td>
                     <td></td>
                     <td></td>
                     <td style={{ height: "20px" }}></td>
@@ -41,7 +41,7 @@ const ExperienceTimeline: FCi18n<ExperienceTimelineProps> = ({
                                 </td>
                             </tr>
                             <tr>
-                                <td className="border-end border-2"></td>
+                                <td className="border-2 border-start-0 border-top-0 border-bottom-0 border-white"></td>
                                 <td></td>
                                 <td className="d-block d-md-none mb-3">
                                     <div className="badge bg-secondary bg-opacity-75">
