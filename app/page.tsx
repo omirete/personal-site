@@ -15,7 +15,7 @@ const Page: NextPage = async () => {
         <html lang={lang} data-bs-theme="light">
             <body>
                 <MyNavbar session={session} lang={lang} />
-                <Home lang={lang} />;
+                <Home lang={lang} />
             </body>
         </html>
     );
