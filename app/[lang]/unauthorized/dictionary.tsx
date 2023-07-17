@@ -32,7 +32,7 @@ export const dict: Dictionaries<Dictionary> = {
         goHome: "Startseite",
         orSignIn: (
             <>
-                O <LoginButton lang="de" className="btn-sm" />, wenn du mich bist. 🙄
+                Oder <LoginButton lang="de" className="btn-sm" />, wenn du mich bist. 🙄
             </>
         ),
     },
