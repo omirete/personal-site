@@ -1,14 +1,13 @@
 "use client";
-
 import SubmitButton from "@/components/ui/forms/SubmitButton";
-import {
-    SocialNetworks,
-    SocialNetworksMetadata,
-} from "@/helpers/database/PersonalInfoCtor/SocialNetworksCtor";
 import FormSocialNetworkRow from "./FormSocialNetworkRow";
 import useFormSocialNetworks from "./useFormSocialNetworks";
+import {
+    SocialNetwork,
+    SocialNetworksMetadata,
+} from "@/helpers/database/collections/personalInfo/socialNetwork";
 
-const FormSocialNetworks: React.FC<{ socialNetworks?: SocialNetworks }> = ({
+const FormSocialNetworks: React.FC<{ socialNetworks?: SocialNetwork[] }> = ({
     socialNetworks,
 }) => {
     const { handleSubmit, loading, formRef } = useFormSocialNetworks();
@@ -22,9 +21,9 @@ const FormSocialNetworks: React.FC<{ socialNetworks?: SocialNetworks }> = ({
                             key={i}
                             metadata={metadata}
                             defaultValue={
-                                socialNetworks
-                                    ? socialNetworks[metadata.code]
-                                    : undefined
+                                socialNetworks?.find(
+                                    (sn) => sn.code === metadata.code
+                                )?.userId
                             }
                         />
                     );

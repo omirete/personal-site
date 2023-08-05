@@ -1,5 +1,5 @@
 import FullHeightSection from "@/components/ui/FullHeightSection";
-import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
+import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
 import { FaChevronDown } from "react-icons/fa";
 import IconBlob from "@/assets/svg/blob-7.svg";
 import { dict } from "./dictionary";

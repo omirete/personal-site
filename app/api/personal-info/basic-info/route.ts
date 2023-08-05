@@ -1,11 +1,11 @@
-import { BasicInfo } from "@/helpers/database/PersonalInfoCtor/BasicInfoCtor";
-import { DB } from "@/helpers/firebase";
+import { NextRequest, NextResponse } from "next/server";
+import DB from "@/helpers/database/DB";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
+import { BasicInfo } from "@/helpers/database/collections/personalInfo/basicInfo";
 
 export const GET = async (req: NextRequest): Promise<NextResponse> => {
-    const basicInfo = await DB.data.personalInfo.basicInfo.ALL.get();
+    const basicInfo = await DB.personalInfo.basicInfo.get();
     return NextResponse.json(basicInfo);
 };
 
@@ -34,8 +34,10 @@ export const PUT = async (req: NextRequest): Promise<NextResponse> => {
                     subtitle,
                     description,
                 };
-                DB.data.personalInfo.basicInfo.ALL.set(dataForUpdate);
-                return NextResponse.json(dataForUpdate);
+                const result = await DB.personalInfo.basicInfo.set(
+                    dataForUpdate
+                );
+                return NextResponse.json(result);
             }
         } catch (error) {
             return NextResponse.json({ error });

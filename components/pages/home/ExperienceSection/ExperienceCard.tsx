@@ -1,9 +1,9 @@
-import { Experience } from "@/helpers/database/ExperienceCtor";
 import { i18n } from "@/i18n/config";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 import FCi18n from "@/i18n/types/FCi18n";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { dict } from "./dictionary";
+import { Experience } from "@/helpers/database/collections/experience";
 
 export interface ExperienceCardProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {

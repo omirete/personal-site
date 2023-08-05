@@ -1,4 +1,4 @@
-import { Experience } from "./database/ExperienceCtor";
+import { Experience } from "./database/collections/experience";
 
 const sortExperience = (
     a: Experience,

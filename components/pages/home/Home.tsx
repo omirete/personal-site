@@ -4,19 +4,21 @@ import HighlightsSection from "@/components/pages/home/HighlightsSection";
 import LandingSection from "@/components/pages/home/LandingSection";
 import ProjectsSection from "@/components/pages/home/ProjectsSection";
 import Footer from "@/components/ui/Footer";
-import { Experience } from "@/helpers/database/ExperienceCtor";
-import { Highlight } from "@/helpers/database/HighlightsCtor";
-import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
-import { Project } from "@/helpers/database/ProjectsCtor";
+import { Experience } from "@/helpers/database/collections/experience";
+import { Highlight } from "@/helpers/database/collections/highlight";
+import { Project } from "@/helpers/database/collections/project";
 import { readFile } from "fs/promises";
-import { DB } from "@/helpers/firebase";
+import DB from "@/helpers/database/DB";
 import FCi18n from "@/i18n/types/FCi18n";
+import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
+import WithStringId from "@/types/WithStringId";
+import parseIdsAsStringIds from "@/helpers/database/parseIdsAsStringIds";
 
 interface GetData {
     personalInfo: PersonalInfo | null;
-    highlights: Highlight[];
-    experience: Experience[];
-    projects: Project[];
+    highlights: WithStringId<Highlight>[];
+    experience: WithStringId<Experience>[];
+    projects: WithStringId<Project>[];
 }
 
 const getData = async (): Promise<GetData> => {
@@ -48,10 +50,25 @@ const getData = async (): Promise<GetData> => {
     } catch (error) {
         console.error(error);
         // Fallback, get the data directly from the DB (time costly).
-        const personalInfo = await DB.data.personalInfo.ALL.get();
-        const highlights = await DB.data.highlights.getAll();
-        const experience = await DB.data.experience.getAll();
-        const projects = await DB.data.projects.getAll();
+        const basicInfo = await DB.personalInfo.basicInfo.get();
+        const contactInfo = await DB.personalInfo.contactInfo.get();
+        const personalInfo = {
+            basicInfo: basicInfo !== null ? basicInfo : { name: "" },
+            contactInfo: contactInfo !== null ? contactInfo : { email: "" },
+            socialNetworks: parseIdsAsStringIds(
+                await DB.personalInfo.socialNetworks.find().toArray()
+            ),
+        };
+        const highlights = parseIdsAsStringIds(
+            await DB.highlights.find().toArray()
+        );
+        const experience = parseIdsAsStringIds(
+            await DB.experience.find().toArray()
+        );
+        const projects = parseIdsAsStringIds(
+            await DB.projects.find().toArray()
+        );
+
         return {
             personalInfo,
             highlights,

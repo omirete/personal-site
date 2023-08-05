@@ -1,4 +1,4 @@
-import { Experience } from "@/helpers/database/ExperienceCtor";
+import { Experience } from "@/helpers/database/collections/experience";
 import { i18n } from "@/i18n/config";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 import FCi18n from "@/i18n/types/FCi18n";

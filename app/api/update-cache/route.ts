@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { DB } from "@/helpers/firebase";
+import DB from "@/helpers/database/DB";
 import { writeFile } from "fs/promises";
 import { PathLike, existsSync, mkdirSync } from "fs";
 
@@ -12,17 +12,23 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
         mkdirSync("public/cache", { recursive: true });
     }
     try {
-        await saveToCache(
-            "public/cache/personalInfo.json",
-            await DB.data.personalInfo.ALL.get()
-        );
+        const basicInfo = await DB.personalInfo.basicInfo.get();
+        const contactInfo = await DB.personalInfo.contactInfo.get();
+        const personalInfo = {
+            basicInfo: basicInfo ?? { name: "" },
+            contactInfo: contactInfo ?? { email: "" },
+            socialNetworks: await DB.personalInfo.socialNetworks
+                .find()
+                .toArray(),
+        };
+        await saveToCache("public/cache/personalInfo.json", personalInfo);
     } catch (error) {
         return NextResponse.json({ error }, { status: 500 });
     }
     try {
         await saveToCache(
             "public/cache/highlights.json",
-            await DB.data.highlights.getAll()
+            await DB.highlights.find().toArray()
         );
     } catch (error) {
         return NextResponse.json({ error }, { status: 500 });
@@ -30,7 +36,7 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
     try {
         await saveToCache(
             "public/cache/experience.json",
-            await DB.data.experience.getAll()
+            await DB.experience.find().toArray()
         );
     } catch (error) {
         return NextResponse.json({ error }, { status: 500 });
@@ -38,7 +44,7 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
     try {
         await saveToCache(
             "public/cache/projects.json",
-            await DB.data.projects.getAll()
+            await DB.projects.find().toArray()
         );
     } catch (error) {
         return NextResponse.json({ error }, { status: 500 });

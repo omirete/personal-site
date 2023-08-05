@@ -1,6 +1,6 @@
 import SocialRow from "@/components/social/SocialRow";
 import FullHeightSection from "@/components/ui/FullHeightSection";
-import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
+import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
 import { i18n } from "@/i18n/config";
 import FCi18n from "@/i18n/types/FCi18n";
 import Image from "next/image";

@@ -4,7 +4,7 @@
 
 Built with 🐒 using Typescript, Next.js, React, Bootstrap and Sass.
 
-Backend: Vercel and Firebase.
+Backend: Vercel and MongoDB.
 
 It even has an admin panel to manage its content!
 

@@ -1,19 +1,22 @@
 "use client";
 
 import FullHeightSection from "@/components/ui/FullHeightSection";
-import { Project } from "@/helpers/database/ProjectsCtor";
+import { Project } from "@/helpers/database/collections/project";
 import { i18n } from "@/i18n/config";
 import FCi18n from "@/i18n/types/FCi18n";
 import { useState } from "react";
 import { dict } from "./dictionary";
 import ProjectCard from "./ProjectCard";
 import ProjectDetail from "./ProjectDetail";
+import WithStringId from "@/types/WithStringId";
 
-const ProjectsSection: FCi18n<{ projects: Project[] }> = ({
+const ProjectsSection: FCi18n<{ projects: WithStringId<Project>[] }> = ({
     lang,
     projects,
 }) => {
-    const [activeProject, setActiveProject] = useState<Project | undefined>();
+    const [activeProject, setActiveProject] = useState<
+        WithStringId<Project> | undefined
+    >();
     const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     return (
         <FullHeightSection id="projects" className="py-4 px-3 px-sm-5">
@@ -26,7 +29,7 @@ const ProjectsSection: FCi18n<{ projects: Project[] }> = ({
                 <div className="col-12 col-sm-6">
                     <div className="row g-2">
                         {projects.map((p, i) => {
-                            const active = activeProject?.id === p.id;
+                            const active = activeProject?._id === p._id;
                             return (
                                 <div
                                     key={i}
@@ -65,7 +68,7 @@ const ProjectsSection: FCi18n<{ projects: Project[] }> = ({
                                             `}
                                             onClick={() => {
                                                 if (
-                                                    activeProject?.id === p.id
+                                                    activeProject?._id === p._id
                                                 ) {
                                                     setActiveProject(undefined);
                                                 } else {
@@ -75,7 +78,7 @@ const ProjectsSection: FCi18n<{ projects: Project[] }> = ({
                                         />
                                         <div className="d-block d-sm-none">
                                             {activeProject &&
-                                                activeProject.id === p.id && (
+                                                activeProject._id === p._id && (
                                                     <ProjectDetail
                                                         lang={lang}
                                                         project={activeProject}

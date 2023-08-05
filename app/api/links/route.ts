@@ -1,13 +1,13 @@
-import LinkInfo from "@/types/DataObjects/LinkInfo";
 import { NextRequest, NextResponse } from "next/server";
-
-import { DB } from "@/helpers/firebase";
-import getMissingProperties from "@/helpers/getMissingParams";
-import { getServerSession } from "next-auth";
+import DB from "@/helpers/database/DB";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import LinkInfo from "@/types/DataObjects/LinkInfo";
+import getMissingProperties from "@/helpers/getMissingParams";
+import { DeleteResult, InsertOneResult, ObjectId, UpdateResult, WithId } from "mongodb";
 
 export const GET = async (req: NextRequest): Promise<NextResponse> => {
-    const links = await DB.data.links.getAll();
+    const links = await DB.links.find().toArray();
     return NextResponse.json(links);
 };
 
@@ -18,8 +18,8 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
         try {
             const link: Omit<LinkInfo, "id"> = await req.json();
             if (link.url) {
-                const createdLink: LinkInfo =
-                    await DB.data.links.create(link);
+                const createdLink: InsertOneResult<LinkInfo> =
+                    await DB.links.insertOne(link);
                 return NextResponse.json({ createdLink });
             } else {
                 return NextResponse.json({
@@ -39,12 +39,24 @@ export const PUT = async (req: NextRequest): Promise<NextResponse> => {
     if (session) {
         // Authorized
         try {
-            const link: LinkInfo = await req.json();
+            const body: WithId<LinkInfo> = await req.json();
 
-            if ((link.id, link.id)) {
-                const updatedLink: LinkInfo | false =
-                    await DB.data.links.update(link);
-                if (updatedLink) {
+            const id = body._id;
+            const text = body.text;
+            const url = body.url;
+
+            if (id) {
+                const updatedLink: UpdateResult<LinkInfo> = await DB.links.updateOne(
+                    { _id: new ObjectId(id) },
+                    {
+                        text,
+                        url,
+                    }
+                );
+                if (
+                    updatedLink.modifiedCount > 0 ||
+                    updatedLink.upsertedCount > 0
+                ) {
                     return NextResponse.json({ updatedLink });
                 } else {
                     return NextResponse.json({
@@ -53,8 +65,8 @@ export const PUT = async (req: NextRequest): Promise<NextResponse> => {
                 }
             } else {
                 const missingParams: string[] = getMissingProperties({
-                    id: link.id,
-                    url: link.url,
+                    id: body._id,
+                    url: body.url,
                 });
                 return NextResponse.json({
                     error: `Missing params: ${missingParams.join(", ")}`,
@@ -73,11 +85,12 @@ export const DELETE = async (req: NextRequest): Promise<NextResponse> => {
     if (session) {
         // Authorized
         try {
-            const { id }: LinkInfo = await req.json();
-
+            const id = req.nextUrl.searchParams.get("id");
             if (id) {
-                await DB.data.links.remove(id);
-                return NextResponse.json(true);
+                const success: DeleteResult = await DB.links.deleteOne({
+                    _id: new ObjectId(id),
+                });
+                return NextResponse.json({ success: success.deletedCount > 0 });
             } else {
                 return NextResponse.json({
                     error: `Missing id.`,

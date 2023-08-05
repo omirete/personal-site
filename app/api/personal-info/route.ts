@@ -1,13 +1,11 @@
-import {
-    SocialNetworks,
-    SocialNetworksMetadata,
-} from "@/helpers/database/PersonalInfoCtor/SocialNetworksCtor";
-import { DB } from "@/helpers/firebase";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
+import DB from "@/helpers/database/DB";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest): Promise<NextResponse> => {
-    const personalInfo = await DB.data.personalInfo.ALL.get();
+    const personalInfo = {
+        basicInfo: await DB.personalInfo.basicInfo.get(),
+        contactInfo: await DB.personalInfo.contactInfo.get(),
+        socialNetworks: await DB.personalInfo.socialNetworks.find().toArray(),
+    };
     return NextResponse.json(personalInfo);
 };

@@ -1,8 +1,8 @@
 "use client";
 
 import styles from "./styles.module.css";
-import { Project } from "@/helpers/database/ProjectsCtor";
 import matter from "gray-matter";
+import { Project } from "@/helpers/database/collections/project";
 import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from "react";
 import rehypeExternalLinks from "rehype-external-links";
 import remarkRehype from "remark-rehype";

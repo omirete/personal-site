@@ -1,6 +1,7 @@
-import ExperienceList from "@/components/pages/admin/ExperienceList";
+import ExperienceList from "@/components/pages/admin/entitiesList/ExperienceList";
 import FormExperience from "@/components/pages/admin/FormExperience";
-import { DB } from "@/helpers/firebase";
+import DB from "@/helpers/database/DB";
+import parseIdsAsStringIds from "@/helpers/database/parseIdsAsStringIds";
 import sortExperience from "@/helpers/sortExperience";
 import { NextPage } from "next";
 
@@ -8,7 +9,9 @@ import { NextPage } from "next";
 // Previous line needed as per docs. See "Async Server Component TypeScript
 // Error" here: https://beta.nextjs.org/docs/data-fetching/fetching
 const Home: NextPage<{ params: { lang } }> = async ({ params: { lang } }) => {
-    const experience = await DB.data.experience.getAll();
+    const experience = parseIdsAsStringIds(
+        await DB.experience.find().toArray()
+    );
     return (
         <div>
             <h3>Experience</h3>

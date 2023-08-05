@@ -1,13 +1,14 @@
 import FullHeightSection from "@/components/ui/FullHeightSection";
-import { Experience } from "@/helpers/database/ExperienceCtor";
+import { Experience } from "@/helpers/database/collections/experience";
 import sortExperience from "@/helpers/sortExperience";
 import { i18n } from "@/i18n/config";
 import FCi18n from "@/i18n/types/FCi18n";
 import { dict } from "./dictionary";
 import ExperienceCard from "./ExperienceCard";
 import ExperienceTimeline from "./ExperienceTimeline";
+import WithStringId from "@/types/WithStringId";
 
-const ExperienceSection: FCi18n<{ experience: Experience[] }> = ({
+const ExperienceSection: FCi18n<{ experience: WithStringId<Experience>[] }> = ({
     lang,
     experience,
 }) => {
@@ -28,7 +29,7 @@ const ExperienceSection: FCi18n<{ experience: Experience[] }> = ({
                     <div className="row g-2">
                         {experience.sort(sortExperience).map((exp, i) => (
                             <div
-                                key={exp.id}
+                                key={exp._id}
                                 className="col-12 col-sm-6 col-lg-4"
                             >
                                 <ExperienceCard

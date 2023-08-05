@@ -1,7 +1,6 @@
 "use client";
-
 import SubmitButton from "@/components/ui/forms/SubmitButton";
-import { BasicInfo } from "@/helpers/database/PersonalInfoCtor/BasicInfoCtor";
+import { BasicInfo } from "@/helpers/database/collections/personalInfo/basicInfo";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 import FCi18n from "@/i18n/types/FCi18n";
 import StringI18N from "@/i18n/types/StringI18N";

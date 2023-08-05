@@ -1,7 +1,4 @@
-import {
-    SocialNetworks,
-    SocialNetworksMetadata,
-} from "@/helpers/database/PersonalInfoCtor/SocialNetworksCtor";
+import { SocialNetworksMetadata } from "@/helpers/database/collections/personalInfo/socialNetwork";
 import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import { IconType } from "react-icons";
 import { FaLink } from "react-icons/fa";

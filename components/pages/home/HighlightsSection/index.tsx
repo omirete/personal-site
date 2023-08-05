@@ -1,19 +1,20 @@
 "use client";
 import FullHeightSection from "@/components/ui/FullHeightSection";
-import { Highlight } from "@/helpers/database/HighlightsCtor";
+import { Highlight } from "@/helpers/database/collections/highlight";
 import { i18n } from "@/i18n/config";
 import FCi18n from "@/i18n/types/FCi18n";
 import { useState } from "react";
 import { dict } from "./dictionary";
 import HighlightDetail from "./HighlightDetail";
 import HighlightTile from "./HighlightTile";
+import WithStringId from "@/types/WithStringId";
 
-const HighlightsSection: FCi18n<{ highlights: Highlight[] }> = ({
+const HighlightsSection: FCi18n<{ highlights: WithStringId<Highlight>[] }> = ({
     lang,
     highlights,
 }) => {
     const [activeHighlight, setActiveHighlight] = useState<
-        Highlight | undefined
+        WithStringId<Highlight> | undefined
     >();
     const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     return (
@@ -60,12 +61,12 @@ const HighlightsSection: FCi18n<{ highlights: Highlight[] }> = ({
                     <ul className="list-group bg-transparent rounded">
                         {highlights.map((h, i) => {
                             return (
-                                <div key={h.id}>
+                                <div key={h._id}>
                                     {/* Desktop variant */}
                                     <HighlightTile
                                         lang={lang}
                                         highlight={h}
-                                        active={activeHighlight?.id === h.id}
+                                        active={activeHighlight?._id === h._id}
                                         onPointerEnter={() => {
                                             setActiveHighlight(h);
                                         }}
@@ -75,11 +76,13 @@ const HighlightsSection: FCi18n<{ highlights: Highlight[] }> = ({
                                     {/* Mobile variant */}
                                     <HighlightTile
                                         lang={lang}
-                                        key={`${h.id}_mobile`}
+                                        key={`${h._id}_mobile`}
                                         highlight={h}
-                                        active={activeHighlight?.id === h.id}
+                                        active={activeHighlight?._id === h._id}
                                         onClick={() => {
-                                            if (activeHighlight?.id === h.id) {
+                                            if (
+                                                activeHighlight?._id === h._id
+                                            ) {
                                                 setActiveHighlight(undefined);
                                             } else {
                                                 setActiveHighlight(h);
@@ -88,7 +91,7 @@ const HighlightsSection: FCi18n<{ highlights: Highlight[] }> = ({
                                         isLastChild={i + 1 == highlights.length}
                                         className="d-block d-sm-none bg-dark"
                                     />
-                                    {activeHighlight?.id === h.id && (
+                                    {activeHighlight?._id === h._id && (
                                         <HighlightDetail
                                             lang={lang}
                                             highlight={h}

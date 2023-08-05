@@ -1,13 +1,20 @@
 import FormBasicInfo from "@/components/pages/admin/FormBasicInfo";
 import FormContactInfo from "@/components/pages/admin/FormContactInfo";
 import FormSocialNetworks from "@/components/pages/admin/FormSocialNetworks";
-import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
-import { DB } from "@/helpers/firebase";
+import DB from "@/helpers/database/DB";
+import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
+import parseIdsAsStringIds from "@/helpers/database/parseIdsAsStringIds";
 import { Locale } from "@/i18n/config";
 import { NextPage } from "next";
 
 const getPersonalInfo = async (): Promise<PersonalInfo | null> => {
-    return await DB.data.personalInfo.ALL.get();
+    return {
+        basicInfo: (await DB.personalInfo.basicInfo.get()) || { name: "" },
+        contactInfo: (await DB.personalInfo.contactInfo.get()) || { email: "" },
+        socialNetworks: parseIdsAsStringIds(
+            await DB.personalInfo.socialNetworks.find().toArray()
+        ),
+    };
 };
 
 {/* @ts-expect-error Async Server Component */}

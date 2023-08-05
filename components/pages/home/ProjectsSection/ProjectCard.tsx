@@ -1,4 +1,4 @@
-import { Project } from "@/helpers/database/ProjectsCtor";
+import { Project } from "@/helpers/database/collections/project";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 import FCi18n from "@/i18n/types/FCi18n";
 import { DetailedHTMLProps, HTMLAttributes } from "react";

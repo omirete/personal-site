@@ -1,9 +1,9 @@
 import Signature from "assets/svg/signature.svg";
 import SocialRow from "@/components/social/SocialRow";
-import { PersonalInfo } from "@/helpers/database/PersonalInfoCtor";
 import FCi18n from "@/i18n/types/FCi18n";
 import { dict } from "./dictionary";
 import { i18n } from "@/i18n/config";
+import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
 
 const Footer: FCi18n<{ personalInfo: PersonalInfo }> = ({
     lang,

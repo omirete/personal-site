@@ -1,13 +1,6 @@
 "use client";
-
-import { BasicInfo } from "@/helpers/database/PersonalInfoCtor/BasicInfoCtor";
-import {
-    FormEvent,
-    FormEventHandler,
-    RefObject,
-    useRef,
-    useState,
-} from "react";
+import { BasicInfo } from "@/helpers/database/collections/personalInfo/basicInfo";
+import { FormEvent, RefObject, useRef, useState } from "react";
 
 export interface UseFormBasicInfo {
     handleSubmit: (e: FormEvent<HTMLFormElement>, basicInfo: BasicInfo) => void;

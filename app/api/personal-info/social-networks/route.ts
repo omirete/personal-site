@@ -1,14 +1,17 @@
-import {
-    SocialNetworks,
-    SocialNetworksMetadata,
-} from "@/helpers/database/PersonalInfoCtor/SocialNetworksCtor";
-import { DB } from "@/helpers/firebase";
+import { NextRequest, NextResponse } from "next/server";
+import DB from "@/helpers/database/DB";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
-import { NextRequest, NextResponse } from "next/server";
+import {
+    SocialNetwork,
+    SocialNetworksMetadata,
+    SupportedSocialNetwork,
+} from "@/helpers/database/collections/personalInfo/socialNetwork";
 
 export const GET = async (req: NextRequest): Promise<NextResponse> => {
-    const socialNetworks = await DB.data.personalInfo.socialNetworks.ALL.get();
+    const socialNetworks = await DB.personalInfo.socialNetworks
+        .find()
+        .toArray();
     return NextResponse.json(socialNetworks);
 };
 
@@ -18,21 +21,26 @@ export const PUT = async (req: NextRequest): Promise<NextResponse> => {
         // Authorized
         try {
             const formData = await req.formData();
-            const dataForUpdate: Partial<Record<keyof SocialNetworks, string>> =
-                {};
+            const dataForUpdate: SocialNetwork[] = [];
             Object.keys(SocialNetworksMetadata).forEach((socialNetwork) => {
                 const username = formData.get(socialNetwork)?.toString();
                 if (username) {
-                    dataForUpdate[socialNetwork as keyof SocialNetworks] =
-                        username;
+                    dataForUpdate.push({
+                        code: socialNetwork as SupportedSocialNetwork,
+                        userId: username,
+                    });
                 } else {
-                    dataForUpdate[socialNetwork as keyof SocialNetworks] = "";
+                    dataForUpdate.push({
+                        code: socialNetwork as SupportedSocialNetwork,
+                        userId: "",
+                    });
                 }
             });
 
-            DB.data.personalInfo.socialNetworks.ALL.set(
-                dataForUpdate as Record<keyof SocialNetworks, string>
-            );
+            await DB.personalInfo.socialNetworks.deleteMany({
+                _id: { $ne: undefined },
+            });
+            await DB.personalInfo.socialNetworks.insertMany(dataForUpdate);
 
             return NextResponse.json(dataForUpdate);
         } catch (error) {
