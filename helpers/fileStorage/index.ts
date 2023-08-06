@@ -6,7 +6,6 @@ export const uploadBlob = async (
     filename: string,
     overwrite: boolean = false
 ): Promise<boolean> => {
-    console.log("will try to upload blob");
     const sftp = new Client();
 
     const conn = await sftp.connect({
@@ -15,7 +14,6 @@ export const uploadBlob = async (
         username: process.env.SFTP_USR,
         password: process.env.SFTP_PWD,
     });
-    console.log("connected to sftp");
     try {
         await sftp.mkdir(directory, true);
         let filepath = directory;
@@ -27,7 +25,6 @@ export const uploadBlob = async (
             Buffer.from(await blob.arrayBuffer()),
             filepath
         );
-        console.log(result);
         return true; // check
     } catch (err) {
         console.error(err);
