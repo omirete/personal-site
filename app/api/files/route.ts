@@ -17,7 +17,7 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
     const session = await getServerSession(authOptions);
     if (session) {
         // Authorized
-        const files = await getFiles("/", true);
+        const files = await getFiles(process.env.SFTP_BASEPATH as string, true);
         if (files !== false) {
             return NextResponse.json({ files, msg: "ok" });
         } else {
@@ -44,7 +44,7 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
             const name = params.get("name");
             if (type && lang && name) {
                 if (lang === "-1" || lang.toLowerCase().match(/^[a-z]{2}$/)) {
-                    let directory = "/";
+                    let directory = process.env.SFTP_BASEPATH as string;
                     let filename = "";
                     let format_src = getFormatFromFilename(name);
                     switch (type) {

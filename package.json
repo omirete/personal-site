@@ -31,13 +31,15 @@
     "rehype-stringify": "^9.0.3",
     "remark-parse": "^10.0.1",
     "remark-rehype": "^10.1.0",
+    "ssh2-sftp-client": "^9.1.0",
     "typescript": "^5.1.6",
-    "unified": "^10.1.2",
-    "webdav": "^5.1.0"
+    "unified": "^10.1.2"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.0.1",
     "@types/negotiator": "^0.6.1",
+    "@types/ssh2-sftp-client": "^9.0.0",
+    "node-loader": "^2.0.0",
     "sass": "^1.59.3"
   }
 }

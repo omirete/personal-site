@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "files.federicogiancarelli.com",
+                hostname: "files.federicogiancarelli.0db.dev",
             },
         ],
     },
@@ -26,6 +26,10 @@ const nextConfig = {
                 test: /\.svg$/i,
                 resourceQuery: { not: /url/ }, // exclude if *.svg?url
                 use: ["@svgr/webpack"],
+            },
+            {
+                test: /\.node$/,
+                loader: "node-loader",
             }
         );
 

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { FileStat } from "webdav";
+import { FileInfo } from "ssh2-sftp-client";
 
 export interface UseFileDirectory {
-    files: FileStat[];
+    files: FileInfo[];
     loading: boolean;
 }
 
 const useFileDirectory = () => {
-    const [files, setFiles] = useState<FileStat[]>([]);
+    const [files, setFiles] = useState<FileInfo[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
