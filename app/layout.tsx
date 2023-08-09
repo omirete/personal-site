@@ -11,9 +11,9 @@ export const metadata: Metadata = {
     description: "Maker of things, dev, amazed by the world 🚀",
     themeColor: "#e3704f",
     icons: {
-        icon: "https://files.federicogiancarelli.com/profile.png?v=0.1",
-        shortcut: "https://files.federicogiancarelli.com/profile.png?v=0.1",
-        apple: "https://files.federicogiancarelli.com/profile.png?v=0.1",
+        icon: `${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/profile.png?v=0.1`,
+        shortcut: `${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/profile.png?v=0.1`,
+        apple: `${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/profile.png?v=0.1`,
     },
     category: "portfolio",
     twitter: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         creator: "@fedegianca",
         images: [
             {
-                url: "https://files.federicogiancarelli.com/meta/twitter-card.webp?v=0.1",
+                url: `${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/meta/twitter-card.webp?v=0.1`,
                 width: 1000,
                 height: 500,
                 alt: "Twitter card for website federicogiancarelli.com",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         type: "website",
         images: [
             {
-                url: "https://files.federicogiancarelli.com/meta/twitter-card.webp?v=0.1",
+                url: `${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/meta/twitter-card.webp?v=0.1`,
                 width: 1000,
                 height: 500,
             },
