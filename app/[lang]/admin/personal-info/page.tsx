@@ -12,14 +12,11 @@ const getPersonalInfo = async (): Promise<PersonalInfo | null> => {
         basicInfo: (await DB.personalInfo.basicInfo.get()) || { name: "" },
         contactInfo: (await DB.personalInfo.contactInfo.get()) || { email: "" },
         socialNetworks: parseIdsAsStringIds(
-            await DB.personalInfo.socialNetworks.find().toArray()
+            await DB.personalInfo.socialNetworks.find().toArray(),
         ),
     };
 };
 
-{/* @ts-expect-error Async Server Component */}
-// Previous line needed as per docs. See "Async Server Component TypeScript
-// Error" here: https://beta.nextjs.org/docs/data-fetching/fetching
 const Home: NextPage<{ params: { lang: Locale } }> = async ({
     params: { lang },
 }) => {

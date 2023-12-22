@@ -72,10 +72,7 @@ const getData = async (): Promise<GetData> => {
     }
 };
 
-{/* @ts-expect-error Async Server Component */}
-// Previous line needed as per docs. See "Async Server Component TypeScript
-// Error" here: https://beta.nextjs.org/docs/data-fetching/fetching
-const Home: FCi18n<> = async ({ lang }) => {
+const Home: FCi18n<{}> = async ({ lang }) => {
     const { personalInfo, highlights, experience, projects } = await getData();
 
     if (personalInfo) {

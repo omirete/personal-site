@@ -3,9 +3,6 @@ import DB from "@/helpers/database/DB";
 import parseIdsAsStringIds from "@/helpers/database/parseIdsAsStringIds";
 import { NextPage } from "next";
 
-{/* @ts-expect-error Async Server Component */}
-// Previous line needed as per docs. See "Async Server Component TypeScript
-// Error" here: https://beta.nextjs.org/docs/data-fetching/fetching
 const Home: NextPage<{}> = async () => {
     const links = parseIdsAsStringIds(await DB.links.find().toArray());
     return (

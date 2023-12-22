@@ -14,9 +14,6 @@ export interface PrivateSectionProps {
         | "hide";
 }
 
-{/* @ts-expect-error Async Server Component */}
-// Previous line needed as per docs. See "Async Server Component TypeScript
-// Error" here: https://beta.nextjs.org/docs/data-fetching/fetching
 const PrivateSection: NextPage<PrivateSectionProps> = async ({
     children,
     behaviourOnUnauthorized,
@@ -32,7 +29,9 @@ const PrivateSection: NextPage<PrivateSectionProps> = async ({
             case "unauthorized":
                 return (
                     <div className="px-3 py-5">
-                        <p className="mt-3">You are not authorized to view this content.</p>
+                        <p className="mt-3">
+                            You are not authorized to view this content.
+                        </p>
                         <LoginButton lang="en" />
                     </div>
                 );
