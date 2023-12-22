@@ -3,7 +3,7 @@ import { BasicInfo } from "@/helpers/database/collections/personalInfo/basicInfo
 import { FormEvent, RefObject, useRef, useState } from "react";
 
 export interface UseFormBasicInfo {
-    handleSubmit: (e: FormEvent<HTMLFormElement>, basicInfo: BasicInfo) => void;
+    handleSubmit: (e: FormEvent<HTMLFormElement>, basicInfo: BasicInfo) => Promise<void>;
     loading: boolean;
     formRef: RefObject<HTMLFormElement>;
 }
