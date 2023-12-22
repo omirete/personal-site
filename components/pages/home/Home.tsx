@@ -23,24 +23,18 @@ interface GetData {
 
 const getData = async (): Promise<GetData> => {
     try {
-        const personalInfo = JSON.parse(
-            await readFile(`public/cache/personalInfo.json`, {
-                encoding: "utf-8",
-            })
+        const files = [
+            "personalInfo.json",
+            "highlights.json",
+            "experience.json",
+            "projects.json",
+        ].map((file) =>
+            readFile(`public/cache/${file}`, { encoding: "utf-8" }),
         );
-        const highlights = JSON.parse(
-            await readFile(`public/cache/highlights.json`, {
-                encoding: "utf-8",
-            })
-        );
-        const experience = JSON.parse(
-            await readFile(`public/cache/experience.json`, {
-                encoding: "utf-8",
-            })
-        );
-        const projects = JSON.parse(
-            await readFile(`public/cache/projects.json`, { encoding: "utf-8" })
-        );
+
+        const [personalInfo, highlights, experience, projects] =
+            await Promise.all(files.map((file) => file.then(JSON.parse)));
+
         return {
             personalInfo,
             highlights,
@@ -56,17 +50,17 @@ const getData = async (): Promise<GetData> => {
             basicInfo: basicInfo !== null ? basicInfo : { name: "" },
             contactInfo: contactInfo !== null ? contactInfo : { email: "" },
             socialNetworks: parseIdsAsStringIds(
-                await DB.personalInfo.socialNetworks.find().toArray()
+                await DB.personalInfo.socialNetworks.find().toArray(),
             ),
         };
         const highlights = parseIdsAsStringIds(
-            await DB.highlights.find().toArray()
+            await DB.highlights.find().toArray(),
         );
         const experience = parseIdsAsStringIds(
-            await DB.experience.find().toArray()
+            await DB.experience.find().toArray(),
         );
         const projects = parseIdsAsStringIds(
-            await DB.projects.find().toArray()
+            await DB.projects.find().toArray(),
         );
 
         return {
