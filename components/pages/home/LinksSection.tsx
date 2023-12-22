@@ -3,7 +3,9 @@ import LinkInfo from "@/types/DataObjects/LinkInfo";
 import WithStringId from "@/types/WithStringId";
 import Link from "next/link";
 
-const LinksSection: React.FC<{ links: WithStringId<LinkInfo>[] }> = ({ links }) => {
+const LinksSection: React.FC<{ links: WithStringId<LinkInfo>[] }> = ({
+    links,
+}) => {
     return (
         <FullHeightSection id="links" className="p-3 px-sm-4 py-sm-5 bg-info">
             <p>Here are some links you may find interesting!</p>

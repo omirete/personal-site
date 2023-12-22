@@ -31,7 +31,7 @@ const SocialRow: FCi18n<SocialRowProps> = ({
                         SocialNetworksMetadata[sn.code].icon;
                     const SNLabel = SocialNetworksMetadata[sn.code].label;
                     const url = SocialNetworksMetadata[sn.code].userUrl(
-                        sn.userId
+                        sn.userId,
                     );
                     return (
                         <Link

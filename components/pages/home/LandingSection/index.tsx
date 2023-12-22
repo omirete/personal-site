@@ -29,19 +29,19 @@ const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                                 </p>
                                 <p className="m-0 fs-4">
                                     {localeDict.iamName(
-                                        personalInfo.basicInfo.name
+                                        personalInfo.basicInfo.name,
                                     )}
                                 </p>
                                 <p className="m-0">
                                     {parseStringI18N(
                                         personalInfo.basicInfo.title,
-                                        lang
+                                        lang,
                                     )}
                                 </p>
                                 <p>
                                     {parseStringI18N(
                                         personalInfo.basicInfo.subtitle,
-                                        lang
+                                        lang,
                                     )}
                                 </p>
                             </div>

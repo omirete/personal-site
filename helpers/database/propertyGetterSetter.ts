@@ -8,7 +8,7 @@ export interface PropertyGetterSetter<T> {
 }
 
 export default function getterSetter<T extends Document>(
-    collection: Collection<T>
+    collection: Collection<T>,
 ): PropertyGetterSetter<T> {
     const SINGLE_ID = new ObjectId("000000000000000000000000");
     const filter = { _id: SINGLE_ID } as Filter<T>;
@@ -29,7 +29,7 @@ export default function getterSetter<T extends Document>(
                 { $set: value },
                 {
                     upsert: true,
-                }
+                },
             );
             return result.modifiedCount > 0 || result.upsertedCount > 0;
         } catch (error) {

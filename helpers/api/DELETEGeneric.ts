@@ -5,7 +5,7 @@ import { ObjectId, Document, Collection, Filter, DeleteResult } from "mongodb";
 
 async function DELETEGeneric<T extends Document>(
     req: NextRequest,
-    collection: Collection<T>
+    collection: Collection<T>,
 ): Promise<NextResponse> {
     const session = await getServerSession(authOptions);
     if (session) {
@@ -14,9 +14,8 @@ async function DELETEGeneric<T extends Document>(
             const id = req.nextUrl.searchParams.get("id");
             if (id) {
                 const filter = { _id: new ObjectId(id) } as Filter<T>;
-                const success: DeleteResult = await collection.deleteOne(
-                    filter
-                );
+                const success: DeleteResult =
+                    await collection.deleteOne(filter);
                 return NextResponse.json({ success: success.deletedCount > 0 });
             } else {
                 return NextResponse.json({

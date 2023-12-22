@@ -27,7 +27,7 @@ const useFormProjects = (lang: Locale): UseFormProjects => {
             }
             setCreating(false);
         },
-        [lang]
+        [lang],
     );
 
     return {

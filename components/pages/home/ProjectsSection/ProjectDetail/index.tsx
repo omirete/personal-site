@@ -59,7 +59,7 @@ const ProjectDetail: FCi18n<ProjectDetailProps> = ({
             (htmlContent) => {
                 setContentHtml(htmlContent);
                 setLoading(false);
-            }
+            },
         );
     }, [project, lang]);
     if (loading) {

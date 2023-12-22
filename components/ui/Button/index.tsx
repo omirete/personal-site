@@ -16,7 +16,7 @@ export interface ButtonProps
     > {
     modal?: (
         show: boolean,
-        setShow: Dispatch<SetStateAction<boolean>>
+        setShow: Dispatch<SetStateAction<boolean>>,
     ) => ReactNode;
 }
 

@@ -34,10 +34,10 @@ const Navbar: React.FC<NavbarProps> = ({
         const handleClick = (e: MouseEvent) => {
             const el = e.target as HTMLElement;
             const navItemsDesktop = document.getElementById(
-                "navbar-items-desktop"
+                "navbar-items-desktop",
             );
             const navItemsMobile = document.getElementById(
-                "navbar-items-mobile"
+                "navbar-items-mobile",
             );
             if (
                 navState.expanded &&

@@ -28,11 +28,11 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
                     ?.toString() as SupportedExperienceTypes) ?? "work",
             title: buildStringI18N(
                 lang as Locale,
-                formData.get("title")?.toString() ?? ""
+                formData.get("title")?.toString() ?? "",
             ) as StringI18N,
             description: buildStringI18N(
                 lang as Locale,
-                formData.get("description")?.toString()
+                formData.get("description")?.toString(),
             ),
             institution: formData.get("institution")?.toString() ?? "",
             dateFrom: formData.get("dateFrom")?.toString() ?? "",
@@ -43,7 +43,7 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
     } else {
         return NextResponse.json(
             { error: "Missing or unsupported locale." },
-            { status: 400 }
+            { status: 400 },
         );
     }
 };

@@ -22,17 +22,17 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
         return await POSTGeneric(req, DB.highlights, {
             title: buildStringI18N(
                 lang as Locale,
-                formData.get("title")?.toString() ?? ""
+                formData.get("title")?.toString() ?? "",
             ) as StringI18N,
             description: buildStringI18N(
                 lang as Locale,
-                formData.get("description")?.toString()
+                formData.get("description")?.toString(),
             ),
         });
     } else {
         return NextResponse.json(
             { error: "Missing or unsupported locale." },
-            { status: 400 }
+            { status: 400 },
         );
     }
 };

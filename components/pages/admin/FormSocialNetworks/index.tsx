@@ -22,12 +22,12 @@ const FormSocialNetworks: React.FC<{ socialNetworks?: SocialNetwork[] }> = ({
                             metadata={metadata}
                             defaultValue={
                                 socialNetworks?.find(
-                                    (sn) => sn.code === metadata.code
+                                    (sn) => sn.code === metadata.code,
                                 )?.userId
                             }
                         />
                     );
-                }
+                },
             )}
             <SubmitButton
                 className="btn btn-primary w-100"

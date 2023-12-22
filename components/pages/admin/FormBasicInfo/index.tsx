@@ -13,7 +13,7 @@ const FormBasicInfo: FCi18n<{ basicInfo?: BasicInfo }> = ({
 }) => {
     const { handleSubmit, loading, formRef } = useFormBasicInfo();
     const [virtualBasicInfo, setVirtualBasicInfo] = useState<BasicInfo>(
-        basicInfo ?? ({} as BasicInfo)
+        basicInfo ?? ({} as BasicInfo),
     );
     return (
         <form
@@ -96,7 +96,7 @@ const FormBasicInfo: FCi18n<{ basicInfo?: BasicInfo }> = ({
                     name="subtitle"
                     defaultValue={parseStringI18N(
                         virtualBasicInfo.subtitle,
-                        lang
+                        lang,
                     )}
                     onChange={(e) =>
                         setVirtualBasicInfo((prev) => {
@@ -144,7 +144,7 @@ const FormBasicInfo: FCi18n<{ basicInfo?: BasicInfo }> = ({
                     name="description"
                     defaultValue={parseStringI18N(
                         virtualBasicInfo.description,
-                        lang
+                        lang,
                     )}
                     onChange={(e) =>
                         setVirtualBasicInfo((prev) => {

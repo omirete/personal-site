@@ -15,7 +15,7 @@ export const dict: Dictionaries<Dictionary> = {
             "This is a cherry-picked collection of some of my favorite personal projects.",
         touchToLearn: "Touch each card to learn more! 👇",
         hoverToLearn: "👈 Hover or touch on each card to learn more!",
-        loading: "Loading"
+        loading: "Loading",
     },
     es: {
         projects: "Proyectos",

@@ -34,9 +34,8 @@ export const PUT = async (req: NextRequest): Promise<NextResponse> => {
                     subtitle,
                     description,
                 };
-                const result = await DB.personalInfo.basicInfo.set(
-                    dataForUpdate
-                );
+                const result =
+                    await DB.personalInfo.basicInfo.set(dataForUpdate);
                 return NextResponse.json(result);
             }
         } catch (error) {

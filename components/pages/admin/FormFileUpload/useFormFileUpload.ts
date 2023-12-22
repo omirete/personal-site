@@ -35,7 +35,7 @@ const useFormFileUpload = (): UseFormFileUpload => {
                 });
                 if (!res.ok) {
                     throw new Error(
-                        `Error uploading file. ${await res.text()}`
+                        `Error uploading file. ${await res.text()}`,
                     );
                 }
             } catch (error) {
@@ -50,8 +50,8 @@ const useFormFileUpload = (): UseFormFileUpload => {
             });
             console.error(
                 `Error uploading file. Missing params: ${missingProperties.join(
-                    ", "
-                )}`
+                    ", ",
+                )}`,
             );
         }
 

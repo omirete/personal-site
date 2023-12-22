@@ -8,7 +8,7 @@ export const i18n = {
     locales: ["en", "es", "de"],
 } as const;
 
-export type Locale = typeof i18n["locales"][number];
+export type Locale = (typeof i18n)["locales"][number];
 
 export const LocaleFlags: Record<Locale, React.FC<SVGProps<SVGSVGElement>>> = {
     en: IconFlagEn,

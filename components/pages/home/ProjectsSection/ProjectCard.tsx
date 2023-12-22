@@ -19,7 +19,9 @@ const ProjectCard: FCi18n<ProjectCardProps> = ({
             <div className="card-body p-2 h-100">
                 <div className="d-flex flex-column h-100">
                     <div className="flex-grow-1">
-                        <b className="card-title">{parseStringI18N(project.name, lang)}</b>
+                        <b className="card-title">
+                            {parseStringI18N(project.name, lang)}
+                        </b>
                         <p className="card-text text-muted small mb-0">
                             {parseStringI18N(project.description, lang)}
                         </p>

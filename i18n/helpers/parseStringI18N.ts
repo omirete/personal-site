@@ -3,7 +3,7 @@ import StringI18N from "../types/StringI18N";
 
 const parseStringI18N_SingleLang = (
     str: StringI18N,
-    lang: Locale
+    lang: Locale,
 ): string | undefined => {
     if (Object.keys(str).includes(lang)) {
         const result = str[lang];
@@ -18,7 +18,7 @@ const parseStringI18N = (str: StringI18N | undefined, lang: Locale): string => {
             lang,
             i18n.defaultLocale,
             ...i18n.locales.filter(
-                (x) => x !== lang && x !== i18n.defaultLocale
+                (x) => x !== lang && x !== i18n.defaultLocale,
             ),
         ];
         let result = "";

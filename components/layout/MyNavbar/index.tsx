@@ -44,7 +44,12 @@ const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
                     </NavbarLink>
                 )}
             </ul>
-            {session && <LoginButton lang={lang} className="px-2 py-1 me-2 text-white" />}
+            {session && (
+                <LoginButton
+                    lang={lang}
+                    className="px-2 py-1 me-2 text-white"
+                />
+            )}
             <div
                 className={`
                 mt-3 mt-md-0 me-0 me-md-2

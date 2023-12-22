@@ -7,7 +7,7 @@ async function PUTGeneric<T extends Document>(
     req: NextRequest,
     collection: Collection<T>,
     id: string,
-    newValue: Partial<T>
+    newValue: Partial<T>,
 ): Promise<NextResponse> {
     const session = await getServerSession(authOptions);
     if (session) {
@@ -16,14 +16,17 @@ async function PUTGeneric<T extends Document>(
             const filter = { _id: new ObjectId(id) } as Filter<T>;
             const updateResult: UpdateResult<T> = await collection.updateOne(
                 filter,
-                { $set: newValue }
+                { $set: newValue },
             );
-            if (updateResult.modifiedCount > 0 || updateResult.upsertedCount > 0) {
+            if (
+                updateResult.modifiedCount > 0 ||
+                updateResult.upsertedCount > 0
+            ) {
                 return NextResponse.json({ result: updateResult });
             } else {
                 return NextResponse.json(
                     { error: "Could not update entity" },
-                    { status: 400 }
+                    { status: 400 },
                 );
             }
         } catch (error) {
@@ -35,4 +38,4 @@ async function PUTGeneric<T extends Document>(
     }
 }
 
-export default PUTGeneric
+export default PUTGeneric;

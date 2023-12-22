@@ -47,7 +47,7 @@ const ExperienceTimeline: FCi18n<ExperienceTimelineProps> = ({
                                     <div className="badge bg-secondary bg-opacity-75">
                                         <span>
                                             {new Date(
-                                                e.dateFrom
+                                                e.dateFrom,
                                             ).toLocaleDateString(undefined, {
                                                 year: "numeric",
                                                 month: "short",
@@ -58,13 +58,13 @@ const ExperienceTimeline: FCi18n<ExperienceTimelineProps> = ({
                                                 <span>, </span>
                                                 <span>
                                                     {new Date(
-                                                        e.dateTo
+                                                        e.dateTo,
                                                     ).toLocaleDateString(
                                                         undefined,
                                                         {
                                                             year: "numeric",
                                                             month: "short",
-                                                        }
+                                                        },
                                                     )}
                                                 </span>
                                             </>

@@ -47,7 +47,7 @@ const ExperienceCard: FCi18n<ExperienceCardProps> = ({
                         <span>
                             {new Date(experience.dateFrom).toLocaleDateString(
                                 undefined,
-                                { year: "numeric", month: "short" }
+                                { year: "numeric", month: "short" },
                             )}
                         </span>
                         {experience.dateTo && (
@@ -55,7 +55,7 @@ const ExperienceCard: FCi18n<ExperienceCardProps> = ({
                                 <span>, </span>
                                 <span>
                                     {new Date(
-                                        experience.dateTo
+                                        experience.dateTo,
                                     ).toLocaleDateString(undefined, {
                                         year: "numeric",
                                         month: "short",

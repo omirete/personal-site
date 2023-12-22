@@ -24,15 +24,15 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
                 alias,
                 name: buildStringI18N(
                     lang as Locale,
-                    formData.get("name")?.toString() ?? ""
+                    formData.get("name")?.toString() ?? "",
                 ) as StringI18N,
                 description: buildStringI18N(
                     lang as Locale,
-                    formData.get("description")?.toString() ?? ""
+                    formData.get("description")?.toString() ?? "",
                 ) as StringI18N,
                 fullContent: buildStringI18N(
                     lang as Locale,
-                    formData.get("fullContent")?.toString() ?? ""
+                    formData.get("fullContent")?.toString() ?? "",
                 ) as StringI18N,
                 tags: formData.get("tags")?.toString().split(",") ?? [],
                 imgUrl: formData.get("imgUrl")?.toString(),
@@ -40,13 +40,13 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
         } else {
             return NextResponse.json(
                 { error: "Missing alias." },
-                { status: 400 }
+                { status: 400 },
             );
         }
     } else {
         return NextResponse.json(
             { error: "Missing or unsupported locale." },
-            { status: 400 }
+            { status: 400 },
         );
     }
 };

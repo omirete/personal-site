@@ -39,7 +39,7 @@ const FormSocialNetworkRow: React.FC<FormSocialNetworkRowProps> = ({
                         if (!username) {
                             e.preventDefault();
                             alert(
-                                "Please enter your user name for this social network first."
+                                "Please enter your user name for this social network first.",
                             );
                         }
                     }}

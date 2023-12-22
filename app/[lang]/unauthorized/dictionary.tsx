@@ -14,7 +14,8 @@ export const dict: Dictionaries<Dictionary> = {
         goHome: "Go home",
         orSignIn: (
             <>
-                Or <LoginButton lang="en" className="btn-sm" /> if you are me. 🙄
+                Or <LoginButton lang="en" className="btn-sm" /> if you are me.
+                🙄
             </>
         ),
     },
@@ -32,7 +33,8 @@ export const dict: Dictionaries<Dictionary> = {
         goHome: "Startseite",
         orSignIn: (
             <>
-                Oder <LoginButton lang="de" className="btn-sm" />, wenn du mich bist. 🙄
+                Oder <LoginButton lang="de" className="btn-sm" />, wenn du mich
+                bist. 🙄
             </>
         ),
     },

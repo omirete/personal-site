@@ -42,11 +42,11 @@ const LangSelector: FCi18n<
                                     pathname === "/"
                                         ? `/${locale}`
                                         : pathname === `/${lang}`
-                                        ? `/${locale}`
-                                        : pathname?.replace(
-                                              `/${lang}/`,
-                                              `/${locale}/`
-                                          ) ?? "/"
+                                          ? `/${locale}`
+                                          : pathname?.replace(
+                                                `/${lang}/`,
+                                                `/${locale}/`,
+                                            ) ?? "/"
                                 }
                             >
                                 <Icon width="1em" height="1em" />

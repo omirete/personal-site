@@ -84,7 +84,7 @@ const ProjectsRow: FCi18n<ProjectsRowProps> = ({
                     }}
                     defaultValue={parseStringI18N(
                         virtualProject.description,
-                        lang
+                        lang,
                     )}
                 />
             </td>
@@ -107,7 +107,7 @@ const ProjectsRow: FCi18n<ProjectsRowProps> = ({
                     }}
                     defaultValue={parseStringI18N(
                         virtualProject.fullContent,
-                        lang
+                        lang,
                     )}
                 />
             </td>

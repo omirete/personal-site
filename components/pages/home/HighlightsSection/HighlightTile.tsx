@@ -23,7 +23,7 @@ const HighlightTile: FCi18n<HighlightTileProps> = ({
             className={`
                 list-group-item
                 p-3
-                ${isLastChild ? 'mb-0' : 'mb-2'}
+                ${isLastChild ? "mb-0" : "mb-2"}
                 border-0 rounded shadow
                 bg-white
                 transition-all

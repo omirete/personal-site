@@ -24,12 +24,12 @@ const useFormExperience = (lang: Locale): UseFormExperience => {
                 window.location.reload();
             } else {
                 alert(
-                    `Could not create experience. Error: ${await res.text()}`
+                    `Could not create experience. Error: ${await res.text()}`,
                 );
             }
             setCreating(false);
         },
-        [lang]
+        [lang],
     );
 
     return {

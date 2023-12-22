@@ -12,6 +12,7 @@ export const dict: Dictionaries<Dictionary> = {
         siteDescription: "Creador, dev, maravillado por el mundo 🚀",
     },
     de: {
-        siteDescription: "Maker of things, Entwickler, fasziniert von der Welt 🚀",
+        siteDescription:
+            "Maker of things, Entwickler, fasziniert von der Welt 🚀",
     },
 };

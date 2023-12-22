@@ -21,7 +21,7 @@ const ExperienceSection: FCi18n<{ experience: WithStringId<Experience>[] }> = ({
                     <ExperienceTimeline
                         lang={lang}
                         experience={experience.sort((a, b) =>
-                            sortExperience(a, b, false)
+                            sortExperience(a, b, false),
                         )}
                     />
                 </div>

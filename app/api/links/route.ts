@@ -4,7 +4,13 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
 import LinkInfo from "@/types/DataObjects/LinkInfo";
 import getMissingProperties from "@/helpers/getMissingParams";
-import { DeleteResult, InsertOneResult, ObjectId, UpdateResult, WithId } from "mongodb";
+import {
+    DeleteResult,
+    InsertOneResult,
+    ObjectId,
+    UpdateResult,
+    WithId,
+} from "mongodb";
 
 export const GET = async (req: NextRequest): Promise<NextResponse> => {
     const links = await DB.links.find().toArray();
@@ -46,13 +52,14 @@ export const PUT = async (req: NextRequest): Promise<NextResponse> => {
             const url = body.url;
 
             if (id) {
-                const updatedLink: UpdateResult<LinkInfo> = await DB.links.updateOne(
-                    { _id: new ObjectId(id) },
-                    {
-                        text,
-                        url,
-                    }
-                );
+                const updatedLink: UpdateResult<LinkInfo> =
+                    await DB.links.updateOne(
+                        { _id: new ObjectId(id) },
+                        {
+                            text,
+                            url,
+                        },
+                    );
                 if (
                     updatedLink.modifiedCount > 0 ||
                     updatedLink.upsertedCount > 0

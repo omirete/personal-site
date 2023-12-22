@@ -55,7 +55,7 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
                                     {
                                         error: `Picture has to be .png.`,
                                     },
-                                    { status: 400 }
+                                    { status: 400 },
                                 );
                             }
                             filename = "profile.png";
@@ -67,7 +67,7 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
                                     {
                                         error: `Picture has to be .webp.`,
                                     },
-                                    { status: 400 }
+                                    { status: 400 },
                                 );
                             }
                             filename = "contact.webp";
@@ -109,11 +109,11 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
                     const result = await uploadBlob(
                         await req.blob(),
                         directory,
-                        filename
+                        filename,
                     );
                     return NextResponse.json(
                         { upload_ok: result },
-                        { status: result ? 200 : 400 }
+                        { status: result ? 200 : 400 },
                     );
                 } else {
                     return NextResponse.json({ error: `Invalid lang.` });
@@ -128,7 +128,7 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
                     {
                         error: `Missing params: ${missingParams.join(", ")}`,
                     },
-                    { status: 400 }
+                    { status: 400 },
                 );
             }
         } catch (error) {
@@ -139,7 +139,7 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
             {
                 error: "You must be signed in to upload a file.",
             },
-            { status: 400 }
+            { status: 400 },
         );
     }
 };

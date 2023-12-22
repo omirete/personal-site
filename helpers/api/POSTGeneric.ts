@@ -11,15 +11,14 @@ import {
 async function POSTGeneric<T extends Document>(
     req: NextRequest,
     collection: Collection<T>,
-    newValue: OptionalUnlessRequiredId<T>
+    newValue: OptionalUnlessRequiredId<T>,
 ): Promise<NextResponse> {
     const session = await getServerSession(authOptions);
     if (session) {
         // Authorized
         try {
-            const result: InsertOneResult<T> = await collection.insertOne(
-                newValue
-            );
+            const result: InsertOneResult<T> =
+                await collection.insertOne(newValue);
             return NextResponse.json({ experience: result });
         } catch (error) {
             return NextResponse.json({ error });

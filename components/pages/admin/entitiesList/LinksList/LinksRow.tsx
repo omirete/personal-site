@@ -22,7 +22,8 @@ const LinksRow: React.FC<LinksRowProps> = ({
     className,
     ...props
 }) => {
-    const [virtualLink, setVirtualLink] = useState<WithStringId<LinkInfo>>(link);
+    const [virtualLink, setVirtualLink] =
+        useState<WithStringId<LinkInfo>>(link);
     const { loading, handleDelete, handleUpdate } = useLinksList();
 
     return (

@@ -10,16 +10,16 @@ export const dict: Dictionaries<Dictionary> = {
     en: {
         experience: "Experience",
         viewCertificate: "View certificate",
-        seeLink: "See link"
+        seeLink: "See link",
     },
     es: {
         experience: "Experiencia",
         viewCertificate: "Ver certificado",
-        seeLink: "Ver enlace"
+        seeLink: "Ver enlace",
     },
     de: {
         experience: "Erfahrung",
         viewCertificate: "Bescheinigung sehen",
-        seeLink: "Link ansehen"
+        seeLink: "Link ansehen",
     },
 };

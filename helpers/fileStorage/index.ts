@@ -4,7 +4,7 @@ export const uploadBlob = async (
     blob: Blob,
     directory: string,
     filename: string,
-    overwrite: boolean = false
+    overwrite: boolean = false,
 ): Promise<boolean> => {
     const sftp = new Client();
 
@@ -23,7 +23,7 @@ export const uploadBlob = async (
         filepath += filename;
         const result = await sftp.put(
             Buffer.from(await blob.arrayBuffer()),
-            filepath
+            filepath,
         );
         return true; // check
     } catch (err) {
@@ -37,7 +37,7 @@ export const uploadBlob = async (
 
 export const getFiles = async (
     directory: string,
-    recursive: boolean = false
+    recursive: boolean = false,
 ): Promise<FileInfo[] | false> => {
     const sftp = new Client();
 
@@ -56,7 +56,7 @@ export const getFiles = async (
                 if (file.type === "d" && recursive) {
                     let recursiveFiles = await getFiles(
                         `${directory}${file.name}/`,
-                        true
+                        true,
                     );
                     if (recursiveFiles !== false) {
                         return recursiveFiles;
@@ -66,7 +66,7 @@ export const getFiles = async (
                 } else {
                     return [file];
                 }
-            })
+            }),
         );
         return relevantFiles.flat();
     } catch (err) {

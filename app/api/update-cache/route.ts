@@ -28,7 +28,7 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
     try {
         await saveToCache(
             "public/cache/highlights.json",
-            await DB.highlights.find().toArray()
+            await DB.highlights.find().toArray(),
         );
     } catch (error) {
         return NextResponse.json({ error }, { status: 500 });
@@ -36,7 +36,7 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
     try {
         await saveToCache(
             "public/cache/experience.json",
-            await DB.experience.find().toArray()
+            await DB.experience.find().toArray(),
         );
     } catch (error) {
         return NextResponse.json({ error }, { status: 500 });
@@ -44,7 +44,7 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
     try {
         await saveToCache(
             "public/cache/projects.json",
-            await DB.projects.find().toArray()
+            await DB.projects.find().toArray(),
         );
     } catch (error) {
         return NextResponse.json({ error }, { status: 500 });

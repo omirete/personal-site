@@ -3,7 +3,7 @@ import LinkInfo from "@/types/DataObjects/LinkInfo";
 import { useCallback, useState } from "react";
 
 export interface UseLinksList {
-    loading: boolean,
+    loading: boolean;
     handleCreate: (link: Omit<LinkInfo, "id">) => Promise<void>;
     handleUpdate: (link: LinkInfo) => Promise<void>;
     handleDelete: (id: string) => Promise<void>;

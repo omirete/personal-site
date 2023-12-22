@@ -1,6 +1,6 @@
 const getMissingProperties = (
     obj: Record<string, any>,
-    acceptNull: boolean = false
+    acceptNull: boolean = false,
 ): string[] => {
     let missingProperties: string[] = [];
     Object.entries(obj).forEach(([key, val]) => {

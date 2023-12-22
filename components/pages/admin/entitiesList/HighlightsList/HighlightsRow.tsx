@@ -72,7 +72,7 @@ const HighlightsRow: FCi18n<ExperienceRowProps> = ({
                     }}
                     defaultValue={parseStringI18N(
                         virtualHighlight.description,
-                        lang
+                        lang,
                     )}
                 />
             </td>

@@ -24,12 +24,15 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
     const [showClass, setShowClass] = useState(false);
 
-    const handleHide = useCallback((e: KeyboardEvent) => {
-        if (e.key === "Esc" || e.key === "Escape") {
-            // "Esc" is the IE/Edge specific value
-            setShow(false);
-        }
-    }, [setShow]);
+    const handleHide = useCallback(
+        (e: KeyboardEvent) => {
+            if (e.key === "Esc" || e.key === "Escape") {
+                // "Esc" is the IE/Edge specific value
+                setShow(false);
+            }
+        },
+        [setShow],
+    );
 
     useEffect(() => {
         setShowClass(show);

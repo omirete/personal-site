@@ -5,9 +5,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import Home from "@/components/pages/home/Home";
 
-{/* @ts-expect-error Async Server Component */}
-// Previous line needed as per docs. See "Async Server Component TypeScript
-// Error" here: https://beta.nextjs.org/docs/data-fetching/fetching
 const Page: NextPage = async () => {
     const session = await getServerSession(authOptions);
     const lang = i18n.defaultLocale;

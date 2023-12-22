@@ -3,7 +3,7 @@ import { RefObject } from "react";
 
 const useCanvasPointerCoords = (
     canvasRef: RefObject<HTMLCanvasElement>,
-    pointerCoords: Point2D
+    pointerCoords: Point2D,
 ) => {
     const rect = canvasRef.current?.getBoundingClientRect();
     if (rect) {

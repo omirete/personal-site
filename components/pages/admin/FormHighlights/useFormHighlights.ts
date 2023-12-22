@@ -24,12 +24,12 @@ const useFormHighlights = (lang: Locale): UseFormHighlights => {
                 window.location.reload();
             } else {
                 alert(
-                    `Could not create highglight. Error: ${await res.text()}`
+                    `Could not create highglight. Error: ${await res.text()}`,
                 );
             }
             setCreating(false);
         },
-        [lang]
+        [lang],
     );
 
     return {

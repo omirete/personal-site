@@ -12,18 +12,18 @@ export const dict: Dictionaries<Dictionary> = {
         hello: "Hello,",
         iamName: (name) => `I am ${name}`,
         seeMore: "See more",
-        profilePictureAlt: "Profile picture"
+        profilePictureAlt: "Profile picture",
     },
     es: {
         hello: "Hola,",
         iamName: (name) => `Soy ${name}`,
         seeMore: "Ver más",
-        profilePictureAlt: "Imagen de perfil"
+        profilePictureAlt: "Imagen de perfil",
     },
     de: {
         hello: "Hallo,",
         iamName: (name) => `Ich bin ${name}`,
         seeMore: "Mehr",
-        profilePictureAlt: "Profil Bild"
+        profilePictureAlt: "Profil Bild",
     },
 };

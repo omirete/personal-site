@@ -26,9 +26,8 @@ export const PUT = async (req: NextRequest): Promise<NextResponse> => {
                     email,
                     phone,
                 };
-                const result = await DB.personalInfo.contactInfo.set(
-                    dataForUpdate
-                );
+                const result =
+                    await DB.personalInfo.contactInfo.set(dataForUpdate);
                 return NextResponse.json(result);
             }
         } catch (error) {

@@ -3,7 +3,7 @@ import { Experience } from "./database/collections/experience";
 const sortExperience = (
     a: Experience,
     b: Experience,
-    newest_first: boolean = true
+    newest_first: boolean = true,
 ) => {
     const dateFrom_a = new Date(newest_first ? b.dateFrom : a.dateFrom);
     const dateFrom_b = new Date(newest_first ? a.dateFrom : b.dateFrom);
