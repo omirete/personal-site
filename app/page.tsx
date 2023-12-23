@@ -2,7 +2,7 @@ import { i18n } from "@/i18n/config";
 import { NextPage } from "next";
 import MyNavbar from "@/components/layout/MyNavbar";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "@/helpers/auth";
 import Home from "@/components/pages/home/Home";
 
 const Page: NextPage = async () => {

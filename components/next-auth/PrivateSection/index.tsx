@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/helpers/auth";
 import { ReactNode } from "react";
 import { NextPage } from "next";
 import LoginButton from "../LoginButton";

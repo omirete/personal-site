@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import DB from "@/helpers/database/DB";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/helpers/auth";
 import { getServerSession } from "next-auth";
 import LinkInfo from "@/types/DataObjects/LinkInfo";
 import getMissingProperties from "@/helpers/getMissingParams";
