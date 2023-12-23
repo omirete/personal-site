@@ -1,4 +1,4 @@
-import Signature from "assets/svg/signature.svg";
+import Signature from "@/assets/svg/signature.svg";
 import SocialRow from "@/components/social/SocialRow";
 import FCi18n from "@/i18n/types/FCi18n";
 import { dict } from "./dictionary";
