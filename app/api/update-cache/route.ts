@@ -12,40 +12,32 @@ export const GET = async (req: NextRequest): Promise<NextResponse> => {
         mkdirSync("public/cache", { recursive: true });
     }
     try {
-        const basicInfo = await DB.personalInfo.basicInfo.get();
-        const contactInfo = await DB.personalInfo.contactInfo.get();
+        const [
+            basicInfo,
+            contactInfo,
+            socialNetworks,
+            highlights,
+            experience,
+            projects,
+        ] = await Promise.all([
+            DB.personalInfo.basicInfo.get(),
+            DB.personalInfo.contactInfo.get(),
+            DB.personalInfo.socialNetworks.find().toArray(),
+            DB.highlights.find().toArray(),
+            DB.experience.find().toArray(),
+            DB.projects.find().toArray(),
+        ]);
         const personalInfo = {
             basicInfo: basicInfo ?? { name: "" },
             contactInfo: contactInfo ?? { email: "" },
-            socialNetworks: await DB.personalInfo.socialNetworks
-                .find()
-                .toArray(),
+            socialNetworks,
         };
-        await saveToCache("public/cache/personalInfo.json", personalInfo);
-    } catch (error) {
-        return NextResponse.json({ error }, { status: 500 });
-    }
-    try {
-        await saveToCache(
-            "public/cache/highlights.json",
-            await DB.highlights.find().toArray(),
-        );
-    } catch (error) {
-        return NextResponse.json({ error }, { status: 500 });
-    }
-    try {
-        await saveToCache(
-            "public/cache/experience.json",
-            await DB.experience.find().toArray(),
-        );
-    } catch (error) {
-        return NextResponse.json({ error }, { status: 500 });
-    }
-    try {
-        await saveToCache(
-            "public/cache/projects.json",
-            await DB.projects.find().toArray(),
-        );
+        await Promise.all([
+            saveToCache("public/cache/personalInfo.json", personalInfo),
+            saveToCache("public/cache/highlights.json", highlights),
+            saveToCache("public/cache/experience.json", experience),
+            saveToCache("public/cache/projects.json", projects),
+        ]);
     } catch (error) {
         return NextResponse.json({ error }, { status: 500 });
     }
