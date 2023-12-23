@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import MyNavbar from "@/components/layout/MyNavbar";
 import { i18n, Locale } from "@/i18n/config";
 import { dict } from "./dictionary";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export async function generateMetadata({
     params,
@@ -32,6 +33,7 @@ const RootLayout = async ({
             <body>
                 <MyNavbar session={session} lang={params.lang as Locale} />
                 {children}
+                <SpeedInsights />
             </body>
         </html>
     );

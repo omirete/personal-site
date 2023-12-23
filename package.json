@@ -11,6 +11,7 @@
     "dependencies": {
         "@formatjs/intl-localematcher": "^0.2.32",
         "@vercel/analytics": "^0.1.11",
+        "@vercel/speed-insights": "^1.0.2",
         "bootstrap": "^5.3.0",
         "gray-matter": "^4.0.3",
         "mongodb": "^5.7.0",

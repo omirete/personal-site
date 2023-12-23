@@ -4,6 +4,7 @@ import MyNavbar from "@/components/layout/MyNavbar";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/helpers/auth";
 import Home from "@/components/pages/home/Home";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const Page: NextPage = async () => {
     const session = await getServerSession(authOptions);
@@ -13,6 +14,7 @@ const Page: NextPage = async () => {
             <body>
                 <MyNavbar session={session} lang={lang} />
                 <Home lang={lang} />
+                <SpeedInsights />
             </body>
         </html>
     );
