@@ -59,7 +59,7 @@ const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                                 }}
                             />
                             <img
-                                src={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/profile.png`}
+                                src="https://yzanjmhvji29nsve.public.blob.vercel-storage.com/profile.png"
                                 alt={localeDict.profilePictureAlt}
                                 className="rounded-circle shadow h-100 w-100 position-relative mb-3"
                                 style={{
@@ -74,7 +74,7 @@ const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                                 style={{
                                     maxWidth: "100%",
                                 }}
-                                src={`${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/voice-notes/${lang}.m4a`}
+                                src="https://web.archive.org/web/20250125113117oe_/https://files.federicogiancarelli.0db.dev/voice-notes/en.m4a"
                             />
                         </div>
                     </div>
