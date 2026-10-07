@@ -81,7 +81,10 @@ const Navbar: React.FC<NavbarProps> = ({
             {...props}
         >
             <div className="container-fluid">
-                <Link className="navbar-brand" href="/#home">
+                <Link
+                    className="navbar-brand d-flex align-items-center"
+                    href="/#home"
+                >
                     <SignatureLine className="fill-white" />
                 </Link>
                 <button
@@ -132,7 +135,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 >
                     <div className="offcanvas-header pt-2">
                         <Link
-                            className="offcanvas-title"
+                            className="offcanvas-title d-flex align-items-center"
                             href="/#home"
                             onClick={() =>
                                 setNavState({
