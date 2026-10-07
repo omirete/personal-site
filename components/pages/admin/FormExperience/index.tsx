@@ -3,9 +3,14 @@
 import SubmitButton from "@/components/ui/forms/SubmitButton";
 import FCi18n from "@/i18n/types/FCi18n";
 import useFormExperience from "./useFormExperience";
+import { useState } from "react";
+import useCertificates from "../useCertificates";
+import CertificateReference from "../CertificateReference";
 
 const FormExperience: FCi18n = ({ lang }) => {
     const { handleCreate, creating } = useFormExperience(lang);
+    const { certificates, loading, error } = useCertificates();
+    const [relevantUrl, setRelevantUrl] = useState("");
     return (
         <form onSubmit={handleCreate} className="mb-3">
             <div className="input-group mb-2">
@@ -104,6 +109,19 @@ const FormExperience: FCi18n = ({ lang }) => {
                     placeholder="Separate your tags with a comma."
                     name="tags"
                 />
+            </div>
+            <div className="mb-2">
+                <label htmlFor="experience-reference-url" className="form-label">Reference URL / certificate</label>
+                <CertificateReference
+                    certificates={certificates}
+                    loading={loading}
+                    value={relevantUrl}
+                    onChange={setRelevantUrl}
+                    name="relevantUrl"
+                    id="experience-reference-url"
+                />
+                <p className="form-text">Upload PDFs under Files → Certificate, then select one here.</p>
+                {error && <p className="text-danger" role="alert">{error}</p>}
             </div>
             <SubmitButton
                 className="btn btn-primary w-100"

@@ -4,6 +4,7 @@ import { Experience } from "@/helpers/database/collections/experience";
 import ExperienceRow from "./ExperienceRow";
 import useEntitiesList from "../useEntitiesList";
 import WithStringId from "@/types/WithStringId";
+import useCertificates from "../../useCertificates";
 
 export interface ExperienceListProps
     extends React.DetailedHTMLProps<
@@ -21,11 +22,13 @@ const ExperienceList: FCi18n<ExperienceListProps> = ({
 }) => {
     const { handleDelete, handleUpdate, loadingId } =
         useEntitiesList("experience");
+    const { certificates, loading: certificatesLoading, error } = useCertificates();
     return (
         <table
             {...props}
             className={`table border-primary caption-top ${className}`}
         >
+            {error && <caption className="text-danger" role="alert">{error}</caption>}
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -33,7 +36,7 @@ const ExperienceList: FCi18n<ExperienceListProps> = ({
                     <th scope="col">Type</th>
                     <th scope="col">Title</th>
                     <th scope="col">Institution</th>
-                    <th scope="col">Relevant url</th>
+                    <th scope="col">Reference URL / certificate</th>
                     <th scope="col">From</th>
                     <th scope="col">To</th>
                     <th scope="col">Description</th>
@@ -50,6 +53,8 @@ const ExperienceList: FCi18n<ExperienceListProps> = ({
                             lang={lang}
                             key={i}
                             experience={exp}
+                            certificates={certificates}
+                            certificatesLoading={certificatesLoading}
                             handleUpdate={handleUpdate}
                             handleDelete={handleDelete}
                             rowNr={i + 1}

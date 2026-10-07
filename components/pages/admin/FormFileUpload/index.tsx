@@ -26,6 +26,7 @@ const FormFileUpload: React.FC = () => {
                         <option value="profile-pic">Profile pic</option>
                         <option value="contact-pic">Contact pic</option>
                         <option value="cv">CV</option>
+                        <option value="certificate">Certificate (.pdf)</option>
                         <option value="signature-line">
                             Signature line (.svg)
                         </option>
@@ -34,7 +35,7 @@ const FormFileUpload: React.FC = () => {
                     </select>
                 </div>
                 <div className="col-6">
-                    <label htmlFor="input-file-type" className="form-label">
+                    <label htmlFor="input-file-lang" className="form-label">
                         Select language
                     </label>
                     <select
@@ -62,6 +63,10 @@ const FormFileUpload: React.FC = () => {
                 name="filepath-src"
                 required
             />
+            <p className="form-text">
+                Upload certificates as PDFs, then select them as a reference in Experience.
+                Choose “Not applicable” for certificates without a language.
+            </p>
             <SubmitButton
                 className="btn btn-primary w-100"
                 loading={loading}

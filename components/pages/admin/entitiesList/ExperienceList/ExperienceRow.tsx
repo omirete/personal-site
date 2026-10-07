@@ -9,6 +9,8 @@ import StringI18N from "@/i18n/types/StringI18N";
 import WithStringId from "@/types/WithStringId";
 import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import { FaSave, FaTrash } from "react-icons/fa";
+import type { StoredFile } from "@/helpers/fileStorage/types";
+import CertificateReference from "../../CertificateReference";
 
 export interface ExperienceRowProps
     extends DetailedHTMLProps<
@@ -18,6 +20,8 @@ export interface ExperienceRowProps
     rowNr: number;
     loading?: boolean;
     experience: WithStringId<Experience>;
+    certificates: StoredFile[];
+    certificatesLoading: boolean;
     handleUpdate: (experience: WithStringId<Experience>) => void;
     handleDelete: (id: string) => void;
 }
@@ -26,6 +30,8 @@ const ExperienceRow: FCi18n<ExperienceRowProps> = ({
     lang,
     loading,
     experience,
+    certificates,
+    certificatesLoading,
     className,
     rowNr,
     handleDelete,
@@ -87,15 +93,16 @@ const ExperienceRow: FCi18n<ExperienceRowProps> = ({
                 />
             </td>
             <td>
-                <input
-                    className="form-control form-control-sm"
-                    onChange={(e) =>
+                <CertificateReference
+                    certificates={certificates}
+                    loading={certificatesLoading}
+                    onChange={(url) =>
                         setVirtualExp((prev) => ({
                             ...prev,
-                            relevantUrl: e.target.value,
+                            relevantUrl: url,
                         }))
                     }
-                    value={virtualExp.relevantUrl}
+                    value={virtualExp.relevantUrl ?? ""}
                 />
             </td>
             <td>

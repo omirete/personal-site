@@ -5,6 +5,17 @@ export const getUploadConfig = (type: string, lang: string, name: string) => {
     if (language !== "-1" && !["en", "es", "de"].includes(language)) {
         throw new Error("Invalid language.");
     }
+    if (type === "certificate") {
+        if (name.split(".").pop()?.toLowerCase() !== "pdf") {
+            throw new Error("File must be .pdf.");
+        }
+        const filename = name.replace(/\\/g, "/").split("/").pop()!;
+        return {
+            extension: "pdf",
+            contentTypes: ["application/pdf"],
+            pathname: `certificates/${filename}`,
+        };
+    }
     const formats: Record<string, { extension: string; contentTypes: string[]; pathname: string }> = {
         "profile-pic": { extension: "png", contentTypes: ["image/png"], pathname: "profile.png" },
         "contact-pic": { extension: "webp", contentTypes: ["image/webp"], pathname: "contact.webp" },
