@@ -31,7 +31,7 @@ export const dict: Dictionaries<Dictionary> = {
     },
     de: {
         home: "Home",
-        highlights: "Höhepunkte",
+        highlights: "Highlights",
         experience: "Erfahrung",
         projects: "Projekte",
         contact: "Kontakt",

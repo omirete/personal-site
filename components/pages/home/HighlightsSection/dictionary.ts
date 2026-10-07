@@ -18,7 +18,7 @@ export const dict: Dictionaries<Dictionary> = {
         hoverToLearn: "Desplázate sobre las tarjetas para leer más! 👉",
     },
     de: {
-        highlights: "Höhepunkte",
+        highlights: "Highlights",
         touchToLearn: "Auf die Kacheln klicken, um mehr zu erfahren! 👇",
         hoverToLearn: "Maus über die Kacheln bewegen, um mehr zu erfahren! 👉",
     },
