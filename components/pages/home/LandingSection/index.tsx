@@ -1,13 +1,14 @@
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
 import { FaChevronDown } from "react-icons/fa";
-import IconBlob from "@/assets/svg/blob-7.svg";
+import AnimatedBlobs from "./AnimatedBlobs";
 import { dict } from "./dictionary";
 import FCi18n from "@/i18n/types/FCi18n";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 import { i18n } from "@/i18n/config";
 import Image from "next/image";
 import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
+import styles from "./styles.module.css";
 
 const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
     lang,
@@ -51,8 +52,10 @@ const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                     </div>
                     <div className="col-12 col-sm-6 h-100 d-flex flex-column justify-content-center align-items-center mt-3 mt-sm-0">
                         <div className="position-relative">
-                            <IconBlob
-                                className="position-absolute opacity-50"
+                            <AnimatedBlobs
+                                className={`position-absolute opacity-50 ${styles.blobs}`}
+                                aria-hidden="true"
+                                focusable="false"
                                 style={{
                                     scale: 1.4,
                                     fill: "#ffffff",
