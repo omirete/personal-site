@@ -6,6 +6,7 @@ import { dict } from "./dictionary";
 import FCi18n from "@/i18n/types/FCi18n";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 import { i18n } from "@/i18n/config";
+import Image from "next/image";
 
 const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
     lang,
@@ -58,7 +59,7 @@ const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                                     height: "auto",
                                 }}
                             />
-                            <img
+                            <Image
                                 src="https://yzanjmhvji29nsve.public.blob.vercel-storage.com/profile.png"
                                 alt={localeDict.profilePictureAlt}
                                 className="rounded-circle shadow h-100 w-100 position-relative mb-3"
@@ -66,6 +67,8 @@ const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                                     maxHeight: "180px",
                                     maxWidth: "180px",
                                 }}
+                                width={180}
+                                height={180}
                             />
                         </div>
                         <div className="px-3">

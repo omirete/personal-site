@@ -6,6 +6,10 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "files.federicogiancarelli.0db.dev",
             },
+            {
+                protocol: "https",
+                hostname: "yzanjmhvji29nsve.public.blob.vercel-storage.com",
+            },
         ],
     },
     webpack(config) {
