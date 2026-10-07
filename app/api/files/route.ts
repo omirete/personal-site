@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getFiles } from "@/helpers/fileStorage";
 import { getUploadConfig, MAX_UPLOAD_SIZE } from "@/helpers/fileStorage/uploadConfig";
 import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
+import { del } from "@vercel/blob";
 
 export const runtime = "nodejs";
 
@@ -19,6 +20,26 @@ export const GET = async (): Promise<NextResponse> => {
     } catch (error) {
         console.error("Could not list Blob files", error);
         return NextResponse.json({ error: "Could not list uploaded files. Please try again." }, { status: 500 });
+    }
+};
+
+export const DELETE = async (req: NextRequest): Promise<NextResponse> => {
+    if (!await getServerSession(authOptions)) {
+        return NextResponse.json({ error: "You must be signed in to delete a file." }, { status: 401 });
+    }
+    const pathname = req.nextUrl.searchParams.get("pathname");
+    if (!pathname?.trim() || pathname.includes("://")) {
+        return NextResponse.json({ error: "A file pathname is required." }, { status: 400 });
+    }
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+        return NextResponse.json({ error: "Vercel Blob storage is not configured." }, { status: 503 });
+    }
+    try {
+        await del(pathname);
+        return NextResponse.json({ success: true });
+    } catch (error) {
+        console.error("Could not delete Blob file", error);
+        return NextResponse.json({ error: "Could not delete the file. Please try again." }, { status: 500 });
     }
 };
 

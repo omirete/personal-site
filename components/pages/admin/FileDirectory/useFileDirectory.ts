@@ -4,6 +4,7 @@ import type { StoredFile } from "@/helpers/fileStorage/types";
 export interface UseFileDirectory {
     files: StoredFile[];
     loading: boolean;
+    onDeleted: (pathname: string) => void;
 }
 
 const useFileDirectory = () => {
@@ -39,7 +40,11 @@ const useFileDirectory = () => {
         return () => window.removeEventListener("files-updated", refresh);
     }, []);
 
-    return { files, loading };
+    const onDeleted = (pathname: string) => {
+        setFiles((currentFiles) => currentFiles.filter((file) => file.pathname !== pathname));
+    };
+
+    return { files, loading, onDeleted };
 };
 
 export default useFileDirectory;

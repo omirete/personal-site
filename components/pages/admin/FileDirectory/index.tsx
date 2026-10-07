@@ -13,7 +13,7 @@ const FileDirectory: React.FC<FileDirectoryProps> = ({
     className,
     ...props
 }) => {
-    const { files, loading } = useFileDirectory();
+    const { files, loading, onDeleted } = useFileDirectory();
     if (loading) {
         return (
             <div
@@ -45,7 +45,7 @@ const FileDirectory: React.FC<FileDirectoryProps> = ({
                 </thead>
                 <tbody>
                     {files.map((file, i) => (
-                        <FileDirectoryRow key={i} rowNr={i + 1} file={file} />
+                        <FileDirectoryRow key={file.pathname} rowNr={i + 1} file={file} onDeleted={onDeleted} />
                     ))}
                 </tbody>
             </table>
