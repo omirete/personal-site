@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { FileInfo } from "ssh2-sftp-client";
+import type { StoredFile } from "@/helpers/fileStorage/types";
 
 export interface UseFileDirectory {
-    files: FileInfo[];
+    files: StoredFile[];
     loading: boolean;
 }
 
 const useFileDirectory = () => {
-    const [files, setFiles] = useState<FileInfo[]>([]);
+    const [files, setFiles] = useState<StoredFile[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`/api/files`, {
+        const refresh = () => fetch(`/api/files`, {
             method: "GET",
         })
             .then(async (res) => {
@@ -34,6 +34,9 @@ const useFileDirectory = () => {
             .finally(() => {
                 setLoading(false);
             });
+        void refresh();
+        window.addEventListener("files-updated", refresh);
+        return () => window.removeEventListener("files-updated", refresh);
     }, []);
 
     return { files, loading };

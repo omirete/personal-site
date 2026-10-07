@@ -1,15 +1,14 @@
 /** @type {import('next').NextConfig} */
+if (!process.env.NEXT_PUBLIC_BLOB_BASE_URL) {
+    throw new Error("NEXT_PUBLIC_BLOB_BASE_URL must be configured.");
+}
+
 const nextConfig = {
-    serverExternalPackages: ["ssh2-sftp-client"],
     images: {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "files.federicogiancarelli.0db.dev",
-            },
-            {
-                protocol: "https",
-                hostname: "yzanjmhvji29nsve.public.blob.vercel-storage.com",
+                hostname: new URL(process.env.NEXT_PUBLIC_BLOB_BASE_URL).hostname,
             },
         ],
     },

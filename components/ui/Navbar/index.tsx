@@ -81,7 +81,7 @@ const Navbar: React.FC<NavbarProps> = ({
             {...props}
         >
             <div className="container-fluid">
-                <Link className="navbar-brand d-block d-md-none" href="/#home">
+                <Link className="navbar-brand" href="/#home">
                     <SignatureLine className="fill-white" />
                 </Link>
                 <button

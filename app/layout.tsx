@@ -5,14 +5,15 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/helpers/auth";
 import ClientSessionProvider from "@/components/next-auth/ClientSessionProvider";
 import { Analytics } from "@vercel/analytics/react";
+import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
 
 export const metadata: Metadata = {
     title: "Federico Giancarelli",
     description: "Maker of things, dev, amazed by the world 🚀",
     icons: {
-        icon: `${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/profile.png?v=0.1`,
-        shortcut: `${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/profile.png?v=0.1`,
-        apple: `${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/profile.png?v=0.1`,
+        icon: getFileUrl("profile.png"),
+        shortcut: getFileUrl("profile.png"),
+        apple: getFileUrl("profile.png"),
     },
     category: "portfolio",
     twitter: {
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
         creator: "@fedegianca",
         images: [
             {
-                url: `${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/meta/twitter-card.webp?v=0.1`,
+                url: getFileUrl("meta/twitter-card.webp"),
                 width: 1000,
                 height: 500,
                 alt: "Twitter card for website federicogiancarelli.com",
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
         type: "website",
         images: [
             {
-                url: `${process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL}/meta/twitter-card.webp?v=0.1`,
+                url: getFileUrl("meta/twitter-card.webp"),
                 width: 1000,
                 height: 500,
             },

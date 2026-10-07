@@ -4,6 +4,7 @@ import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
 import { i18n } from "@/i18n/config";
 import FCi18n from "@/i18n/types/FCi18n";
 import Image from "next/image";
+import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
 import { dict } from "./dictionary";
 
 const ContactSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
@@ -37,7 +38,7 @@ const ContactSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                         <div className="d-flex justify-content-center position-relative">
                             <figure className="figure">
                                 <Image
-                                    src="https://yzanjmhvji29nsve.public.blob.vercel-storage.com/contact.webp"
+                                    src={getFileUrl("contact.webp")}
                                     alt="Alternate profile picture."
                                     className="figure-img img-fluid rounded shadow"
                                     width={500}

@@ -7,6 +7,7 @@ import FCi18n from "@/i18n/types/FCi18n";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 import { i18n } from "@/i18n/config";
 import Image from "next/image";
+import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
 
 const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
     lang,
@@ -60,7 +61,7 @@ const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                                 }}
                             />
                             <Image
-                                src="https://yzanjmhvji29nsve.public.blob.vercel-storage.com/profile.png"
+                                src={getFileUrl("profile.png")}
                                 alt={localeDict.profilePictureAlt}
                                 className="rounded-circle shadow h-100 w-100 position-relative mb-3"
                                 style={{
@@ -77,7 +78,7 @@ const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                                 style={{
                                     maxWidth: "100%",
                                 }}
-                                src="https://web.archive.org/web/20250125113117oe_/https://files.federicogiancarelli.0db.dev/voice-notes/en.m4a"
+                                src={getFileUrl(`voice-notes/${lang}.m4a`)}
                             />
                         </div>
                     </div>

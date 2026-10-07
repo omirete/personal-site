@@ -9,6 +9,7 @@ import { Session } from "next-auth";
 import Link from "next/link";
 import { FaDownload } from "react-icons/fa";
 import { dict } from "./dictionary";
+import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
 
 const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
     const linkClasses = "text-white fw-sm-bold";
@@ -16,7 +17,7 @@ const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
     return (
         <Navbar id="navbar">
             <ul className="navbar-nav me-auto">
-                <NavbarAnchor href="#" className={linkClasses}>
+                <NavbarAnchor href="#" className={linkClasses && " d-md-none"}>
                     {localeDict.home}
                 </NavbarAnchor>
                 <NavbarAnchor href="#highlights" className={linkClasses}>
@@ -56,9 +57,7 @@ const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
                 `}
             >
                 <Link
-                    href={`${
-                        process.env.NEXT_PUBLIC_FILES_BASE_FETCH_URL
-                    }/cv/Federico_Giancarelli_${lang.toUpperCase()}.pdf`}
+                    href={getFileUrl(`cv/Federico_Giancarelli_${lang.toUpperCase()}.pdf`)}
                     download
                     rel="noreferrer noopener"
                     target="_blank"

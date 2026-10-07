@@ -11,6 +11,7 @@
     "dependencies": {
         "@formatjs/intl-localematcher": "^0.2.32",
         "@vercel/analytics": "^2.0.1",
+        "@vercel/blob": "^2.8.1",
         "@vercel/speed-insights": "^2.0.0",
         "bootstrap": "^5.3.0",
         "gray-matter": "^4.0.3",
@@ -27,7 +28,6 @@
         "rehype-stringify": "^9.0.3",
         "remark-parse": "^10.0.1",
         "remark-rehype": "^10.1.0",
-        "ssh2-sftp-client": "^9.1.0",
         "unified": "^10.1.2"
     },
     "devDependencies": {
@@ -36,7 +36,6 @@
         "@types/node": "^20",
         "@types/react": "^19.3.0",
         "@types/react-dom": "^19.3.0",
-        "@types/ssh2-sftp-client": "^9.0.0",
         "eslint": "^9.39.5",
         "eslint-config-next": "^16.4.0",
         "node-loader": "^2.0.0",

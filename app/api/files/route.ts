@@ -1,145 +1,60 @@
 import { authOptions } from "@/helpers/auth";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import getMissingProperties from "@/helpers/getMissingParams";
-import { getFiles, uploadBlob } from "@/helpers/fileStorage";
+import { getFiles } from "@/helpers/fileStorage";
+import { getUploadConfig, MAX_UPLOAD_SIZE } from "@/helpers/fileStorage/uploadConfig";
+import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 
-const getFormatFromFilename = (name: string): string | undefined => {
-    const nameParts = name.split(".");
-    if (nameParts.length > 1) {
-        return nameParts[nameParts.length - 1];
-    } else {
-        return undefined;
+export const runtime = "nodejs";
+
+export const GET = async (): Promise<NextResponse> => {
+    if (!await getServerSession(authOptions)) {
+        return NextResponse.json({ error: "You must be signed in." }, { status: 401 });
     }
-};
-
-export const GET = async (req: NextRequest): Promise<NextResponse> => {
-    const session = await getServerSession(authOptions);
-    if (session) {
-        // Authorized
-        const files = await getFiles(process.env.SFTP_BASEPATH as string, true);
-        if (files !== false) {
-            return NextResponse.json({ files, msg: "ok" });
-        } else {
-            return NextResponse.json({
-                files: [],
-                error: "Could not list uploaded files. Please refresh the site",
-            });
-        }
-    } else {
-        return NextResponse.json({
-            error: "You must be signed in.",
-        });
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+        return NextResponse.json({ error: "Vercel Blob storage is not configured." }, { status: 503 });
+    }
+    try {
+        return NextResponse.json({ files: await getFiles(), msg: "ok" });
+    } catch (error) {
+        console.error("Could not list Blob files", error);
+        return NextResponse.json({ error: "Could not list uploaded files. Please try again." }, { status: 500 });
     }
 };
 
 export const POST = async (req: NextRequest): Promise<NextResponse> => {
-    const session = await getServerSession(authOptions);
-    if (session) {
-        // Authorized
-        try {
-            const params = req.nextUrl.searchParams;
-            const type = params.get("type");
-            const lang = params.get("lang");
-            const name = params.get("name");
-            if (type && lang && name) {
-                if (lang === "-1" || lang.toLowerCase().match(/^[a-z]{2}$/)) {
-                    let directory = process.env.SFTP_BASEPATH as string;
-                    let filename = "";
-                    let format_src = getFormatFromFilename(name);
-                    switch (type) {
-                        case "profile-pic":
-                            // TODO: Add handling of other image formats.
-                            if (format_src !== "png") {
-                                return NextResponse.json(
-                                    {
-                                        error: `Picture has to be .png.`,
-                                    },
-                                    { status: 400 },
-                                );
-                            }
-                            filename = "profile.png";
-                            break;
-                        case "contact-pic":
-                            // TODO: Add handling of other image formats.
-                            if (format_src !== "webp") {
-                                return NextResponse.json(
-                                    {
-                                        error: `Picture has to be .webp.`,
-                                    },
-                                    { status: 400 },
-                                );
-                            }
-                            filename = "contact.webp";
-                            break;
-                        case "signature-line":
-                            filename = "signature-line.svg";
-                            break;
-                        case "signature":
-                            filename = "signature.svg";
-                            break;
-                        case "cv":
-                            // TODO: Add handling of other document formats.
-                            // TODO: Add handling of other names.
-                            if (lang !== "-1") {
-                                directory += "cv/";
-                                filename = `Federico_Giancarelli_${lang.toUpperCase()}.pdf`;
-                            } else {
-                                return NextResponse.json({
-                                    error: `You must specify a language for the cv.`,
-                                });
-                            }
-                            break;
-                        case "voice-note":
-                            // TODO: Add handling of other audio formats.
-                            if (lang !== "-1") {
-                                directory += "voice-notes/";
-                                filename = `${lang.toLowerCase()}.m4a`;
-                            } else {
-                                return NextResponse.json({
-                                    error: `You must specify a language for the cv.`,
-                                });
-                            }
-                            break;
-                        default:
-                            return NextResponse.json({
-                                error: `Invalid file type.`,
-                            });
-                    }
-                    const result = await uploadBlob(
-                        await req.blob(),
-                        directory,
-                        filename,
-                    );
-                    return NextResponse.json(
-                        { upload_ok: result },
-                        { status: result ? 200 : 400 },
-                    );
-                } else {
-                    return NextResponse.json({ error: `Invalid lang.` });
-                }
-            } else {
-                const missingParams = getMissingProperties({
-                    type,
-                    lang,
-                    name,
-                });
-                return NextResponse.json(
-                    {
-                        error: `Missing params: ${missingParams.join(", ")}`,
-                    },
-                    { status: 400 },
-                );
-            }
-        } catch (error) {
-            return NextResponse.json({ error }, { status: 400 });
+    try {
+        const body = await req.json() as HandleUploadBody;
+        // The SDK verifies completion callbacks; upload token requests require an admin session.
+        if (body.type === "blob.generate-client-token" && !await getServerSession(authOptions)) {
+            return NextResponse.json({ error: "You must be signed in to upload a file." }, { status: 401 });
         }
-    } else {
-        return NextResponse.json(
-            {
-                error: "You must be signed in to upload a file.",
+        if (!process.env.BLOB_READ_WRITE_TOKEN) {
+            return NextResponse.json({ error: "Vercel Blob storage is not configured." }, { status: 503 });
+        }
+        const response = await handleUpload({
+            body,
+            request: req,
+            onBeforeGenerateToken: async (pathname, clientPayload) => {
+                if (!clientPayload) throw new Error("Missing upload details.");
+                const { type, lang, name } = JSON.parse(clientPayload);
+                if (typeof type !== "string" || typeof lang !== "string" || typeof name !== "string") {
+                    throw new Error("Invalid upload details.");
+                }
+                const config = getUploadConfig(type, lang, name);
+                if (pathname !== config.pathname) throw new Error("Invalid upload path.");
+                return {
+                    allowedContentTypes: config.contentTypes,
+                    maximumSizeInBytes: MAX_UPLOAD_SIZE,
+                    addRandomSuffix: false,
+                    allowOverwrite: true,
+                    cacheControlMaxAge: 60,
+                    validUntil: Date.now() + 10 * 60 * 1000,
+                };
             },
-            { status: 400 },
-        );
+        });
+        return NextResponse.json(response);
+    } catch (error) {
+        return NextResponse.json({ error: error instanceof Error ? error.message : "Upload failed." }, { status: 400 });
     }
 };
