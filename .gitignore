@@ -37,3 +37,6 @@ next-env.d.ts
 
 # vs code
 .vscode
+
+# Local backup of personal files uploaded to blob storage
+files/
