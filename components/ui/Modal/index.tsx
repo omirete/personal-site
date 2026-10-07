@@ -35,11 +35,13 @@ const Modal: React.FC<ModalProps> = ({
     );
 
     useEffect(() => {
-        setShowClass(show);
+        // Apply the transition class on the next frame after display changes.
+        const frame = requestAnimationFrame(() => setShowClass(show));
         if (show) {
             document.addEventListener("keydown", handleHide);
         }
         return () => {
+            cancelAnimationFrame(frame);
             // Clean-up
             if (show) {
                 document.removeEventListener("keydown", handleHide);

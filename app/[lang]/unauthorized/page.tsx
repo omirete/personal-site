@@ -3,7 +3,8 @@ import { NextPage } from "next";
 import Link from "next/link";
 import { dict } from "./dictionary";
 
-const Home: NextPage<{ params: { lang: Locale } }> = ({ params: { lang } }) => {
+const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({ params }) => {
+    const lang = (await params).lang as Locale;
     const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     return (
         <main

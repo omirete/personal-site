@@ -1,5 +1,6 @@
 "use client";
 import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from "react";
+import Link from "next/link";
 import SignatureLine from "@/assets/svg/signature-line.svg";
 import { MdClose, MdMenu } from "react-icons/md";
 
@@ -80,9 +81,9 @@ const Navbar: React.FC<NavbarProps> = ({
             {...props}
         >
             <div className="container-fluid">
-                <a className="navbar-brand d-block d-md-none" href="/#home">
+                <Link className="navbar-brand d-block d-md-none" href="/#home">
                     <SignatureLine className="fill-white" />
-                </a>
+                </Link>
                 <button
                     className={`
                         d-block d-md-none
@@ -130,7 +131,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     tabIndex={-1}
                 >
                     <div className="offcanvas-header pt-2">
-                        <a
+                        <Link
                             className="offcanvas-title"
                             href="/#home"
                             onClick={() =>
@@ -141,7 +142,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             }
                         >
                             <SignatureLine className="fill-white" />
-                        </a>
+                        </Link>
                         <button
                             type="button"
                             className="btn border-0 shadow-none text-white"

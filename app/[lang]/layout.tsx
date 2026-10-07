@@ -10,10 +10,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 export async function generateMetadata({
     params,
 }: {
-    params: { lang: string };
+    params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
     // read route params
-    const lang = params.lang as Locale;
+    const lang = (await params).lang as Locale;
     const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     return {
         description: localeDict.siteDescription,
@@ -25,13 +25,14 @@ const RootLayout = async ({
     params,
 }: {
     children: ReactNode;
-    params: { lang: Locale };
+    params: Promise<{ lang: string }>;
 }) => {
+    const lang = (await params).lang as Locale;
     const session = await getServerSession(authOptions);
     return (
-        <html lang={params.lang} data-bs-theme="light">
+        <html lang={lang} data-bs-theme="light">
             <body>
-                <MyNavbar session={session} lang={params.lang as Locale} />
+                <MyNavbar session={session} lang={lang} />
                 {children}
                 <SpeedInsights />
             </body>

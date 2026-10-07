@@ -5,9 +5,10 @@ import parseIdsAsStringIds from "@/helpers/database/parseIdsAsStringIds";
 import { Locale } from "@/i18n/config";
 import { NextPage } from "next";
 
-const Home: NextPage<{ params: { lang: Locale } }> = async ({
-    params: { lang },
+const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({
+    params,
 }) => {
+    const lang = (await params).lang as Locale;
     const highlights = parseIdsAsStringIds(
         await DB.highlights.find().toArray(),
     );

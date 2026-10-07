@@ -8,7 +8,7 @@ export interface UseFormBasicInfo {
         basicInfo: BasicInfo,
     ) => Promise<void>;
     loading: boolean;
-    formRef: RefObject<HTMLFormElement>;
+    formRef: RefObject<HTMLFormElement | null>;
 }
 
 const useFormBasicInfo = (): UseFormBasicInfo => {

@@ -2,13 +2,14 @@ import AdminNav from "@/components/pages/admin/AdminNav";
 import PrivateSection from "@/components/next-auth/PrivateSection";
 import { Locale } from "@/i18n/config";
 
-export default function Layout({
+export default async function Layout({
     children,
     params,
 }: {
     children: React.ReactNode;
-    params: { lang: Locale };
+    params: Promise<{ lang: string }>;
 }) {
+    const lang = (await params).lang as Locale;
     return (
         <div
             style={{
@@ -18,7 +19,7 @@ export default function Layout({
         >
             <PrivateSection behaviourOnUnauthorized="redirect-unauthorized">
                 <div className="px-4 py-5">
-                    <AdminNav lang={params.lang} />
+                    <AdminNav lang={lang} />
                     <div className="p-2 rounded-bottom bg-white bg-opacity-75">
                         {children}
                     </div>

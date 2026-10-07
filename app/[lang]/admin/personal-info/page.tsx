@@ -17,9 +17,10 @@ const getPersonalInfo = async (): Promise<PersonalInfo | null> => {
     };
 };
 
-const Home: NextPage<{ params: { lang: Locale } }> = async ({
-    params: { lang },
+const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({
+    params,
 }) => {
+    const lang = (await params).lang as Locale;
     const personalInfo = await getPersonalInfo();
     return (
         <div>

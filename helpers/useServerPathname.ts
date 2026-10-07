@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 
-const useServerPathname = (): string | null => {
-    const headersList = headers();
+const useServerPathname = async (): Promise<string | null> => {
+    const headersList = await headers();
     // read the custom x-url header
     return headersList.get("x-url");
 };

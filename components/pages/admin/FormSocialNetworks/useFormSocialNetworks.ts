@@ -5,7 +5,7 @@ import { FormEventHandler, RefObject, useRef, useState } from "react";
 export interface UseFormSocialNetworks {
     handleSubmit: FormEventHandler<HTMLFormElement>;
     loading: boolean;
-    formRef: RefObject<HTMLFormElement>;
+    formRef: RefObject<HTMLFormElement | null>;
 }
 
 const useFormSocialNetworks = (): UseFormSocialNetworks => {
