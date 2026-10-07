@@ -12,6 +12,7 @@ const AdminNav: FCi18n = ({ lang }) => {
         { url: `/${lang}/admin/highlights`, text: "Highlights" },
         { url: `/${lang}/admin/experience`, text: "Experience" },
         { url: `/${lang}/admin/projects`, text: "Projects" },
+        { url: `/${lang}/admin/export`, text: "Export" },
     ];
     const pathname = usePathname();
     return (

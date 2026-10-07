@@ -1,4 +1,4 @@
-import { MongoClient, ServerApiVersion, Collection } from "mongodb";
+import { MongoClient, ServerApiVersion, Collection, Db } from "mongodb";
 import LinkInfo from "@/types/DataObjects/LinkInfo";
 import { Experience } from "./collections/experience";
 import { Highlight } from "./collections/highlight";
@@ -11,6 +11,7 @@ import getterSetter, { PropertyGetterSetter } from "./propertyGetterSetter";
 const DB_URI = process.env.MONGODB_URI;
 
 export interface DBStructure {
+    database: Db,
     experience: Collection<Experience>;
     highlights: Collection<Highlight>;
     links: Collection<LinkInfo>;
@@ -32,7 +33,8 @@ const mongo = new MongoClient(DB_URI as string, {
 
 const DB = mongo.db("federicogiancarelli");
 
-export const MyDB: DBStructure = {
+const MyDB: DBStructure = {
+    database: DB,
     experience: DB.collection<Experience>("experience"),
     highlights: DB.collection<Highlight>("highlights"),
     links: DB.collection<LinkInfo>("links"),
