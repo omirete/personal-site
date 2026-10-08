@@ -6,6 +6,7 @@ import FCi18n from "@/i18n/types/FCi18n";
 import Image from "next/image";
 import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
 import { dict } from "./dictionary";
+import { getFullName } from "@/helpers/personalInfoPresentation";
 
 const ContactSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
     lang,
@@ -22,9 +23,9 @@ const ContactSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                         <div className="mb-3">
                             {localeDict.orYouMaySendMeAMessageWithTheForm}
                         </div>
-                        <p className="m-0">Federico Giancarelli</p>
+                        <p className="m-0">{getFullName(personalInfo.basicInfo)}</p>
                         <p className="">
-                            <code>hello@federicogiancarelli.com</code>
+                            <code>{personalInfo.contactInfo.email}</code>
                         </p>
                         <SocialRow
                             lang={lang}

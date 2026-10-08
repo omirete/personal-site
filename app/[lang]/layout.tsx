@@ -4,7 +4,8 @@ import { ReactNode } from "react";
 import { Metadata } from "next";
 import MyNavbar from "@/components/layout/MyNavbar";
 import { i18n, Locale } from "@/i18n/config";
-import { dict } from "./dictionary";
+import { getPublicPersonalInfo } from "@/helpers/database/getPublicCollections";
+import { getPersonalInfoMetadata } from "@/helpers/personalInfoPresentation";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export async function generateMetadata({
@@ -12,12 +13,9 @@ export async function generateMetadata({
 }: {
     params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-    // read route params
-    const lang = (await params).lang as Locale;
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
-    return {
-        description: localeDict.siteDescription,
-    };
+    const requestedLang = (await params).lang;
+    const lang = i18n.locales.find((locale) => locale === requestedLang) ?? i18n.defaultLocale;
+    return getPersonalInfoMetadata(await getPublicPersonalInfo(), lang);
 }
 
 const RootLayout = async ({

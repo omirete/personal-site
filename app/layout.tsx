@@ -6,44 +6,25 @@ import { authOptions } from "@/helpers/auth";
 import ClientSessionProvider from "@/components/next-auth/ClientSessionProvider";
 import { Analytics } from "@vercel/analytics/react";
 import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
+import { getPublicPersonalInfo } from "@/helpers/database/getPublicCollections";
+import { getPersonalInfoMetadata } from "@/helpers/personalInfoPresentation";
+import { i18n } from "@/i18n/config";
 
-export const metadata: Metadata = {
-    title: "Federico Giancarelli",
-    description: "Maker of things, dev, amazed by the world 🚀",
+const baseMetadata: Metadata = {
     icons: {
         icon: getFileUrl("profile.png"),
         shortcut: getFileUrl("profile.png"),
         apple: getFileUrl("profile.png"),
     },
     category: "portfolio",
-    twitter: {
-        card: "summary_large_image",
-        title: "Federico Giancarelli",
-        description: "Maker of things, dev, amazed by the world 🚀",
-        site: "@fedegianca",
-        creator: "@fedegianca",
-        images: [
-            {
-                url: getFileUrl("meta/twitter-card.webp"),
-                width: 1000,
-                height: 500,
-                alt: "Twitter card for website federicogiancarelli.com",
-            },
-        ],
-    },
-    openGraph: {
-        title: "Federico Giancarelli",
-        type: "website",
-        images: [
-            {
-                url: getFileUrl("meta/twitter-card.webp"),
-                width: 1000,
-                height: 500,
-            },
-        ],
-        url: "https://federicogiancarelli.com",
-    },
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+    return {
+        ...baseMetadata,
+        ...getPersonalInfoMetadata(await getPublicPersonalInfo(), i18n.defaultLocale),
+    };
+}
 
 export const viewport: Viewport = {
     themeColor: "#e3704f",
