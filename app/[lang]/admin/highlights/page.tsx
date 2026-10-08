@@ -1,6 +1,7 @@
 import FormHighlights from "@/components/pages/admin/FormHighlights";
 import HighlightsList from "@/components/pages/admin/entitiesList/HighlightsList";
 import DB from "@/helpers/database/DB";
+import readUncachedData from "@/helpers/database/readUncachedData";
 import parseIdsAsStringIds from "@/helpers/database/parseIdsAsStringIds";
 import { Locale } from "@/i18n/config";
 import { NextPage } from "next";
@@ -10,7 +11,7 @@ const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({
 }) => {
     const lang = (await params).lang as Locale;
     const highlights = parseIdsAsStringIds(
-        await DB.highlights.find().toArray(),
+        await readUncachedData(() => DB.highlights.find().toArray()),
     );
     return (
         <div>

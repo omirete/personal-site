@@ -1,8 +1,6 @@
 import { Metadata, Viewport } from "next";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import "./custom.scss";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/helpers/auth";
 import ClientSessionProvider from "@/components/next-auth/ClientSessionProvider";
 import { Analytics } from "@vercel/analytics/react";
 import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
@@ -30,11 +28,17 @@ export const viewport: Viewport = {
     themeColor: "#e3704f",
 };
 
-const RootLayout = async ({ children }: { children: ReactNode }) => {
-    const session = await getServerSession(authOptions);
+const RootLayout = ({ children }: { children: ReactNode }) => {
     return (
-        <ClientSessionProvider session={session}>
-            {children}
+        <ClientSessionProvider>
+            {/* Locale params can become runtime data when a public route is revalidated. */}
+            <Suspense fallback={
+                <html lang={i18n.defaultLocale} data-bs-theme="light">
+                    <body><div role="status">Loading…</div></body>
+                </html>
+            }>
+                {children}
+            </Suspense>
             <Analytics />
         </ClientSessionProvider>
     );

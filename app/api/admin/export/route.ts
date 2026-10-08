@@ -1,3 +1,4 @@
+import readUncachedData from "@/helpers/database/readUncachedData";
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { BSON } from "mongodb";
@@ -7,9 +8,6 @@ import {
     exportCollections,
     isExportCollection,
 } from "@/helpers/database/exportCollections";
-
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
 
 const headers = { "Cache-Control": "private, no-store" };
 
@@ -32,7 +30,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
     try {
         const names = collection === "all" ? exportCollections : [collection];
-        const entries = await Promise.all(
+        const entries = await readUncachedData(() => Promise.all(
             names.map(async (name) => [
                 name,
                 await DB.database
@@ -40,15 +38,14 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
                     .find({}, { promoteValues: false })
                     .toArray(),
             ] as const),
-        );
+        ));
         const data = collection === "all" ? Object.fromEntries(entries) : entries[0][1];
-        const date = new Date().toISOString().slice(0, 10);
-
+        
         return new NextResponse(BSON.EJSON.stringify(data, undefined, 2, { relaxed: false }), {
             headers: {
                 ...headers,
                 "Content-Type": "application/json; charset=utf-8",
-                "Content-Disposition": `attachment; filename="federicogiancarelli-${collection}-${date}.json"`,
+                "Content-Disposition": `attachment; filename="federicogiancarelli-${collection}.json"`,
                 "X-Content-Type-Options": "nosniff",
             },
         });

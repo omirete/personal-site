@@ -2,6 +2,7 @@ import FormBasicInfo from "@/components/pages/admin/FormBasicInfo";
 import FormContactInfo from "@/components/pages/admin/FormContactInfo";
 import FormSocialNetworks from "@/components/pages/admin/FormSocialNetworks";
 import DB from "@/helpers/database/DB";
+import readUncachedData from "@/helpers/database/readUncachedData";
 import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
 import parseIdsAsStringIds from "@/helpers/database/parseIdsAsStringIds";
 import { Locale } from "@/i18n/config";
@@ -21,7 +22,7 @@ const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({
     params,
 }) => {
     const lang = (await params).lang as Locale;
-    const personalInfo = await getPersonalInfo();
+    const personalInfo = await readUncachedData(getPersonalInfo);
     return (
         <div>
             <FormBasicInfo lang={lang} basicInfo={personalInfo?.basicInfo} />

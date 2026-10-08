@@ -4,6 +4,8 @@ if (!process.env.NEXT_PUBLIC_BLOB_BASE_URL) {
 }
 
 const nextConfig = {
+    cacheComponents: true,
+    partialPrefetching: true,
     images: {
         remotePatterns: [
             {

@@ -6,8 +6,6 @@ import { getUploadConfig, MAX_UPLOAD_SIZE } from "@/helpers/fileStorage/uploadCo
 import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { del } from "@vercel/blob";
 
-export const runtime = "nodejs";
-
 export const GET = async (): Promise<NextResponse> => {
     if (!await getServerSession(authOptions)) {
         return NextResponse.json({ error: "You must be signed in." }, { status: 401 });

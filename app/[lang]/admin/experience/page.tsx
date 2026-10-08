@@ -1,6 +1,7 @@
 import ExperienceList from "@/components/pages/admin/entitiesList/ExperienceList";
 import FormExperience from "@/components/pages/admin/FormExperience";
 import DB from "@/helpers/database/DB";
+import readUncachedData from "@/helpers/database/readUncachedData";
 import parseIdsAsStringIds from "@/helpers/database/parseIdsAsStringIds";
 import sortExperience from "@/helpers/sortExperience";
 import { Locale } from "@/i18n/config";
@@ -11,7 +12,7 @@ const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({
 }) => {
     const lang = (await params).lang as Locale;
     const experience = parseIdsAsStringIds(
-        await DB.experience.find().toArray(),
+        await readUncachedData(() => DB.experience.find().toArray()),
     );
     return (
         <div>

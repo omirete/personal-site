@@ -1,3 +1,5 @@
+"use client";
+
 import LoginButton from "@/components/next-auth/LoginButton";
 import LangSelector from "@/components/ui/LangSelector";
 import Navbar from "@/components/ui/Navbar";
@@ -5,13 +7,14 @@ import NavbarAnchor from "@/components/ui/Navbar/NavbarAnchor";
 import NavbarLink from "@/components/ui/Navbar/NavbarLink";
 import { i18n } from "@/i18n/config";
 import FCi18n from "@/i18n/types/FCi18n";
-import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { FaDownload } from "react-icons/fa";
 import { dict } from "./dictionary";
 import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
 
-const MyNavbar: FCi18n<{ session: Session | null }> = ({ session, lang }) => {
+const MyNavbar: FCi18n = ({ lang }) => {
+    const { data: session } = useSession();
     const linkClasses = "text-white fw-sm-bold";
     const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
     return (

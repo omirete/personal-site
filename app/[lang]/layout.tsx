@@ -1,5 +1,3 @@
-import { authOptions } from "@/helpers/auth";
-import { getServerSession } from "next-auth";
 import { ReactNode } from "react";
 import { Metadata } from "next";
 import MyNavbar from "@/components/layout/MyNavbar";
@@ -7,6 +5,10 @@ import { i18n, Locale } from "@/i18n/config";
 import { getPublicPersonalInfo } from "@/helpers/database/getPublicCollections";
 import { getPersonalInfoMetadata } from "@/helpers/personalInfoPresentation";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+
+export function generateStaticParams() {
+    return i18n.locales.map((lang) => ({ lang }));
+}
 
 export async function generateMetadata({
     params,
@@ -26,11 +28,10 @@ const RootLayout = async ({
     params: Promise<{ lang: string }>;
 }) => {
     const lang = (await params).lang as Locale;
-    const session = await getServerSession(authOptions);
     return (
         <html lang={lang} data-bs-theme="light">
             <body>
-                <MyNavbar session={session} lang={lang} />
+                <MyNavbar lang={lang} />
                 {children}
                 <SpeedInsights />
             </body>
