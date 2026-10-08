@@ -1,4 +1,7 @@
 {
+    "common": {
+        "loading": "Cargando"
+    },
     "site": {
         "siteDescription": "Creador, dev, maravillado por el mundo 🚀"
     },

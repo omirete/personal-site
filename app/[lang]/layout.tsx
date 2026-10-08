@@ -1,4 +1,5 @@
 import { ReactNode, Suspense } from "react";
+import Loading from "@/components/ui/Loading";
 import { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import "../custom.scss";
@@ -45,7 +46,7 @@ export default async function RootLayout({ children, params }: {
         <html lang={lang} data-bs-theme="light">
             <body>
                 <ClientSessionProvider>
-                    <Suspense fallback={<div role="status">Loading…</div>}>
+                    <Suspense fallback={<Loading lang={lang} />}>
                         <MyNavbar lang={lang} dictionary={dictionary.myNavbar} loginDictionary={dictionary.loginButton} />
                         {children}
                     </Suspense>

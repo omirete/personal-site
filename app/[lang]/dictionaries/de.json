@@ -1,4 +1,7 @@
 {
+    "common": {
+        "loading": "Wird geladen"
+    },
     "site": {
         "siteDescription": "Maker of things, Entwickler, fasziniert von der Welt 🚀"
     },

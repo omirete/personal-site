@@ -4,6 +4,7 @@ import PrivateSection from "@/components/next-auth/PrivateSection";
 import { hasLocale } from "@/i18n/config";
 import RefreshCache from "@/components/pages/admin/RefreshCache";
 import { Suspense } from "react";
+import Loading from "@/components/ui/Loading";
 
 export default async function Layout({
     children,
@@ -21,7 +22,7 @@ export default async function Layout({
                     "linear-gradient(to right top,#3b4969,#7a5283,#be5678,#e3704f,#d7a319)",
             }}
         >
-            <Suspense fallback={<div className="px-4 py-5" role="status">Loading admin panel…</div>}>
+            <Suspense fallback={<Loading lang={lang} className="px-4 py-5" />}>
                 <PrivateSection behaviourOnUnauthorized="redirect-unauthorized">
                     <div className="px-4 py-5">
                         <AdminNav lang={lang} />

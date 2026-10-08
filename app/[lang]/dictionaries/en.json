@@ -1,4 +1,7 @@
 {
+    "common": {
+        "loading": "Loading"
+    },
     "site": {
         "siteDescription": "Maker of things, dev, amazed by the world 🚀"
     },
