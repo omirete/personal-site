@@ -4,11 +4,6 @@ import { authOptions } from "@/helpers/auth";
 import { getServerSession } from "next-auth";
 import { ContactInfo } from "@/helpers/database/collections/personalInfo/contactInfo";
 
-export const GET = async (req: NextRequest): Promise<NextResponse> => {
-    const contactInfo = await DB.personalInfo.contactInfo.get();
-    return NextResponse.json(contactInfo);
-};
-
 export const PUT = async (req: NextRequest): Promise<NextResponse> => {
     const session = await getServerSession(authOptions);
     if (session) {

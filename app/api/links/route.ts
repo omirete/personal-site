@@ -12,11 +12,6 @@ import {
     WithId,
 } from "mongodb";
 
-export const GET = async (req: NextRequest): Promise<NextResponse> => {
-    const links = await DB.links.find().toArray();
-    return NextResponse.json(links);
-};
-
 export const POST = async (req: NextRequest): Promise<NextResponse> => {
     const session = await getServerSession(authOptions);
     if (session) {

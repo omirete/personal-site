@@ -12,11 +12,6 @@ import POSTGeneric from "@/helpers/api/POSTGeneric";
 import buildStringI18N from "@/i18n/helpers/buildStringI18N";
 import StringI18N from "@/i18n/types/StringI18N";
 
-export const GET = async (req: NextRequest): Promise<NextResponse> => {
-    const experience = await DB.experience.find().toArray();
-    return NextResponse.json(experience);
-};
-
 export const POST = async (req: NextRequest): Promise<NextResponse> => {
     const lang = req.nextUrl.searchParams.get("locale");
     if (lang && i18n.locales.includes(lang as any)) {

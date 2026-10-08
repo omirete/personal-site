@@ -8,13 +8,6 @@ import {
     SupportedSocialNetwork,
 } from "@/helpers/database/collections/personalInfo/socialNetwork";
 
-export const GET = async (req: NextRequest): Promise<NextResponse> => {
-    const socialNetworks = await DB.personalInfo.socialNetworks
-        .find()
-        .toArray();
-    return NextResponse.json(socialNetworks);
-};
-
 export const PUT = async (req: NextRequest): Promise<NextResponse> => {
     const session = await getServerSession(authOptions);
     if (session) {

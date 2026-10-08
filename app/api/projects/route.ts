@@ -9,11 +9,6 @@ import DELETEGeneric from "@/helpers/api/DELETEGeneric";
 import POSTGeneric from "@/helpers/api/POSTGeneric";
 import buildStringI18N from "@/i18n/helpers/buildStringI18N";
 
-export const GET = async (req: NextRequest): Promise<NextResponse> => {
-    const projects = await DB.projects.find().toArray();
-    return NextResponse.json(projects);
-};
-
 export const POST = async (req: NextRequest): Promise<NextResponse> => {
     const lang = req.nextUrl.searchParams.get("locale");
     if (lang && i18n.locales.includes(lang as any)) {
