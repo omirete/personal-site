@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import FormBasicInfo from "@/components/pages/admin/FormBasicInfo";
 import FormContactInfo from "@/components/pages/admin/FormContactInfo";
 import FormSocialNetworks from "@/components/pages/admin/FormSocialNetworks";
@@ -5,7 +6,7 @@ import DB from "@/helpers/database/DB";
 import readUncachedData from "@/helpers/database/readUncachedData";
 import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
 import parseIdsAsStringIds from "@/helpers/database/parseIdsAsStringIds";
-import { Locale } from "@/i18n/config";
+import { hasLocale } from "@/i18n/config";
 import { NextPage } from "next";
 
 const getPersonalInfo = async (): Promise<PersonalInfo | null> => {
@@ -21,7 +22,8 @@ const getPersonalInfo = async (): Promise<PersonalInfo | null> => {
 const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({
     params,
 }) => {
-    const lang = (await params).lang as Locale;
+    const lang = (await params).lang;
+    if (!hasLocale(lang)) notFound();
     const personalInfo = await readUncachedData(getPersonalInfo);
     return (
         <div>

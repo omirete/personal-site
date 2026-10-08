@@ -1,18 +1,19 @@
+import ButtonLaunchContactForm from "./ButtonLaunchContactForm";
 import SocialRow from "@/components/social/SocialRow";
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
-import { i18n } from "@/i18n/config";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import Image from "next/image";
 import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
-import { dict } from "./dictionary";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 import { getFullName } from "@/helpers/personalInfoPresentation";
 
-const ContactSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
+const ContactSection: FC<{ lang: Locale } & { personalInfo: PersonalInfo }> = async ({
     lang,
     personalInfo,
 }) => {
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
+    const localeDict = (await getDictionary(lang)).contactSection;
     return (
         <FullHeightSection id="contact" className="py-4 px-3 px-sm-5">
             <div className="mt-5">
@@ -21,7 +22,11 @@ const ContactSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                         <h3 className="mb-3">{localeDict.contact}</h3>
                         <p>{localeDict.youMayReachOut}</p>
                         <div className="mb-3">
-                            {localeDict.orYouMaySendMeAMessageWithTheForm}
+                            {localeDict.formBefore}
+                            <ButtonLaunchContactForm className="btn btn-dark btn-sm d-inline">
+                                {localeDict.formLabel}
+                            </ButtonLaunchContactForm>
+                            {localeDict.formAfter}
                         </div>
                         <p className="m-0">{getFullName(personalInfo.basicInfo)}</p>
                         <p className="">

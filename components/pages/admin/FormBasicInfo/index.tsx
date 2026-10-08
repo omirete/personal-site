@@ -2,12 +2,13 @@
 import SubmitButton from "@/components/ui/forms/SubmitButton";
 import { BasicInfo } from "@/helpers/database/collections/personalInfo/basicInfo";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import StringI18N from "@/i18n/types/StringI18N";
 import { useState } from "react";
 import useFormBasicInfo from "./useFormBasicInfo";
 
-const FormBasicInfo: FCi18n<{ basicInfo?: BasicInfo }> = ({
+const FormBasicInfo: FC<{ lang: Locale } & { basicInfo?: BasicInfo }> = ({
     lang,
     basicInfo,
 }) => {

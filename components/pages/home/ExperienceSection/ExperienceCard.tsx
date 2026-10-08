@@ -1,8 +1,8 @@
-import { i18n } from "@/i18n/config";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
-import { dict } from "./dictionary";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 import { Experience } from "@/helpers/database/collections/experience";
 
 export interface ExperienceCardProps
@@ -10,13 +10,13 @@ export interface ExperienceCardProps
     experience: Experience;
 }
 
-const ExperienceCard: FCi18n<ExperienceCardProps> = ({
+const ExperienceCard: FC<{ lang: Locale } & ExperienceCardProps> = async ({
     lang,
     experience,
     className,
     ...props
 }) => {
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
+    const localeDict = (await getDictionary(lang)).experienceSection;
     return (
         <div className={`card ${className ?? ""}`} {...props}>
             <div className="card-body d-flex flex-column">

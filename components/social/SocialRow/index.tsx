@@ -1,9 +1,9 @@
-import { i18n } from "@/i18n/config";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import Link from "next/link";
 import { CSSProperties, DetailedHTMLProps, HTMLAttributes } from "react";
 import { FaEnvelope } from "react-icons/fa";
-import { dict } from "./dictionary";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
 import { SocialNetworksMetadata } from "@/helpers/database/collections/personalInfo/socialNetwork";
 
@@ -14,7 +14,7 @@ export interface SocialRowProps
     styleIcons?: CSSProperties;
 }
 
-const SocialRow: FCi18n<SocialRowProps> = ({
+const SocialRow: FC<{ lang: Locale } & SocialRowProps> = async ({
     lang,
     personalInfo,
     classNameIcons,
@@ -22,7 +22,7 @@ const SocialRow: FCi18n<SocialRowProps> = ({
     ...props
 }) => {
     const socialNetworks = personalInfo.socialNetworks;
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
+    const localeDict = (await getDictionary(lang)).socialRow;
     return (
         <div {...props}>
             {socialNetworks.map((sn) => {

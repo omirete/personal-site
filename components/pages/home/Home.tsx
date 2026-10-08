@@ -4,7 +4,8 @@ import HighlightsSection from "@/components/pages/home/HighlightsSection";
 import LandingSection from "@/components/pages/home/LandingSection";
 import ProjectsSection from "@/components/pages/home/ProjectsSection";
 import Footer from "@/components/ui/Footer";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import {
     getPublicPersonalInfo,
     getPublicHighlights,
@@ -12,7 +13,10 @@ import {
     getPublicProjects,
 } from "@/helpers/database/getPublicCollections";
 
-const Home: FCi18n<{}> = async ({ lang }) => {
+import { getDictionary } from "@/app/[lang]/dictionaries";
+
+const Home: FC<{ lang: Locale } & {}> = async ({ lang }) => {
+    const dictionary = await getDictionary(lang);
     const [personalInfo, highlights, experience, projects] = await Promise.all([
         getPublicPersonalInfo(),
         getPublicHighlights(),
@@ -30,9 +34,9 @@ const Home: FCi18n<{}> = async ({ lang }) => {
                     }}
                 >
                     <LandingSection lang={lang} personalInfo={personalInfo} />
-                    <HighlightsSection lang={lang} highlights={highlights} />
+                    <HighlightsSection dictionary={dictionary.highlightsSection} lang={lang} highlights={highlights} />
                     <ExperienceSection lang={lang} experience={experience} />
-                    <ProjectsSection lang={lang} projects={projects} />
+                    <ProjectsSection dictionary={dictionary.projectsSection} lang={lang} projects={projects} />
                 </div>
                 <ContactMeSection lang={lang} personalInfo={personalInfo} />
                 <Footer lang={lang} personalInfo={personalInfo} />

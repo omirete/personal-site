@@ -1,19 +1,19 @@
 import { Experience } from "@/helpers/database/collections/experience";
-import { i18n } from "@/i18n/config";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import { Fragment } from "react";
-import { dict } from "../dictionary";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 
 export interface ExperienceTimelineProps {
     experience: Experience[];
 }
 
-const ExperienceTimeline: FCi18n<ExperienceTimelineProps> = ({
+const ExperienceTimeline: FC<{ lang: Locale } & ExperienceTimelineProps> = async ({
     lang,
     experience,
 }) => {
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
+    const localeDict = (await getDictionary(lang)).experienceSection;
     return (
         <table className="text-white">
             <tbody>

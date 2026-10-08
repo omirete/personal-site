@@ -5,18 +5,18 @@ import LangSelector from "@/components/ui/LangSelector";
 import Navbar from "@/components/ui/Navbar";
 import NavbarAnchor from "@/components/ui/Navbar/NavbarAnchor";
 import NavbarLink from "@/components/ui/Navbar/NavbarLink";
-import { i18n } from "@/i18n/config";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { FaDownload } from "react-icons/fa";
-import { dict } from "./dictionary";
+import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
 
-const MyNavbar: FCi18n = ({ lang }) => {
+const MyNavbar: FC<{ lang: Locale; dictionary: Dictionary["myNavbar"]; loginDictionary: Dictionary["loginButton"] }> = ({ dictionary, loginDictionary, lang }) => {
     const { data: session } = useSession();
     const linkClasses = "text-white fw-sm-bold";
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
+    const localeDict = dictionary;
     return (
         <Navbar id="navbar">
             <ul className="navbar-nav me-auto">
@@ -49,7 +49,7 @@ const MyNavbar: FCi18n = ({ lang }) => {
                 )}
             </ul>
             {session && (
-                <LoginButton
+                <LoginButton dictionary={loginDictionary}
                     lang={lang}
                     className="px-2 py-1 me-2 text-white"
                 />

@@ -1,5 +1,6 @@
 "use client";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import { Project } from "@/helpers/database/collections/project";
 import ProjectsRow from "./ProjectsRow";
 import useEntitiesList from "../useEntitiesList";
@@ -13,7 +14,7 @@ export interface ProjectsListProps
     projects: WithStringId<Project>[];
 }
 
-const ProjectsList: FCi18n<ProjectsListProps> = ({
+const ProjectsList: FC<{ lang: Locale } & ProjectsListProps> = ({
     lang,
     projects,
     className,

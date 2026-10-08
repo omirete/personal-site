@@ -1,13 +1,14 @@
 "use client";
 
 import SubmitButton from "@/components/ui/forms/SubmitButton";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import useFormExperience from "./useFormExperience";
 import { useState } from "react";
 import useCertificates from "../useCertificates";
 import CertificateReference from "../CertificateReference";
 
-const FormExperience: FCi18n = ({ lang }) => {
+const FormExperience: FC<{ lang: Locale }> = ({ lang }) => {
     const { handleCreate, creating } = useFormExperience(lang);
     const { certificates, loading, error } = useCertificates();
     const [relevantUrl, setRelevantUrl] = useState("");

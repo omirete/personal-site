@@ -1,15 +1,17 @@
+import { notFound } from "next/navigation";
 import FormHighlights from "@/components/pages/admin/FormHighlights";
 import HighlightsList from "@/components/pages/admin/entitiesList/HighlightsList";
 import DB from "@/helpers/database/DB";
 import readUncachedData from "@/helpers/database/readUncachedData";
 import parseIdsAsStringIds from "@/helpers/database/parseIdsAsStringIds";
-import { Locale } from "@/i18n/config";
+import { hasLocale } from "@/i18n/config";
 import { NextPage } from "next";
 
 const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({
     params,
 }) => {
-    const lang = (await params).lang as Locale;
+    const lang = (await params).lang;
+    if (!hasLocale(lang)) notFound();
     const highlights = parseIdsAsStringIds(
         await readUncachedData(() => DB.highlights.find().toArray()),
     );

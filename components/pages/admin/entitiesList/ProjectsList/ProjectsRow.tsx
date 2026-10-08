@@ -1,7 +1,8 @@
 "use client";
 import { Project } from "@/helpers/database/collections/project";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import StringI18N from "@/i18n/types/StringI18N";
 import WithStringId from "@/types/WithStringId";
 import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
@@ -19,7 +20,7 @@ export interface ProjectsRowProps
     handleDelete: (id: string) => void;
 }
 
-const ProjectsRow: FCi18n<ProjectsRowProps> = ({
+const ProjectsRow: FC<{ lang: Locale } & ProjectsRowProps> = ({
     lang,
     loading,
     project,

@@ -1,22 +1,22 @@
 "use client";
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { Highlight } from "@/helpers/database/collections/highlight";
-import { i18n } from "@/i18n/config";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import { useState } from "react";
-import { dict } from "./dictionary";
+import type { Dictionary } from "@/app/[lang]/dictionaries";
 import HighlightDetail from "./HighlightDetail";
 import HighlightTile from "./HighlightTile";
 import WithStringId from "@/types/WithStringId";
 
-const HighlightsSection: FCi18n<{ highlights: WithStringId<Highlight>[] }> = ({
+const HighlightsSection: FC<{ lang: Locale; dictionary: Dictionary["highlightsSection"] } & { highlights: WithStringId<Highlight>[] }> = ({ dictionary,
     lang,
     highlights,
 }) => {
     const [activeHighlight, setActiveHighlight] = useState<
         WithStringId<Highlight> | undefined
     >();
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
+    const localeDict = dictionary;
     return (
         <FullHeightSection id="highlights" className="py-4 px-3 px-sm-5">
             <h3 className="mt-5 mb-3 text-white">{localeDict.highlights}</h3>

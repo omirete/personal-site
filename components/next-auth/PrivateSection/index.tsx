@@ -1,9 +1,13 @@
 import { getServerSession } from "next-auth";
+import { connection } from "next/server";
 import { authOptions } from "@/helpers/auth";
 import { ReactNode } from "react";
 import { NextPage } from "next";
 import LoginButton from "../LoginButton";
-import { redirect } from "next/navigation";
+import { getDictionary } from "@/app/[lang]/dictionaries";
+import { lang as getLang } from "next/root-params";
+import { hasLocale } from "@/i18n/config";
+import { notFound, redirect } from "next/navigation";
 
 export interface PrivateSectionProps {
     children?: ReactNode;
@@ -18,6 +22,10 @@ const PrivateSection: NextPage<PrivateSectionProps> = async ({
     children,
     behaviourOnUnauthorized,
 }) => {
+    const lang = await getLang();
+    if (!hasLocale(lang)) notFound();
+    // NextAuth creates random CSRF values; session lookup belongs to the request.
+    await connection();
     const session = await getServerSession(authOptions);
 
     if (session) {
@@ -32,15 +40,15 @@ const PrivateSection: NextPage<PrivateSectionProps> = async ({
                         <p className="mt-3">
                             You are not authorized to view this content.
                         </p>
-                        <LoginButton lang="en" />
+                        <LoginButton lang={lang} dictionary={(await getDictionary(lang)).loginButton} />
                     </div>
                 );
             case "redirect-unauthorized":
-                return redirect("/unauthorized");
+                return redirect(`/${lang}/unauthorized`);
             case "redirect-home":
-                return redirect("/");
+                return redirect(`/${lang}`);
             default:
-                return redirect("/");
+                return redirect(`/${lang}`);
         }
     }
 };

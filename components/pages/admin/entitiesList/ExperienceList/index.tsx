@@ -1,5 +1,6 @@
 "use client";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import { Experience } from "@/helpers/database/collections/experience";
 import ExperienceRow from "./ExperienceRow";
 import useEntitiesList from "../useEntitiesList";
@@ -14,7 +15,7 @@ export interface ExperienceListProps
     experience: WithStringId<Experience>[];
 }
 
-const ExperienceList: FCi18n<ExperienceListProps> = ({
+const ExperienceList: FC<{ lang: Locale } & ExperienceListProps> = ({
     lang,
     experience,
     className,

@@ -1,0 +1,63 @@
+{
+    "site": {
+        "siteDescription": "Creador, dev, maravillado por el mundo 🚀"
+    },
+    "unauthorized": {
+        "niceTry": "Sí, claro. Buen intento. 🤣",
+        "goHome": "Ir al inicio",
+        "signInBefore": "O ",
+        "signInAfter": " si sos yo. 🙄"
+    },
+    "myNavbar": {
+        "home": "Inicio",
+        "highlights": "Destacado",
+        "experience": "Experiencia",
+        "projects": "Projectos",
+        "contact": "Contacto",
+        "admin": "Admin",
+        "cv": "CV"
+    },
+    "loginButton": {
+        "signIn": "Iniciar sesión",
+        "signOut": "Cerrar sessión"
+    },
+    "contactSection": {
+        "contact": "Contacto",
+        "youMayReachOut": "Si estás interesad@ en colaborar, tienes algún encargo, o solo quieres hablar un rato acerca de lo que sea, puedes contactarte conmigo utilizando cualquiera de las redes que aparecen abajo.",
+        "formBefore": "Claro, si eres de los formularios, también puedes usar ",
+        "formLabel": "✨ el formulario ✨",
+        "formAfter": ". 🥳",
+        "myHomeTown": "Mi ciudad natal"
+    },
+    "experienceSection": {
+        "experience": "Experiencia",
+        "viewCertificate": "Ver certificado",
+        "seeLink": "Ver enlace"
+    },
+    "highlightsSection": {
+        "highlights": "Destacado",
+        "touchToLearn": "Haz clic en cada tarjeta para leer más! 👇",
+        "hoverToLearn": "Desplázate sobre las tarjetas para leer más! 👉"
+    },
+    "landingSection": {
+        "hello": "Hola,",
+        "iamName": "Soy {name}",
+        "seeMore": "Ver más",
+        "profilePictureAlt": "Imagen de perfil"
+    },
+    "projectsSection": {
+        "projects": "Proyectos",
+        "explanation": "Esta es una selección de mis proyectos personales favoritos.",
+        "touchToLearn": "Haz clic en cada tarjeta para leer más! 👇",
+        "hoverToLearn": "👈 Desplázate sobre las tarjetas para leer más!",
+        "loading": "Cargando"
+    },
+    "socialRow": {
+        "followMeOn": "Seguime en",
+        "sendMeAMessageOver": "Envíame un mensaje por",
+        "sendMeAnEmail": "Envíame un email!"
+    },
+    "footer": {
+        "sourceCodeAvailableOn": "Código fuente disponible en"
+    }
+}

@@ -1,10 +1,11 @@
 "use client";
 
 import SubmitButton from "@/components/ui/forms/SubmitButton";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import useFormHighlights from "./useFormHighlights";
 
-const FormHighlights: FCi18n = ({ lang }) => {
+const FormHighlights: FC<{ lang: Locale }> = ({ lang }) => {
     const { handleCreate, creating } = useFormHighlights(lang);
     return (
         <form onSubmit={handleCreate} className="mb-3">

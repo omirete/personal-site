@@ -1,17 +1,20 @@
 "use client";
-import { i18n, LocaleFlags } from "@/i18n/config";
-import FCi18n from "@/i18n/types/FCi18n";
+import { i18n } from "@/i18n/config";
+import IconFlagEn from "@/assets/svg/lang/en.svg";
+import IconFlagEs from "@/assets/svg/lang/es.svg";
+import IconFlagDe from "@/assets/svg/lang/de.svg";
+const LocaleFlags = { en: IconFlagEn, es: IconFlagEs, de: IconFlagDe };
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
-const LangSelector: FCi18n<
-    Omit<
+const LangSelector: FC<{ lang: Locale } & Omit<
         DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>,
         "children"
-    >
-> = ({ lang, className, ...props }) => {
+    >> = ({ lang, className, ...props }) => {
     const pathname = usePathname();
     return (
         <div className={`d-flex ${className}`} {...props}>

@@ -1,6 +1,7 @@
+import { notFound } from "next/navigation";
 import AdminNav from "@/components/pages/admin/AdminNav";
 import PrivateSection from "@/components/next-auth/PrivateSection";
-import { Locale } from "@/i18n/config";
+import { hasLocale } from "@/i18n/config";
 import RefreshCache from "@/components/pages/admin/RefreshCache";
 import { Suspense } from "react";
 
@@ -11,7 +12,8 @@ export default async function Layout({
     children: React.ReactNode;
     params: Promise<{ lang: string }>;
 }) {
-    const lang = (await params).lang as Locale;
+    const lang = (await params).lang;
+    if (!hasLocale(lang)) notFound();
     return (
         <div
             style={{

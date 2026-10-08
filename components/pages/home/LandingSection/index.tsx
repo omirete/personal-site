@@ -2,18 +2,18 @@ import FullHeightSection from "@/components/ui/FullHeightSection";
 import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
 import { FaChevronDown } from "react-icons/fa";
 import IconBlob from "@/assets/svg/blob-7.svg";
-import { dict } from "./dictionary";
-import FCi18n from "@/i18n/types/FCi18n";
+import { getDictionary } from "@/app/[lang]/dictionaries";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
-import { i18n } from "@/i18n/config";
 import Image from "next/image";
 import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
 
-const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
+const LandingSection: FC<{ lang: Locale } & { personalInfo: PersonalInfo }> = async ({
     lang,
     personalInfo,
 }) => {
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
+    const localeDict = (await getDictionary(lang)).landingSection;
     if (localeDict) {
         return (
             <FullHeightSection
@@ -30,9 +30,7 @@ const LandingSection: FCi18n<{ personalInfo: PersonalInfo }> = ({
                                     </code>
                                 </p>
                                 <p className="m-0 fs-4">
-                                    {localeDict.iamName(
-                                        personalInfo.basicInfo.name,
-                                    )}
+                                    {localeDict.iamName.replace("{name}", personalInfo.basicInfo.name)}
                                 </p>
                                 <p className="m-0">
                                     {parseStringI18N(

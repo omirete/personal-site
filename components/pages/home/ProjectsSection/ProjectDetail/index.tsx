@@ -10,10 +10,10 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import rehypeStringify from "rehype-stringify";
 import rehypeSanitize from "rehype-sanitize";
-import FCi18n from "@/i18n/types/FCi18n";
-import { dict } from "../dictionary";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/app/[lang]/dictionaries";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
-import { i18n } from "@/i18n/config";
 
 export interface ProjectDetailProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -44,7 +44,7 @@ const markdownToHtml = async (markdown?: string): Promise<string> => {
     }
 };
 
-const ProjectDetail: FCi18n<ProjectDetailProps> = ({
+const ProjectDetail: FC<{ lang: Locale; dictionary: Dictionary["projectsSection"] } & ProjectDetailProps> = ({ dictionary,
     lang,
     project,
     className,
@@ -52,7 +52,7 @@ const ProjectDetail: FCi18n<ProjectDetailProps> = ({
 }) => {
     const [loading, setLoading] = useState(true);
     const [contentHtml, setContentHtml] = useState<string | undefined>();
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
+    const localeDict = dictionary;
 
     useEffect(() => {
         markdownToHtml(parseStringI18N(project.fullContent, lang)).then(

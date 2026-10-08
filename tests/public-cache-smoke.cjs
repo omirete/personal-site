@@ -24,8 +24,15 @@ async function main() {
     const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
     async function request(url, options = {}, expectedStatus = 200) {
         const response = await fetch(`http://localhost:${port}${url}`, options);
-        await response.arrayBuffer();
+        const body = await response.text();
         assert.equal(response.status, expectedStatus, `${options.method || 'GET'} ${url}`);
+        if (['/', '/en', '/es', '/de'].includes(url)) {
+            const locale = url === '/' ? 'en' : url.slice(1);
+            assert.match(body, new RegExp(`<html lang="${locale}"`));
+            assert.equal((body.match(/<html[ >]/g) || []).length, 1);
+            assert.equal((body.match(/<body[ >]/g) || []).length, 1);
+            assert.ok(!body.includes('__next_error__'), `${url} must render successfully after invalidation.`);
+        }
         await sleep(150); // Allow Next.js pending cache writes/invalidation to settle.
         return response;
     }
@@ -84,7 +91,8 @@ async function main() {
         const exported = await request('/api/admin/export?collection=projects', { headers: adminHeaders });
         assert.ok(reads() > previousReads, 'Authorized exports must read MongoDB directly.');
         assert.equal(exported.headers.get('cache-control'), 'private, no-store');
-        console.log('PASS: public cache reuse, manual invalidation, removed entity GET handlers, authorization, direct admin pages/exports.');
+        assert.doesNotMatch(output, /Error:|blocking-route|Uncached data was accessed/);
+        console.log('PASS: public cache reuse, manual invalidation, localized document rendering, removed entity GET handlers, authorization, direct admin pages/exports.');
     } finally {
         if (server.exitCode === null) {
             const exited = once(server, 'exit');

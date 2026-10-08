@@ -1,15 +1,15 @@
 import Signature from "@/assets/svg/signature.svg";
 import SocialRow from "@/components/social/SocialRow";
-import FCi18n from "@/i18n/types/FCi18n";
-import { dict } from "./dictionary";
-import { i18n } from "@/i18n/config";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
 
-const Footer: FCi18n<{ personalInfo: PersonalInfo }> = ({
+const Footer: FC<{ lang: Locale } & { personalInfo: PersonalInfo }> = async ({
     lang,
     personalInfo,
 }) => {
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
+    const localeDict = (await getDictionary(lang)).footer;
     return (
         <div className="text-decoration-none text-center bg-dark py-4">
             <SocialRow

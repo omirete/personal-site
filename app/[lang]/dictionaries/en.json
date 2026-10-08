@@ -1,0 +1,63 @@
+{
+    "site": {
+        "siteDescription": "Maker of things, dev, amazed by the world 🚀"
+    },
+    "unauthorized": {
+        "niceTry": "Yeah, right. Nice try. 🤣",
+        "goHome": "Go home",
+        "signInBefore": "Or ",
+        "signInAfter": " if you are me. 🙄"
+    },
+    "myNavbar": {
+        "home": "Home",
+        "highlights": "Highlights",
+        "experience": "Experience",
+        "projects": "Projects",
+        "contact": "Contact",
+        "admin": "Admin",
+        "cv": "CV"
+    },
+    "loginButton": {
+        "signIn": "Sign in",
+        "signOut": "Sign out"
+    },
+    "contactSection": {
+        "contact": "Contact",
+        "youMayReachOut": "If you are interested in collaborating, have some fancy freelancing request, or just want to have a chat about life, you may reach out in any of the networks listed below.",
+        "formBefore": "Also, if you are a form person, you may use ",
+        "formLabel": "✨ the form ✨",
+        "formAfter": " as well. 🥳",
+        "myHomeTown": "My home town"
+    },
+    "experienceSection": {
+        "experience": "Experience",
+        "viewCertificate": "View certificate",
+        "seeLink": "See link"
+    },
+    "highlightsSection": {
+        "highlights": "Highlights",
+        "touchToLearn": "Touch each card to learn more! 👇",
+        "hoverToLearn": "Hover or touch on each card to learn more! 👉"
+    },
+    "landingSection": {
+        "hello": "Hello,",
+        "iamName": "I am {name}",
+        "seeMore": "See more",
+        "profilePictureAlt": "Profile picture"
+    },
+    "projectsSection": {
+        "projects": "Projects",
+        "explanation": "This is a cherry-picked collection of some of my favorite personal projects.",
+        "touchToLearn": "Touch each card to learn more! 👇",
+        "hoverToLearn": "👈 Hover or touch on each card to learn more!",
+        "loading": "Loading"
+    },
+    "socialRow": {
+        "followMeOn": "Follow me on",
+        "sendMeAMessageOver": "Send me a message over",
+        "sendMeAnEmail": "Send me an email!"
+    },
+    "footer": {
+        "sourceCodeAvailableOn": "Source code available on"
+    }
+}

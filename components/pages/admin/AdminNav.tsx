@@ -1,11 +1,12 @@
 "use client";
 
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import LinkInfo from "@/types/DataObjects/LinkInfo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const AdminNav: FCi18n = ({ lang }) => {
+const AdminNav: FC<{ lang: Locale }> = ({ lang }) => {
     const links: Omit<LinkInfo, "id">[] = [
         { url: `/${lang}/admin/files`, text: "Files" },
         { url: `/${lang}/admin/personal-info`, text: "Personal info" },

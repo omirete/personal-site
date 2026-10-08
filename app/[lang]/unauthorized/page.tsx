@@ -1,11 +1,14 @@
-import { i18n, Locale } from "@/i18n/config";
+import { notFound } from "next/navigation";
+import { hasLocale } from "@/i18n/config";
 import { NextPage } from "next";
+import LoginButton from "@/components/next-auth/LoginButton";
 import Link from "next/link";
-import { dict } from "./dictionary";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 
 const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({ params }) => {
-    const lang = (await params).lang as Locale;
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
+    const lang = (await params).lang;
+    if (!hasLocale(lang)) notFound();
+    const localeDict = (await getDictionary(lang)).unauthorized;
     return (
         <main
             className="min-vh-100 px-1 px-sm-3 py-5"
@@ -17,12 +20,12 @@ const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({ params })
             <div className="bg-white bg-opacity-75 m-3 p-2 rounded shadow">
                 <div className="mb-2">{localeDict.niceTry}</div>
                 <Link
-                    href="/"
+                    href={`/${lang}`}
                     className="btn btn-secondary btn-sm text-white mb-2"
                 >
                     🏠 {localeDict.goHome}
                 </Link>
-                <div>{localeDict.orSignIn}</div>
+                <div>{localeDict.signInBefore}<LoginButton lang={lang} dictionary={(await getDictionary(lang)).loginButton} className="btn-sm" />{localeDict.signInAfter}</div>
             </div>
         </main>
     );

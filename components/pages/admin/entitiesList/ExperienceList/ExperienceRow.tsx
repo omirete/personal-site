@@ -4,7 +4,8 @@ import {
     SupportedExperienceTypes,
 } from "@/helpers/database/collections/experience";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import StringI18N from "@/i18n/types/StringI18N";
 import WithStringId from "@/types/WithStringId";
 import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
@@ -26,7 +27,7 @@ export interface ExperienceRowProps
     handleDelete: (id: string) => void;
 }
 
-const ExperienceRow: FCi18n<ExperienceRowProps> = ({
+const ExperienceRow: FC<{ lang: Locale } & ExperienceRowProps> = ({
     lang,
     loading,
     experience,

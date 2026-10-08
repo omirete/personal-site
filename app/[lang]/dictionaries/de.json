@@ -1,0 +1,63 @@
+{
+    "site": {
+        "siteDescription": "Maker of things, Entwickler, fasziniert von der Welt 🚀"
+    },
+    "unauthorized": {
+        "niceTry": "Ja, klar. Netter Versuch. 🤣",
+        "goHome": "Startseite",
+        "signInBefore": "Oder ",
+        "signInAfter": ", wenn du mich bist. 🙄"
+    },
+    "myNavbar": {
+        "home": "Home",
+        "highlights": "Highlights",
+        "experience": "Erfahrung",
+        "projects": "Projekte",
+        "contact": "Kontakt",
+        "admin": "Admin",
+        "cv": "Lebenslauf"
+    },
+    "loginButton": {
+        "signIn": "Einloggen",
+        "signOut": "Ausloggen"
+    },
+    "contactSection": {
+        "contact": "Kontakt",
+        "youMayReachOut": "Falls du Interesse daran hast zu für ein Projekt zusammen zu arbeiten, oder du eine freiberufliche Anfrage hast oder einfach nur über das Leben plaudern möchtest, kontaktiere mich gerne über die unten aufgeführten sozialen Netzwerke.",
+        "formBefore": "Außerdem, falls du eine Formular-Person bist, kannst du auch gerne ",
+        "formLabel": "✨ das Formular ✨",
+        "formAfter": " benutzen. 🥳",
+        "myHomeTown": "Meine Heimat"
+    },
+    "experienceSection": {
+        "experience": "Erfahrung",
+        "viewCertificate": "Bescheinigung sehen",
+        "seeLink": "Link ansehen"
+    },
+    "highlightsSection": {
+        "highlights": "Highlights",
+        "touchToLearn": "Auf die Kacheln klicken, um mehr zu erfahren! 👇",
+        "hoverToLearn": "Maus über die Kacheln bewegen, um mehr zu erfahren! 👉"
+    },
+    "landingSection": {
+        "hello": "Hallo,",
+        "iamName": "Ich bin {name}",
+        "seeMore": "Mehr",
+        "profilePictureAlt": "Profil Bild"
+    },
+    "projectsSection": {
+        "projects": "Projekte",
+        "explanation": "Dies ist eine Selektion meiner persönlichen Lieblingsprojekte.",
+        "touchToLearn": "Auf die Kacheln klicken, um mehr zu erfahren! 👇",
+        "hoverToLearn": "👈 Maus über die Kacheln bewegen, um mehr zu erfahren!",
+        "loading": "Wird geladen"
+    },
+    "socialRow": {
+        "followMeOn": "Folge mich auf",
+        "sendMeAMessageOver": "Schicke mir eine Nachricht über",
+        "sendMeAnEmail": "Schicke mir eine E-Mail!"
+    },
+    "footer": {
+        "sourceCodeAvailableOn": "Quellcode verfübar auf"
+    }
+}

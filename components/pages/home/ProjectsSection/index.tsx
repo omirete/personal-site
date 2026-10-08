@@ -2,22 +2,22 @@
 
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { Project } from "@/helpers/database/collections/project";
-import { i18n } from "@/i18n/config";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import { useState } from "react";
-import { dict } from "./dictionary";
+import type { Dictionary } from "@/app/[lang]/dictionaries";
 import ProjectCard from "./ProjectCard";
 import ProjectDetail from "./ProjectDetail";
 import WithStringId from "@/types/WithStringId";
 
-const ProjectsSection: FCi18n<{ projects: WithStringId<Project>[] }> = ({
+const ProjectsSection: FC<{ lang: Locale; dictionary: Dictionary["projectsSection"] } & { projects: WithStringId<Project>[] }> = ({ dictionary,
     lang,
     projects,
 }) => {
     const [activeProject, setActiveProject] = useState<
         WithStringId<Project> | undefined
     >();
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
+    const localeDict = dictionary;
     return (
         <FullHeightSection id="projects" className="py-4 px-3 px-sm-5">
             <h3 className="mt-5 mb-3 text-white">{localeDict.projects}</h3>
@@ -79,7 +79,7 @@ const ProjectsSection: FCi18n<{ projects: WithStringId<Project>[] }> = ({
                                         <div className="d-block d-sm-none">
                                             {activeProject &&
                                                 activeProject._id === p._id && (
-                                                    <ProjectDetail
+                                                    <ProjectDetail dictionary={dictionary}
                                                         lang={lang}
                                                         project={activeProject}
                                                         className={`
@@ -119,7 +119,7 @@ const ProjectsSection: FCi18n<{ projects: WithStringId<Project>[] }> = ({
                     )}
                     {activeProject !== undefined && (
                         <div>
-                            <ProjectDetail
+                            <ProjectDetail dictionary={dictionary}
                                 lang={lang}
                                 project={activeProject}
                                 className={`

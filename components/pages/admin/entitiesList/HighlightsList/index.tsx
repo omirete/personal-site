@@ -1,5 +1,6 @@
 "use client";
-import FCi18n from "@/i18n/types/FCi18n";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
 import { Highlight } from "@/helpers/database/collections/highlight";
 import HighlightsRow from "./HighlightsRow";
 import useEntitiesList from "../useEntitiesList";
@@ -13,7 +14,7 @@ export interface HighlightsListProps
     highlights: WithStringId<Highlight>[];
 }
 
-const HighlightsList: FCi18n<HighlightsListProps> = ({
+const HighlightsList: FC<{ lang: Locale } & HighlightsListProps> = ({
     lang,
     highlights,
     className,

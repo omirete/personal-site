@@ -1,18 +1,18 @@
 import FullHeightSection from "@/components/ui/FullHeightSection";
 import { Experience } from "@/helpers/database/collections/experience";
 import sortExperience from "@/helpers/sortExperience";
-import { i18n } from "@/i18n/config";
-import FCi18n from "@/i18n/types/FCi18n";
-import { dict } from "./dictionary";
+import type { FC } from "react";
+import type { Locale } from "@/i18n/config";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 import ExperienceCard from "./ExperienceCard";
 import ExperienceTimeline from "./ExperienceTimeline";
 import WithStringId from "@/types/WithStringId";
 
-const ExperienceSection: FCi18n<{ experience: WithStringId<Experience>[] }> = ({
+const ExperienceSection: FC<{ lang: Locale } & { experience: WithStringId<Experience>[] }> = async ({
     lang,
     experience,
 }) => {
-    const localeDict = dict[lang] ?? dict[i18n.defaultLocale];
+    const localeDict = (await getDictionary(lang)).experienceSection;
     return (
         <FullHeightSection id="experience" className="py-4 px-3 px-sm-5">
             <h3 className="mt-5 mb-3 text-white">{localeDict.experience}</h3>
