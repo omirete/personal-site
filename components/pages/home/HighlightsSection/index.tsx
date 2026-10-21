@@ -9,10 +9,11 @@ import HighlightDetail from "./HighlightDetail";
 import HighlightTile from "./HighlightTile";
 import WithStringId from "@/types/WithStringId";
 
-const HighlightsSection: FC<{ lang: Locale; dictionary: Dictionary["highlightsSection"] } & { highlights: WithStringId<Highlight>[] }> = ({ dictionary,
-    lang,
-    highlights,
-}) => {
+const HighlightsSection: FC<
+    { lang: Locale; dictionary: Dictionary["highlightsSection"] } & {
+        highlights: WithStringId<Highlight>[];
+    }
+> = ({ dictionary, lang, highlights }) => {
     const [activeHighlight, setActiveHighlight] = useState<
         WithStringId<Highlight> | undefined
     >();

@@ -7,11 +7,10 @@ import useEntitiesList from "../useEntitiesList";
 import WithStringId from "@/types/WithStringId";
 import useCertificates from "../../useCertificates";
 
-export interface ExperienceListProps
-    extends React.DetailedHTMLProps<
-        React.TableHTMLAttributes<HTMLTableElement>,
-        HTMLTableElement
-    > {
+export interface ExperienceListProps extends React.DetailedHTMLProps<
+    React.TableHTMLAttributes<HTMLTableElement>,
+    HTMLTableElement
+> {
     experience: WithStringId<Experience>[];
 }
 
@@ -23,13 +22,21 @@ const ExperienceList: FC<{ lang: Locale } & ExperienceListProps> = ({
 }) => {
     const { handleDelete, handleUpdate, loadingId } =
         useEntitiesList("experience");
-    const { certificates, loading: certificatesLoading, error } = useCertificates();
+    const {
+        certificates,
+        loading: certificatesLoading,
+        error,
+    } = useCertificates();
     return (
         <table
             {...props}
             className={`table border-primary caption-top ${className}`}
         >
-            {error && <caption className="text-danger" role="alert">{error}</caption>}
+            {error && (
+                <caption className="text-danger" role="alert">
+                    {error}
+                </caption>
+            )}
             <thead>
                 <tr>
                     <th scope="col">#</th>

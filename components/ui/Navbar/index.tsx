@@ -4,8 +4,10 @@ import Link from "next/link";
 import SignatureLine from "@/assets/svg/signature-line.svg";
 import { MdClose, MdMenu } from "react-icons/md";
 
-export interface NavbarProps
-    extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {}
+export interface NavbarProps extends DetailedHTMLProps<
+    HTMLAttributes<HTMLElement>,
+    HTMLElement
+> {}
 
 interface NavbarState {
     expanded: boolean;

@@ -15,8 +15,10 @@ import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 
-export interface ProjectDetailProps
-    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface ProjectDetailProps extends DetailedHTMLProps<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+> {
     project: Project;
 }
 
@@ -44,12 +46,12 @@ const markdownToHtml = async (markdown?: string): Promise<string> => {
     }
 };
 
-const ProjectDetail: FC<{ lang: Locale; dictionary: Dictionary["projectsSection"] } & ProjectDetailProps> = ({ dictionary,
-    lang,
-    project,
-    className,
-    ...props
-}) => {
+const ProjectDetail: FC<
+    {
+        lang: Locale;
+        dictionary: Dictionary["projectsSection"];
+    } & ProjectDetailProps
+> = ({ dictionary, lang, project, className, ...props }) => {
     const [loading, setLoading] = useState(true);
     const [contentHtml, setContentHtml] = useState<string | undefined>();
     const localeDict = dictionary;

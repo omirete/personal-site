@@ -6,12 +6,17 @@ import { i18n } from "./i18n/config";
 export function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl;
     const hasLocale = i18n.locales.some(
-        (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
+        (locale) =>
+            pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
     );
     if (hasLocale) return NextResponse.next();
     const languages = new Negotiator({
-        headers: { "accept-language": request.headers.get("accept-language") ?? "" },
-    }).languages().filter((language) => language !== "*");
+        headers: {
+            "accept-language": request.headers.get("accept-language") ?? "",
+        },
+    })
+        .languages()
+        .filter((language) => language !== "*");
     let locale: string = i18n.defaultLocale;
     try {
         locale = match(languages, [...i18n.locales], i18n.defaultLocale);

@@ -11,11 +11,9 @@ export type LoginButtonProps = DetailedHTMLProps<
     HTMLButtonElement
 >;
 
-const LoginButton: FC<{ lang: Locale; dictionary: Dictionary["loginButton"] } & LoginButtonProps> = ({ dictionary,
-    lang,
-    className,
-    ...props
-}) => {
+const LoginButton: FC<
+    { lang: Locale; dictionary: Dictionary["loginButton"] } & LoginButtonProps
+> = ({ dictionary, lang, className, ...props }) => {
     const { data: session } = useSession();
     const localeDict = dictionary;
     if (session) {

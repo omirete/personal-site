@@ -9,11 +9,10 @@ import {
 } from "react";
 import { ModalProps } from "../Modal";
 
-export interface ButtonProps
-    extends DetailedHTMLProps<
-        ButtonHTMLAttributes<HTMLButtonElement>,
-        HTMLButtonElement
-    > {
+export interface ButtonProps extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+> {
     modal?: (
         show: boolean,
         setShow: Dispatch<SetStateAction<boolean>>,

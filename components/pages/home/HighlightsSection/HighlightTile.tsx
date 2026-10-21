@@ -4,8 +4,10 @@ import type { FC } from "react";
 import type { Locale } from "@/i18n/config";
 import { DetailedHTMLProps, LiHTMLAttributes } from "react";
 
-export interface HighlightTileProps
-    extends DetailedHTMLProps<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement> {
+export interface HighlightTileProps extends DetailedHTMLProps<
+    LiHTMLAttributes<HTMLLIElement>,
+    HTMLLIElement
+> {
     highlight: Highlight;
     active?: boolean;
     isLastChild?: boolean;

@@ -4,8 +4,10 @@ import type { FC } from "react";
 import type { Locale } from "@/i18n/config";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
-export interface HighlightDetailProps
-    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface HighlightDetailProps extends DetailedHTMLProps<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+> {
     highlight: Highlight;
 }
 

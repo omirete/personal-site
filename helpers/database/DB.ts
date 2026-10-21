@@ -11,7 +11,7 @@ import getterSetter, { PropertyGetterSetter } from "./propertyGetterSetter";
 const DB_URI = process.env.MONGODB_URI;
 
 export interface DBStructure {
-    database: Db,
+    database: Db;
     experience: Collection<Experience>;
     highlights: Collection<Highlight>;
     links: Collection<LinkInfo>;

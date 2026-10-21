@@ -5,11 +5,10 @@ import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import { FaSave } from "react-icons/fa";
 import useLinksList from "./useLinksList";
 
-export interface RowCreateLinkProps
-    extends DetailedHTMLProps<
-        HTMLAttributes<HTMLTableRowElement>,
-        HTMLTableRowElement
-    > {
+export interface RowCreateLinkProps extends DetailedHTMLProps<
+    HTMLAttributes<HTMLTableRowElement>,
+    HTMLTableRowElement
+> {
     rowNr: number;
 }
 

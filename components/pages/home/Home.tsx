@@ -34,9 +34,17 @@ const Home: FC<{ lang: Locale } & {}> = async ({ lang }) => {
                     }}
                 >
                     <LandingSection lang={lang} personalInfo={personalInfo} />
-                    <HighlightsSection dictionary={dictionary.highlightsSection} lang={lang} highlights={highlights} />
+                    <HighlightsSection
+                        dictionary={dictionary.highlightsSection}
+                        lang={lang}
+                        highlights={highlights}
+                    />
                     <ExperienceSection lang={lang} experience={experience} />
-                    <ProjectsSection dictionary={dictionary.projectsSection} lang={lang} projects={projects} />
+                    <ProjectsSection
+                        dictionary={dictionary.projectsSection}
+                        lang={lang}
+                        projects={projects}
+                    />
                 </div>
                 <ContactMeSection lang={lang} personalInfo={personalInfo} />
                 <Footer lang={lang} personalInfo={personalInfo} />

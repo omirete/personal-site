@@ -8,11 +8,10 @@ import WithStringId from "@/types/WithStringId";
 import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import { FaSave, FaTrash } from "react-icons/fa";
 
-export interface ProjectsRowProps
-    extends DetailedHTMLProps<
-        HTMLAttributes<HTMLTableRowElement>,
-        HTMLTableRowElement
-    > {
+export interface ProjectsRowProps extends DetailedHTMLProps<
+    HTMLAttributes<HTMLTableRowElement>,
+    HTMLTableRowElement
+> {
     rowNr: number;
     loading?: boolean;
     project: WithStringId<Project>;

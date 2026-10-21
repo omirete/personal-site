@@ -112,7 +112,12 @@ const FormExperience: FC<{ lang: Locale }> = ({ lang }) => {
                 />
             </div>
             <div className="mb-2">
-                <label htmlFor="experience-reference-url" className="form-label">Reference URL / certificate</label>
+                <label
+                    htmlFor="experience-reference-url"
+                    className="form-label"
+                >
+                    Reference URL / certificate
+                </label>
                 <CertificateReference
                     certificates={certificates}
                     loading={loading}
@@ -121,8 +126,14 @@ const FormExperience: FC<{ lang: Locale }> = ({ lang }) => {
                     name="relevantUrl"
                     id="experience-reference-url"
                 />
-                <p className="form-text">Upload PDFs under Files → Certificate, then select one here.</p>
-                {error && <p className="text-danger" role="alert">{error}</p>}
+                <p className="form-text">
+                    Upload PDFs under Files → Certificate, then select one here.
+                </p>
+                {error && (
+                    <p className="text-danger" role="alert">
+                        {error}
+                    </p>
+                )}
             </div>
             <SubmitButton
                 className="btn btn-primary w-100"

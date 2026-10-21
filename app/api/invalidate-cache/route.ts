@@ -23,9 +23,14 @@ async function refreshCache(): Promise<NextResponse> {
 export async function POST(): Promise<NextResponse> {
     const session = await getServerSession(authOptions);
     const authorizedEmails = process.env.AUTHORIZED_EMAILS?.split(",");
-    if (!session?.user?.email || !authorizedEmails?.includes(session.user.email)) {
+    if (
+        !session?.user?.email ||
+        !authorizedEmails?.includes(session.user.email)
+    ) {
         return NextResponse.json(
-            { error: "Please sign in as an administrator to refresh the cache." },
+            {
+                error: "Please sign in as an administrator to refresh the cache.",
+            },
             { status: 401, headers },
         );
     }

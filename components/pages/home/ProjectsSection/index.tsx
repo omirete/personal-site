@@ -10,10 +10,11 @@ import ProjectCard from "./ProjectCard";
 import ProjectDetail from "./ProjectDetail";
 import WithStringId from "@/types/WithStringId";
 
-const ProjectsSection: FC<{ lang: Locale; dictionary: Dictionary["projectsSection"] } & { projects: WithStringId<Project>[] }> = ({ dictionary,
-    lang,
-    projects,
-}) => {
+const ProjectsSection: FC<
+    { lang: Locale; dictionary: Dictionary["projectsSection"] } & {
+        projects: WithStringId<Project>[];
+    }
+> = ({ dictionary, lang, projects }) => {
     const [activeProject, setActiveProject] = useState<
         WithStringId<Project> | undefined
     >();
@@ -79,7 +80,8 @@ const ProjectsSection: FC<{ lang: Locale; dictionary: Dictionary["projectsSectio
                                         <div className="d-block d-sm-none">
                                             {activeProject &&
                                                 activeProject._id === p._id && (
-                                                    <ProjectDetail dictionary={dictionary}
+                                                    <ProjectDetail
+                                                        dictionary={dictionary}
                                                         lang={lang}
                                                         project={activeProject}
                                                         className={`
@@ -119,7 +121,8 @@ const ProjectsSection: FC<{ lang: Locale; dictionary: Dictionary["projectsSectio
                     )}
                     {activeProject !== undefined && (
                         <div>
-                            <ProjectDetail dictionary={dictionary}
+                            <ProjectDetail
+                                dictionary={dictionary}
                                 lang={lang}
                                 project={activeProject}
                                 className={`

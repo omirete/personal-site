@@ -35,8 +35,7 @@ $utilities: map-merge(
             property: fill,
             class: fill,
             state: hover,
-            values:
-                map-merge(
+            values: map-merge(
                     $theme-colors,
                     (
                         "transparent": #ffffff00,
@@ -47,16 +46,14 @@ $utilities: map-merge(
             property: stroke,
             class: stroke,
             state: hover,
-            values:
-                map-merge(
+            values: map-merge(
                     $theme-colors,
                     (
                         "transparent": #ffffff00,
                     )
                 ),
         ),
-        "background-color":
-            map-merge(
+        "background-color": map-merge(
                 map-get($utilities, "background-color"),
                 (
                     responsive: true,
@@ -106,15 +103,13 @@ $utilities: map-merge(
                 none: none,
             ),
         ),
-        "color":
-            map-merge(
+        "color": map-merge(
                 map-get($utilities, "color"),
                 (
                     state: hover,
                 )
             ),
-        "font-weight":
-            map-merge(
+        "font-weight": map-merge(
                 map-get($utilities, "font-weight"),
                 (
                     responsive: true,

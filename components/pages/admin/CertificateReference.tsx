@@ -9,7 +9,14 @@ interface CertificateReferenceProps {
     id?: string;
 }
 
-export default function CertificateReference({ certificates, loading, value, onChange, name, id }: CertificateReferenceProps) {
+export default function CertificateReference({
+    certificates,
+    loading,
+    value,
+    onChange,
+    name,
+    id,
+}: CertificateReferenceProps) {
     return (
         <div>
             <input
@@ -26,14 +33,22 @@ export default function CertificateReference({ certificates, loading, value, onC
                 className="form-select form-select-sm mt-1"
                 aria-label="Uploaded certificate"
                 disabled={loading || certificates.length === 0}
-                value={certificates.some((file) => file.url === value) ? value : ""}
+                value={
+                    certificates.some((file) => file.url === value) ? value : ""
+                }
                 onChange={(event) => onChange(event.target.value)}
             >
                 <option value="">
-                    {loading ? "Loading certificates…" : certificates.length ? "Choose a certificate" : "No certificates uploaded"}
+                    {loading
+                        ? "Loading certificates…"
+                        : certificates.length
+                          ? "Choose a certificate"
+                          : "No certificates uploaded"}
                 </option>
                 {certificates.map((file) => (
-                    <option key={file.url} value={file.url}>{file.pathname.replace(/^certificates\//, "")}</option>
+                    <option key={file.url} value={file.url}>
+                        {file.pathname.replace(/^certificates\//, "")}
+                    </option>
                 ))}
             </select>
         </div>

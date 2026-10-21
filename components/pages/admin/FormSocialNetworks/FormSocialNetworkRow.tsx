@@ -3,8 +3,10 @@ import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import { IconType } from "react-icons";
 import { FaLink } from "react-icons/fa";
 
-export interface FormSocialNetworkRowProps
-    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface FormSocialNetworkRowProps extends DetailedHTMLProps<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+> {
     metadata: SocialNetworksMetadata;
     defaultValue?: string;
 }

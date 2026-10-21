@@ -9,10 +9,9 @@ import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
 import { getDictionary } from "@/app/[lang]/dictionaries";
 import { getFullName } from "@/helpers/personalInfoPresentation";
 
-const ContactSection: FC<{ lang: Locale } & { personalInfo: PersonalInfo }> = async ({
-    lang,
-    personalInfo,
-}) => {
+const ContactSection: FC<
+    { lang: Locale } & { personalInfo: PersonalInfo }
+> = async ({ lang, personalInfo }) => {
     const localeDict = (await getDictionary(lang)).contactSection;
     return (
         <FullHeightSection id="contact" className="py-4 px-3 px-sm-5">
@@ -28,7 +27,9 @@ const ContactSection: FC<{ lang: Locale } & { personalInfo: PersonalInfo }> = as
                             </ButtonLaunchContactForm>
                             {localeDict.formAfter}
                         </div>
-                        <p className="m-0">{getFullName(personalInfo.basicInfo)}</p>
+                        <p className="m-0">
+                            {getFullName(personalInfo.basicInfo)}
+                        </p>
                         <p className="">
                             <code>{personalInfo.contactInfo.email}</code>
                         </p>

@@ -14,34 +14,53 @@ const FormHighlights: FC<{
     initialSelectedId?: string;
 }> = ({ lang, highlights, initialSelectedId = "" }) => {
     const {
-        selectedId, fields, setFields, selectHighlight, handleSubmit,
-        handleDelete, busy, action, dirty, feedback,
+        selectedId,
+        fields,
+        setFields,
+        selectHighlight,
+        handleSubmit,
+        handleDelete,
+        busy,
+        action,
+        dirty,
+        feedback,
     } = useFormHighlights(lang, highlights, initialSelectedId);
-    const titles = highlights.map((highlight) => parseStringI18N(highlight.title, lang));
+    const titles = highlights.map((highlight) =>
+        parseStringI18N(highlight.title, lang),
+    );
 
     return (
         <form onSubmit={handleSubmit} className="mb-3" aria-busy={busy}>
             <fieldset disabled={busy}>
                 <div className="mb-3">
-                    <label className="form-label" htmlFor="highlight-selector">Highlight</label>
+                    <label className="form-label" htmlFor="highlight-selector">
+                        Highlight
+                    </label>
                     <select
                         id="highlight-selector"
                         className="form-select"
                         value={selectedId}
-                        onChange={(event) => selectHighlight(event.target.value)}
+                        onChange={(event) =>
+                            selectHighlight(event.target.value)
+                        }
                     >
                         <option value="">New highlight</option>
                         {highlights.map((highlight, index) => (
                             <option key={highlight._id} value={highlight._id}>
                                 {titles[index] || "Untitled highlight"}
-                                {titles.filter((title) => title === titles[index]).length > 1
-                                    ? ` (${index + 1})` : ""}
+                                {titles.filter(
+                                    (title) => title === titles[index],
+                                ).length > 1
+                                    ? ` (${index + 1})`
+                                    : ""}
                             </option>
                         ))}
                     </select>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label" htmlFor="highlight-title">Title</label>
+                    <label className="form-label" htmlFor="highlight-title">
+                        Title
+                    </label>
                     <input
                         id="highlight-title"
                         className="form-control"
@@ -50,11 +69,21 @@ const FormHighlights: FC<{
                         name="title"
                         required
                         value={fields.title}
-                        onChange={(event) => setFields((previous) => ({ ...previous, title: event.target.value }))}
+                        onChange={(event) =>
+                            setFields((previous) => ({
+                                ...previous,
+                                title: event.target.value,
+                            }))
+                        }
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label" htmlFor="highlight-description">Description</label>
+                    <label
+                        className="form-label"
+                        htmlFor="highlight-description"
+                    >
+                        Description
+                    </label>
                     <textarea
                         id="highlight-description"
                         className="form-control"
@@ -62,7 +91,12 @@ const FormHighlights: FC<{
                         name="description"
                         rows={8}
                         value={fields.description}
-                        onChange={(event) => setFields((previous) => ({ ...previous, description: event.target.value }))}
+                        onChange={(event) =>
+                            setFields((previous) => ({
+                                ...previous,
+                                description: event.target.value,
+                            }))
+                        }
                     />
                 </div>
                 <div className="d-flex flex-wrap gap-2">
@@ -74,7 +108,11 @@ const FormHighlights: FC<{
                         textLoading={selectedId ? "Saving" : "Creating"}
                     />
                     {selectedId && (
-                        <button type="button" className="btn btn-outline-danger" onClick={handleDelete}>
+                        <button
+                            type="button"
+                            className="btn btn-outline-danger"
+                            onClick={handleDelete}
+                        >
                             {action === "delete" ? "Deleting…" : "Delete"}
                         </button>
                     )}

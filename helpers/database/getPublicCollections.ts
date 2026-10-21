@@ -24,14 +24,18 @@ export async function getPublicPersonalInfo(): Promise<PersonalInfo> {
     };
 }
 
-export async function getPublicHighlights(): Promise<WithStringId<Highlight>[]> {
+export async function getPublicHighlights(): Promise<
+    WithStringId<Highlight>[]
+> {
     "use cache: remote";
     cacheTag(PUBLIC_CONTENT_TAG);
     cacheLife("max");
     return parseIdsAsStringIds(await DB.highlights.find().toArray());
 }
 
-export async function getPublicExperience(): Promise<WithStringId<Experience>[]> {
+export async function getPublicExperience(): Promise<
+    WithStringId<Experience>[]
+> {
     "use cache: remote";
     cacheTag(PUBLIC_CONTENT_TAG);
     cacheLife("max");

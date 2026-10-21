@@ -17,7 +17,9 @@ export function generateStaticParams() {
     return i18n.locales.map((lang) => ({ lang }));
 }
 
-export async function generateMetadata({ params }: {
+export async function generateMetadata({
+    params,
+}: {
     params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
     const { lang } = await params;
@@ -35,7 +37,10 @@ export async function generateMetadata({ params }: {
 
 export const viewport: Viewport = { themeColor: "#e3704f" };
 
-export default async function RootLayout({ children, params }: {
+export default async function RootLayout({
+    children,
+    params,
+}: {
     children: ReactNode;
     params: Promise<{ lang: string }>;
 }) {
@@ -47,7 +52,11 @@ export default async function RootLayout({ children, params }: {
             <body>
                 <ClientSessionProvider>
                     <Suspense fallback={<Loading lang={lang} />}>
-                        <MyNavbar lang={lang} dictionary={dictionary.myNavbar} loginDictionary={dictionary.loginButton} />
+                        <MyNavbar
+                            lang={lang}
+                            dictionary={dictionary.myNavbar}
+                            loginDictionary={dictionary.loginButton}
+                        />
                         {children}
                     </Suspense>
                 </ClientSessionProvider>

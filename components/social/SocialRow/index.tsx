@@ -7,8 +7,10 @@ import { getDictionary } from "@/app/[lang]/dictionaries";
 import { PersonalInfo } from "@/helpers/database/collections/personalInfo";
 import { SocialNetworksMetadata } from "@/helpers/database/collections/personalInfo/socialNetwork";
 
-export interface SocialRowProps
-    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface SocialRowProps extends DetailedHTMLProps<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+> {
     personalInfo: PersonalInfo;
     classNameIcons?: string;
     styleIcons?: CSSProperties;

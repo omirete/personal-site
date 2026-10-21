@@ -7,11 +7,10 @@ import { FaLink, FaSave, FaTrash } from "react-icons/fa";
 import useLinksList from "./useLinksList";
 import WithStringId from "@/types/WithStringId";
 
-export interface LinksRowProps
-    extends DetailedHTMLProps<
-        HTMLAttributes<HTMLTableRowElement>,
-        HTMLTableRowElement
-    > {
+export interface LinksRowProps extends DetailedHTMLProps<
+    HTMLAttributes<HTMLTableRowElement>,
+    HTMLTableRowElement
+> {
     rowNr: number;
     link: WithStringId<LinkInfo>;
 }

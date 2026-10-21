@@ -8,10 +8,9 @@ import ExperienceCard from "./ExperienceCard";
 import ExperienceTimeline from "./ExperienceTimeline";
 import WithStringId from "@/types/WithStringId";
 
-const ExperienceSection: FC<{ lang: Locale } & { experience: WithStringId<Experience>[] }> = async ({
-    lang,
-    experience,
-}) => {
+const ExperienceSection: FC<
+    { lang: Locale } & { experience: WithStringId<Experience>[] }
+> = async ({ lang, experience }) => {
     const localeDict = (await getDictionary(lang)).experienceSection;
     return (
         <FullHeightSection id="experience" className="py-4 px-3 px-sm-5">

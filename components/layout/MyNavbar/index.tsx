@@ -13,7 +13,11 @@ import { FaDownload } from "react-icons/fa";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
 
-const MyNavbar: FC<{ lang: Locale; dictionary: Dictionary["myNavbar"]; loginDictionary: Dictionary["loginButton"] }> = ({ dictionary, loginDictionary, lang }) => {
+const MyNavbar: FC<{
+    lang: Locale;
+    dictionary: Dictionary["myNavbar"];
+    loginDictionary: Dictionary["loginButton"];
+}> = ({ dictionary, loginDictionary, lang }) => {
     const { data: session } = useSession();
     const linkClasses = "text-white fw-sm-bold";
     const localeDict = dictionary;
@@ -49,7 +53,8 @@ const MyNavbar: FC<{ lang: Locale; dictionary: Dictionary["myNavbar"]; loginDict
                 )}
             </ul>
             {session && (
-                <LoginButton dictionary={loginDictionary}
+                <LoginButton
+                    dictionary={loginDictionary}
                     lang={lang}
                     className="px-2 py-1 me-2 text-white"
                 />
@@ -60,7 +65,9 @@ const MyNavbar: FC<{ lang: Locale; dictionary: Dictionary["myNavbar"]; loginDict
                 `}
             >
                 <Link
-                    href={getFileUrl(`cv/Federico_Giancarelli_${lang.toUpperCase()}.pdf`)}
+                    href={getFileUrl(
+                        `cv/Federico_Giancarelli_${lang.toUpperCase()}.pdf`,
+                    )}
                     download
                     rel="noreferrer noopener"
                     target="_blank"

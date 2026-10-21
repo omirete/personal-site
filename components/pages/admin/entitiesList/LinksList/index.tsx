@@ -5,11 +5,10 @@ import LinksRow from "./LinksRow";
 import RowCreateLink from "./RowCreateLink";
 import WithStringId from "@/types/WithStringId";
 
-export interface LinksListProps
-    extends React.DetailedHTMLProps<
-        React.TableHTMLAttributes<HTMLTableElement>,
-        HTMLTableElement
-    > {
+export interface LinksListProps extends React.DetailedHTMLProps<
+    React.TableHTMLAttributes<HTMLTableElement>,
+    HTMLTableElement
+> {
     links: WithStringId<LinkInfo>[];
 }
 

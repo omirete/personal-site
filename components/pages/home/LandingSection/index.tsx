@@ -9,10 +9,9 @@ import parseStringI18N from "@/i18n/helpers/parseStringI18N";
 import Image from "next/image";
 import { getFileUrl } from "@/helpers/fileStorage/publicUrl";
 
-const LandingSection: FC<{ lang: Locale } & { personalInfo: PersonalInfo }> = async ({
-    lang,
-    personalInfo,
-}) => {
+const LandingSection: FC<
+    { lang: Locale } & { personalInfo: PersonalInfo }
+> = async ({ lang, personalInfo }) => {
     const localeDict = (await getDictionary(lang)).landingSection;
     if (localeDict) {
         return (
@@ -30,7 +29,10 @@ const LandingSection: FC<{ lang: Locale } & { personalInfo: PersonalInfo }> = as
                                     </code>
                                 </p>
                                 <p className="m-0 fs-4">
-                                    {localeDict.iamName.replace("{name}", personalInfo.basicInfo.name)}
+                                    {localeDict.iamName.replace(
+                                        "{name}",
+                                        personalInfo.basicInfo.name,
+                                    )}
                                 </p>
                                 <p className="m-0">
                                     {parseStringI18N(

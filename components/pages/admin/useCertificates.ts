@@ -10,16 +10,27 @@ export default function useCertificates() {
         const controller = new AbortController();
         const refresh = async () => {
             try {
-                const response = await fetch("/api/files", { signal: controller.signal });
-                if (!response.ok) throw new Error("Could not load certificates. You can still paste a reference URL.");
+                const response = await fetch("/api/files", {
+                    signal: controller.signal,
+                });
+                if (!response.ok)
+                    throw new Error(
+                        "Could not load certificates. You can still paste a reference URL.",
+                    );
                 const data: { files: StoredFile[] } = await response.json();
                 if (!controller.signal.aborted) {
-                    setCertificates(data.files.filter((file) => file.pathname.startsWith("certificates/")));
+                    setCertificates(
+                        data.files.filter((file) =>
+                            file.pathname.startsWith("certificates/"),
+                        ),
+                    );
                     setError(null);
                 }
             } catch {
                 if (!controller.signal.aborted) {
-                    setError("Could not load certificates. You can still paste a reference URL.");
+                    setError(
+                        "Could not load certificates. You can still paste a reference URL.",
+                    );
                 }
             } finally {
                 if (!controller.signal.aborted) setLoading(false);

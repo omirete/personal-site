@@ -5,7 +5,9 @@ import LoginButton from "@/components/next-auth/LoginButton";
 import Link from "next/link";
 import { getDictionary } from "@/app/[lang]/dictionaries";
 
-const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({ params }) => {
+const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({
+    params,
+}) => {
     const lang = (await params).lang;
     if (!hasLocale(lang)) notFound();
     const localeDict = (await getDictionary(lang)).unauthorized;
@@ -25,7 +27,15 @@ const Home: NextPage<{ params: Promise<{ lang: string }> }> = async ({ params })
                 >
                     🏠 {localeDict.goHome}
                 </Link>
-                <div>{localeDict.signInBefore}<LoginButton lang={lang} dictionary={(await getDictionary(lang)).loginButton} className="btn-sm" />{localeDict.signInAfter}</div>
+                <div>
+                    {localeDict.signInBefore}
+                    <LoginButton
+                        lang={lang}
+                        dictionary={(await getDictionary(lang)).loginButton}
+                        className="btn-sm"
+                    />
+                    {localeDict.signInAfter}
+                </div>
             </div>
         </main>
     );

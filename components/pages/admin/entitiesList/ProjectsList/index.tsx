@@ -6,11 +6,10 @@ import ProjectsRow from "./ProjectsRow";
 import useEntitiesList from "../useEntitiesList";
 import WithStringId from "@/types/WithStringId";
 
-export interface ProjectsListProps
-    extends React.DetailedHTMLProps<
-        React.TableHTMLAttributes<HTMLTableElement>,
-        HTMLTableElement
-    > {
+export interface ProjectsListProps extends React.DetailedHTMLProps<
+    React.TableHTMLAttributes<HTMLTableElement>,
+    HTMLTableElement
+> {
     projects: WithStringId<Project>[];
 }
 

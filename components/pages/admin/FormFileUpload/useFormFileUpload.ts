@@ -1,7 +1,10 @@
 "use client";
 
 import { upload } from "@vercel/blob/client";
-import { getUploadConfig, MAX_UPLOAD_SIZE } from "@/helpers/fileStorage/uploadConfig";
+import {
+    getUploadConfig,
+    MAX_UPLOAD_SIZE,
+} from "@/helpers/fileStorage/uploadConfig";
 import { FormEventHandler, RefObject, useRef, useState } from "react";
 
 export interface UseFormFileUpload {
@@ -31,19 +34,26 @@ const useFormFileUpload = (): UseFormFileUpload => {
             if (!(file instanceof File) || !file.size || !type || !lang) {
                 throw new Error("Select a file, file type, and language.");
             }
-            if (file.size > MAX_UPLOAD_SIZE) throw new Error("File must be 50 MB or smaller.");
+            if (file.size > MAX_UPLOAD_SIZE)
+                throw new Error("File must be 50 MB or smaller.");
             const config = getUploadConfig(type, lang, file.name);
             const blob = await upload(config.pathname, file, {
                 access: "public",
                 handleUploadUrl: "/api/files",
                 clientPayload: JSON.stringify({ type, lang, name: file.name }),
-                contentType: config.contentTypes.includes(file.type) ? file.type : config.contentTypes[0],
+                contentType: config.contentTypes.includes(file.type)
+                    ? file.type
+                    : config.contentTypes[0],
                 multipart: true,
             });
             setUploadedUrl(blob.url);
             window.dispatchEvent(new Event("files-updated"));
         } catch (error) {
-            setError(error instanceof Error ? error.message : "Upload failed. Please try again.");
+            setError(
+                error instanceof Error
+                    ? error.message
+                    : "Upload failed. Please try again.",
+            );
         } finally {
             setLoading(false);
         }

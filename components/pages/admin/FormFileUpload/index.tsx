@@ -4,7 +4,8 @@ import SubmitButton from "@/components/ui/forms/SubmitButton";
 import useFormFileUpload from "./useFormFileUpload";
 
 const FormFileUpload: React.FC = () => {
-    const { handleSubmit, loading, formRef, error, uploadedUrl } = useFormFileUpload();
+    const { handleSubmit, loading, formRef, error, uploadedUrl } =
+        useFormFileUpload();
     return (
         <form onSubmit={handleSubmit} ref={formRef}>
             <div className="mb-2 row gx-2">
@@ -64,8 +65,9 @@ const FormFileUpload: React.FC = () => {
                 required
             />
             <p className="form-text">
-                Upload certificates as PDFs, then select them as a reference in Experience.
-                Choose “Not applicable” for certificates without a language.
+                Upload certificates as PDFs, then select them as a reference in
+                Experience. Choose “Not applicable” for certificates without a
+                language.
             </p>
             <SubmitButton
                 className="btn btn-primary w-100"
@@ -73,10 +75,21 @@ const FormFileUpload: React.FC = () => {
                 text="Upload"
                 textLoading="Uploading"
             />
-            {error && <p className="text-danger mt-2" role="alert">{error}</p>}
+            {error && (
+                <p className="text-danger mt-2" role="alert">
+                    {error}
+                </p>
+            )}
             {uploadedUrl && (
                 <p className="text-success mt-2" role="status">
-                    File uploaded. <a href={uploadedUrl} target="_blank" rel="noopener noreferrer">View file</a>
+                    File uploaded.{" "}
+                    <a
+                        href={uploadedUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View file
+                    </a>
                 </p>
             )}
         </form>

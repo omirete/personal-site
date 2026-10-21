@@ -12,10 +12,7 @@ import { notFound, redirect } from "next/navigation";
 export interface PrivateSectionProps {
     children?: ReactNode;
     behaviourOnUnauthorized?:
-        | "unauthorized"
-        | "redirect-home"
-        | "redirect-unauthorized"
-        | "hide";
+        "unauthorized" | "redirect-home" | "redirect-unauthorized" | "hide";
 }
 
 const PrivateSection: NextPage<PrivateSectionProps> = async ({
@@ -40,7 +37,10 @@ const PrivateSection: NextPage<PrivateSectionProps> = async ({
                         <p className="mt-3">
                             You are not authorized to view this content.
                         </p>
-                        <LoginButton lang={lang} dictionary={(await getDictionary(lang)).loginButton} />
+                        <LoginButton
+                            lang={lang}
+                            dictionary={(await getDictionary(lang)).loginButton}
+                        />
                     </div>
                 );
             case "redirect-unauthorized":

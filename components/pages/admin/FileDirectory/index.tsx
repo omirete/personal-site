@@ -3,11 +3,10 @@
 import useFileDirectory from "./useFileDirectory";
 import FileDirectoryRow from "./FileDirectoryRow";
 
-export interface FileDirectoryProps
-    extends React.DetailedHTMLProps<
-        React.TableHTMLAttributes<HTMLTableElement>,
-        HTMLTableElement
-    > {}
+export interface FileDirectoryProps extends React.DetailedHTMLProps<
+    React.TableHTMLAttributes<HTMLTableElement>,
+    HTMLTableElement
+> {}
 
 const FileDirectory: React.FC<FileDirectoryProps> = ({
     className,
@@ -45,7 +44,12 @@ const FileDirectory: React.FC<FileDirectoryProps> = ({
                 </thead>
                 <tbody>
                     {files.map((file, i) => (
-                        <FileDirectoryRow key={file.pathname} rowNr={i + 1} file={file} onDeleted={onDeleted} />
+                        <FileDirectoryRow
+                            key={file.pathname}
+                            rowNr={i + 1}
+                            file={file}
+                            onDeleted={onDeleted}
+                        />
                     ))}
                 </tbody>
             </table>

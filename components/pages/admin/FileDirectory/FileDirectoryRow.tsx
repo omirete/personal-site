@@ -2,11 +2,10 @@ import { DetailedHTMLProps, HTMLAttributes, useRef, useState } from "react";
 import { FaDownload, FaTrash } from "react-icons/fa";
 import type { StoredFile } from "@/helpers/fileStorage/types";
 
-export interface FileDirectoryRowProps
-    extends DetailedHTMLProps<
-        HTMLAttributes<HTMLTableRowElement>,
-        HTMLTableRowElement
-    > {
+export interface FileDirectoryRowProps extends DetailedHTMLProps<
+    HTMLAttributes<HTMLTableRowElement>,
+    HTMLTableRowElement
+> {
     rowNr: number;
     file: StoredFile;
     onDeleted: (pathname: string) => void;
@@ -21,22 +20,35 @@ const FileDirectoryRow: React.FC<FileDirectoryRowProps> = ({
     const [deleting, setDeleting] = useState(false);
     const deleteInProgress = useRef(false);
     const handleDelete = async () => {
-        if (deleteInProgress.current || !window.confirm(
-            `Delete "${file.pathname}" permanently? This cannot be undone.`,
-        )) return;
+        if (
+            deleteInProgress.current ||
+            !window.confirm(
+                `Delete "${file.pathname}" permanently? This cannot be undone.`,
+            )
+        )
+            return;
 
         deleteInProgress.current = true;
         setDeleting(true);
         try {
             const query = new URLSearchParams({ pathname: file.pathname });
-            const res = await fetch(`/api/files?${query}`, { method: "DELETE" });
+            const res = await fetch(`/api/files?${query}`, {
+                method: "DELETE",
+            });
             const data = await res.json();
             if (!res.ok || !data.success) {
-                throw new Error(data.error || "Could not delete the file. Please try again.");
+                throw new Error(
+                    data.error ||
+                        "Could not delete the file. Please try again.",
+                );
             }
             onDeleted(file.pathname);
         } catch (error) {
-            window.alert(error instanceof Error ? error.message : "Could not delete the file. Please try again.");
+            window.alert(
+                error instanceof Error
+                    ? error.message
+                    : "Could not delete the file. Please try again.",
+            );
         } finally {
             deleteInProgress.current = false;
             setDeleting(false);

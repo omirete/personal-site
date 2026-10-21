@@ -13,11 +13,10 @@ import { FaSave, FaTrash } from "react-icons/fa";
 import type { StoredFile } from "@/helpers/fileStorage/types";
 import CertificateReference from "../../CertificateReference";
 
-export interface ExperienceRowProps
-    extends DetailedHTMLProps<
-        HTMLAttributes<HTMLTableRowElement>,
-        HTMLTableRowElement
-    > {
+export interface ExperienceRowProps extends DetailedHTMLProps<
+    HTMLAttributes<HTMLTableRowElement>,
+    HTMLTableRowElement
+> {
     rowNr: number;
     loading?: boolean;
     experience: WithStringId<Experience>;

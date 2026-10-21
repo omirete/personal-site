@@ -9,10 +9,9 @@ export interface ExperienceTimelineProps {
     experience: Experience[];
 }
 
-const ExperienceTimeline: FC<{ lang: Locale } & ExperienceTimelineProps> = async ({
-    lang,
-    experience,
-}) => {
+const ExperienceTimeline: FC<
+    { lang: Locale } & ExperienceTimelineProps
+> = async ({ lang, experience }) => {
     const localeDict = (await getDictionary(lang)).experienceSection;
     return (
         <table className="text-white">

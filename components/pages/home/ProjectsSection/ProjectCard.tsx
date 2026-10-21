@@ -4,8 +4,10 @@ import type { FC } from "react";
 import type { Locale } from "@/i18n/config";
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
-export interface ProjectCardProps
-    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface ProjectCardProps extends DetailedHTMLProps<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+> {
     project: Project;
 }
 

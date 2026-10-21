@@ -5,8 +5,10 @@ import { DetailedHTMLProps, HTMLAttributes } from "react";
 import { getDictionary } from "@/app/[lang]/dictionaries";
 import { Experience } from "@/helpers/database/collections/experience";
 
-export interface ExperienceCardProps
-    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface ExperienceCardProps extends DetailedHTMLProps<
+    HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+> {
     experience: Experience;
 }
 
