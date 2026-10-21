@@ -2,3 +2,19 @@
     text-decoration: none;
     color: var(--mo-info);
 }
+
+.baseStyle img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin-inline: auto;
+    border: 1px solid rgb(255 255 255 / 15%);
+    border-radius: 0.375rem;
+    box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 20%);
+}
+
+@media (min-width: 992px) {
+    .baseStyle img {
+        max-width: 80%;
+    }
+}
